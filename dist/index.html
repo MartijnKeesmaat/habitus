@@ -6,6 +6,141 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Document</title>
     <link rel="stylesheet" href="/styles.0e48289b" />
+    <style>
+      * {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+      }
+
+      html {
+        font-size: 62.5%;
+
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      ::selection {
+        color: #fff;
+        background: #e7cc84;
+      }
+
+      ::-webkit-scrollbar {
+        width: 5px;
+
+        background: #f6f6f6;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background-color: #e7cc84;
+      }
+
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+
+      hr,
+      .hr {
+        display: block;
+
+        height: 0.1rem;
+        margin: 0;
+        padding: 0;
+
+        border: 0;
+        background: rgba(182, 182, 182, 0.4);
+      }
+
+      .wrapper {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 30px;
+      }
+
+      figure {
+        margin: 0;
+      }
+
+      svg,
+      img {
+        height: 700px;
+      }
+
+      body {
+        color: #000;
+
+        font-family: Helvetica, Arial, Sans-Serif;
+        font-size: 1.6rem;
+        font-weight: 400;
+        line-height: 1.6;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6,
+      th {
+        display: inline-block;
+
+        margin: 0 0 0.3em 0;
+
+        font-family: Helvetica, Arial, Sans-Serif;
+        font-weight: 400;
+        line-height: 1.18;
+      }
+
+      h1,
+      .h1 {
+        font-size: 6.4rem;
+      }
+
+      h2,
+      .h2 {
+        font-size: 4.8rem;
+      }
+
+      h3,
+      .h3 {
+        font-size: 3.6rem;
+      }
+
+      h4,
+      .h4 {
+        font-size: 2.7rem;
+      }
+
+      h5,
+      .h5 {
+        font-size: 2.2rem;
+      }
+
+      h6,
+      .h6 {
+        font-size: 2rem;
+      }
+
+      p,
+      .p {
+        max-width: 750px;
+        margin: 0 0 1em 0;
+      }
+      p:last-child,
+      .p:last-child {
+        margin-bottom: 0;
+      }
+
+      a {
+        transition: 0.28s all ease;
+        text-decoration: none;
+
+        color: initial;
+      }
+
+      /*# sourceMappingURL=/styles.e6b5c560.css.map */
+    </style>
   </head>
 
   <body>
@@ -662,6 +797,173 @@
       </g>
     </svg>
     <button id="poseDemo">Pose</button><button id="timedDemo">Timed</button><button id="sequenceDemo">Sequence</button>
-    <script src="/scripts.4f27f99b.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.4/gsap.min.js"></script>
+    <script>
+      const allParts = [
+        '#left-arm',
+        '#left-lower-arm',
+        '#left-lower-arm-hand',
+        '#left-upper-arm',
+        '#left-hand',
+        '#left-elbow',
+
+        '#right-arm',
+        '#right-upper-arm',
+        '#right-lower-arm',
+        '#right-lower-arm-hand',
+        '#right-hand',
+        '#right-elbow',
+
+        '#upper-body',
+        '#waist',
+        '#hips',
+        '#head',
+        '#neck',
+        '#torso',
+
+        '#right-foot',
+        '#right-leg',
+        '#right-knee',
+        '#right-lower-leg',
+        '#right-upper-leg',
+        '#right-lower-leg-foot',
+        '#right-upper-leg-knee',
+        '#right-leg-connection',
+
+        '#left-foot',
+        '#left-leg',
+        '#left-knee',
+        '#left-lower-leg',
+        '#left-upper-leg',
+        '#left-upper-leg-knee',
+        '#left-lower-leg-foot',
+        '#left-leg-connection'
+      ];
+
+      resetMyGuy('set');
+      // salute();
+
+      function graceful(duration) {
+        gsap.to('#left-arm', { duration: duration / 1.5, rotate: 170, x: 60, y: 20, transformOrigin: 'top', ease: 'power3.out' });
+        gsap.to('#left-lower-arm-hand', { delay: 0.1, duration: duration, rotate: 120, transformOrigin: 'top', ease: 'power3.out' });
+        gsap.to('#right-arm', { duration: duration / 1.5, x: 10, y: 30, rotate: 10, transformOrigin: 'top', ease: 'power3.out' });
+        gsap.to('#right-lower-arm-hand', { duration: duration / 1.5, rotate: -120, transformOrigin: 'top', ease: 'power3.out' });
+
+        gsap.to('#upper-body', { duration: duration, rotate: 20, y: 10, transformOrigin: 'bottom', ease: 'power3.out' });
+        gsap.to('#waist', { duration: duration, rotate: 20, x: -5, y: 5, transformOrigin: 'bottom', ease: 'power3.out' });
+        gsap.to('#hips', { duration: duration, rotate: -4, y: 2, transformOrigin: 'bottom', ease: 'power3.out' });
+        gsap.to('#head', { duration: duration, rotate: 30, y: 6, transformOrigin: 'bottom', ease: 'power3.out' });
+        gsap.to('#neck', { duration: duration, rotate: 30, transformOrigin: 'left', ease: 'power3.out' });
+
+        gsap.to('#left-upper-leg-knee', { duration: duration, rotate: 3, ease: 'power3.out' });
+        gsap.to('#left-lower-leg-foot', { duration: duration, rotate: -2, ease: 'power3.out', transformOrigin: 'bottom' });
+        gsap.to('#right-leg', { duration: duration, y: -5, ease: 'power3.out' });
+        gsap.to('#right-lower-leg-foot', { duration: duration, y: -10, x: 15, rotate: 10, ease: 'power3.out', transformOrigin: 'top' });
+        gsap.to('#right-upper-leg-knee', { duration: duration, rotate: -10, x: 10, ease: 'power3.out' });
+      }
+
+      function salute() {
+        gsap.to('#head', { duration: 1.5, y: 10, x: -4, rotate: -8, ease: 'power3.out' });
+        gsap.to('#upper-body', { duration: 1.5, rotate: -1, x: -2, transformOrigin: 'top', ease: 'power3.out' });
+        gsap.to('#neck', { duration: 1.5, y: 2, x: 5, rotate: -3, ease: 'power3.out' });
+        gsap.to('#left-arm', { duration: 1.5, rotate: 100, x: 40, y: -5, transformOrigin: 'top', ease: 'power3.out' });
+        gsap.to('#left-lower-arm-hand', { duration: 0.75, rotate: 160, y: 5, x: -2, transformOrigin: 'top', ease: 'power3.out' });
+        gsap.to('#right-upper-arm', { duration: 2, x: 5, rotate: -10, ease: 'power3.out' });
+        gsap.to('#right-lower-arm-hand', { duration: 2, rotate: 8, x: 2, y: -3, ease: 'power3.out' });
+        gsap.to('#hips', { duration: 2, rotate: 3, ease: 'power3.out' });
+      }
+
+      function resetMyGuy(mode) {
+        allParts.forEach(part => {
+          gsap.to(part, { duration: mode === 'set' ? 0 : 1, rotate: 0, x: 0, y: 0, ease: 'power3.out' });
+        });
+
+        setTimeout(() => {
+          allParts.forEach(part => {
+            gsap.to(part, { delay: mode === 'set' ? 0 : 1, transformOrigin: '50% 50%' });
+          });
+        }, 1000);
+      }
+
+      function startSequenceCapture(duration, interval) {
+        const sequenceTimer = setInterval(myTimer, interval);
+
+        captureSequence(document.querySelector('svg'), document.querySelector('body'));
+
+        function myTimer() {
+          captureSequence(document.querySelector('svg'), document.querySelector('body'));
+        }
+
+        // Stop after 2s
+        setTimeout(() => {
+          clearInterval(sequenceTimer);
+        }, duration);
+      }
+
+      // http://stackoverflow.com/questions/3768565/drawing-a-svg-file-on-a-html5-canvas
+      function captureSequence(source, target) {
+        var imgDOM = document.createElement('img');
+        var canvas = document.querySelector('canvas');
+
+        // get svg data
+        var xml = new XMLSerializer().serializeToString(source);
+
+        // make it base64
+        var svg64 = btoa(xml);
+        var b64Start = 'data:image/svg+xml;base64,';
+
+        // prepend a "header"
+        var image64 = b64Start + svg64;
+
+        // set it as the source of the img element
+        imgDOM.src = image64;
+
+        // draw the image onto the canvas
+        canvas.getContext('2d').drawImage(imgDOM, 0, 0);
+        target.appendChild(imgDOM);
+      }
+
+      const poseDemo = document.querySelector('#poseDemo');
+      poseDemo.addEventListener('click', pose);
+
+      const timedDemo = document.querySelector('#timedDemo');
+      timedDemo.addEventListener('click', timed);
+
+      const demoButton = document.querySelector('#sequenceDemo');
+      demoButton.addEventListener('click', sequencePose);
+
+      function pose() {
+        salute(1.5);
+      }
+
+      function timed() {
+        salute(1.5);
+
+        setTimeout(() => {
+          resetMyGuy();
+        }, 2000);
+
+        setTimeout(() => {
+          graceful(1);
+        }, 4000);
+
+        setTimeout(() => {
+          resetMyGuy();
+        }, 6000);
+
+        setTimeout(() => {
+          salute(1);
+        }, 8000);
+
+        setTimeout(() => {
+          resetMyGuy();
+        }, 10000);
+      }
+
+      function sequencePose() {
+        graceful(2);
+        startSequenceCapture(1000, 200);
+      }
+    </script>
   </body>
 </html>
