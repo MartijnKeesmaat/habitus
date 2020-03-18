@@ -39,6 +39,9 @@ const allParts = [
   '#left-leg-connection'
 ];
 
+resetMyGuy();
+// salute();
+
 function graceful(duration) {
   gsap.to('#left-arm', { duration: duration / 1.5, rotate: 170, x: 60, y: 20, transformOrigin: 'top', ease: 'power3.out' });
   gsap.to('#left-lower-arm-hand', { delay: 0.1, duration: duration, rotate: 120, transformOrigin: 'top', ease: 'power3.out' });
@@ -60,11 +63,12 @@ function graceful(duration) {
 
 function salute() {
   gsap.to('#head', { duration: 1.5, y: 10, x: -4, rotate: -8, ease: 'power3.out' });
-  gsap.to('#upper-body', { duration: 1.5, rotate: -3, ease: 'power3.out' });
+  gsap.to('#upper-body', { duration: 1.5, rotate: -1, x: -2, transformOrigin: 'top', ease: 'power3.out' });
   gsap.to('#neck', { duration: 1.5, y: 2, x: 5, rotate: -3, ease: 'power3.out' });
   gsap.to('#left-arm', { duration: 1.5, rotate: 100, x: 40, y: -5, transformOrigin: 'top', ease: 'power3.out' });
   gsap.to('#left-lower-arm-hand', { duration: 0.75, rotate: 160, y: 5, x: -2, transformOrigin: 'top', ease: 'power3.out' });
-  gsap.to('#right-lower-arm-hand', { duration: 2, rotate: 8, y: -3, ease: 'power3.out' });
+  gsap.to('#right-upper-arm', { duration: 2, rotate: -2, ease: 'power3.out' });
+  gsap.to('#right-lower-arm-hand', { duration: 2, rotate: 8, x: 2, y: -3, ease: 'power3.out' });
   gsap.to('#hips', { duration: 2, rotate: 3, ease: 'power3.out' });
 }
 
@@ -73,9 +77,11 @@ function resetMyGuy() {
     gsap.to(part, { duration: 1, rotate: 0, x: 0, y: 0, ease: 'power3.out' });
   });
 
-  allParts.forEach(part => {
-    gsap.set(part, { delay: 1, transformOrigin: '50% 50%' });
-  });
+  setTimeout(() => {
+    allParts.forEach(part => {
+      gsap.to(part, { delay: 1, transformOrigin: '50% 50%' });
+    });
+  }, 1000);
 }
 
 function startSequenceCapture(duration) {
@@ -133,17 +139,29 @@ function pose() {
   graceful(1.5);
 }
 
-function timed() {}
+function timed() {
+  salute(1.5);
 
-graceful(1);
+  setTimeout(() => {
+    resetMyGuy();
+  }, 2000);
 
-setTimeout(() => {
-  resetMyGuy();
-}, 2000);
+  setTimeout(() => {
+    graceful(1);
+  }, 4000);
 
-// setTimeout(() => {
-//   salute(1.5);
-// }, 3000);
+  setTimeout(() => {
+    resetMyGuy();
+  }, 6000);
+
+  setTimeout(() => {
+    salute(1);
+  }, 8000);
+
+  setTimeout(() => {
+    resetMyGuy();
+  }, 10000);
+}
 
 function sequencePose() {
   graceful(1.5);

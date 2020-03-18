@@ -5665,6 +5665,7 @@ var _gsap = _interopRequireDefault(require("gsap"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var allParts = ['#left-arm', '#left-lower-arm', '#left-lower-arm-hand', '#left-hand', '#left-elbow', '#right-arm', '#right-lower-arm', '#right-lower-arm-hand', '#right-hand', '#right-elbow', '#upper-body', '#waist', '#hips', '#head', '#neck', '#torso', '#right-foot', '#right-leg', '#right-knee', '#right-lower-leg', '#right-upper-leg', '#right-lower-leg-foot', '#right-upper-leg-knee', '#right-leg-connection', '#left-foot', '#left-leg', '#left-knee', '#left-lower-leg', '#left-upper-leg', '#left-upper-leg-knee', '#left-lower-leg-foot', '#left-leg-connection'];
+resetMyGuy(); // salute();
 
 function graceful(duration) {
   _gsap.default.to('#left-arm', {
@@ -5787,7 +5788,9 @@ function salute() {
 
   _gsap.default.to('#upper-body', {
     duration: 1.5,
-    rotate: -3,
+    rotate: -1,
+    x: -2,
+    transformOrigin: 'top',
     ease: 'power3.out'
   });
 
@@ -5817,9 +5820,16 @@ function salute() {
     ease: 'power3.out'
   });
 
+  _gsap.default.to('#right-upper-arm', {
+    duration: 2,
+    rotate: -2,
+    ease: 'power3.out'
+  });
+
   _gsap.default.to('#right-lower-arm-hand', {
     duration: 2,
     rotate: 8,
+    x: 2,
     y: -3,
     ease: 'power3.out'
   });
@@ -5841,12 +5851,14 @@ function resetMyGuy() {
       ease: 'power3.out'
     });
   });
-  allParts.forEach(function (part) {
-    _gsap.default.set(part, {
-      delay: 1,
-      transformOrigin: '50% 50%'
+  setTimeout(function () {
+    allParts.forEach(function (part) {
+      _gsap.default.to(part, {
+        delay: 1,
+        transformOrigin: '50% 50%'
+      });
     });
-  });
+  }, 1000);
 }
 
 function startSequenceCapture(duration) {
@@ -5896,14 +5908,24 @@ function pose() {
   graceful(1.5);
 }
 
-function timed() {}
-
-graceful(1);
-setTimeout(function () {
-  resetMyGuy();
-}, 2000); // setTimeout(() => {
-//   salute(1.5);
-// }, 3000);
+function timed() {
+  salute(1.5);
+  setTimeout(function () {
+    resetMyGuy();
+  }, 2000);
+  setTimeout(function () {
+    graceful(1);
+  }, 4000);
+  setTimeout(function () {
+    resetMyGuy();
+  }, 6000);
+  setTimeout(function () {
+    salute(1);
+  }, 8000);
+  setTimeout(function () {
+    resetMyGuy();
+  }, 10000);
+}
 
 function sequencePose() {
   graceful(1.5);
