@@ -5665,30 +5665,31 @@ var _gsap = _interopRequireDefault(require("gsap"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 //simple tween like the old TweenMax.to(...)
-// gsap.to('h1', { duration: 1.5, x: 100 });
+// gsap.to('h1', { duration: 1.5, x: 100, , ease: "power3.out" });
 //create a timeline and add a tween
 // var tl = gsap.timeline();
-// tl.to('h1', { duration: 1.5, x: 100 });
-// tl.to('h1', { duration: 1.5, y: 100 });
-graceful();
+// tl.to('h1', { duration: 1.5, x: 100, , ease: "power3.out" });
+// tl.to('h1', { duration: 1.5, y: 100, , ease: "power3.out" });
 setTimeout(function () {
   return resetMyGuy();
 }, 5000);
 
-function graceful() {
+function graceful(duration) {
   _gsap.default.to('#left-arm', {
     duration: 1,
     rotate: 170,
     x: 60,
     y: 20,
-    transformOrigin: 'top'
+    transformOrigin: 'top',
+    ease: 'power3.out'
   });
 
   _gsap.default.to('#left-lower-arm-hand', {
-    delay: 0.5,
+    delay: 0.1,
     duration: 1.5,
     rotate: 120,
-    transformOrigin: 'top'
+    transformOrigin: 'top',
+    ease: 'power3.out'
   });
 
   _gsap.default.to('#right-arm', {
@@ -5696,37 +5697,89 @@ function graceful() {
     x: 10,
     y: 30,
     rotate: 10,
-    transformOrigin: 'top'
+    transformOrigin: 'top',
+    ease: 'power3.out'
   });
 
   _gsap.default.to('#right-lower-arm-hand', {
     duration: 1,
-    rotate: -100,
-    transformOrigin: 'top'
+    rotate: -120,
+    transformOrigin: 'top',
+    ease: 'power3.out'
   });
 
   _gsap.default.to('#upper-body', {
-    duration: 1.5,
+    duration: duration,
     rotate: 20,
-    y: 5,
-    transformOrigin: 'bottom'
+    y: 10,
+    transformOrigin: 'bottom',
+    ease: 'power3.out'
   });
 
   _gsap.default.to('#waist', {
-    duration: 1.5,
+    duration: duration,
     rotate: 20,
     x: -5,
     y: 5,
-    transformOrigin: 'bottom'
+    transformOrigin: 'bottom',
+    ease: 'power3.out'
   });
 
   _gsap.default.to('#hips', {
-    duration: 1.5,
+    duration: duration,
     rotate: -4,
     y: 2,
-    transformOrigin: 'bottom'
-  }); // gsap.to('#right-leg', { duration: 1.5, y: 10 });
+    transformOrigin: 'bottom',
+    ease: 'power3.out'
+  });
 
+  _gsap.default.to('#head', {
+    duration: duration,
+    rotate: 30,
+    y: 6,
+    transformOrigin: 'bottom',
+    ease: 'power3.out'
+  });
+
+  _gsap.default.to('#neck', {
+    duration: duration,
+    rotate: 30,
+    transformOrigin: 'left',
+    ease: 'power3.out'
+  });
+
+  _gsap.default.to('#left-upper-leg-knee', {
+    duration: duration,
+    rotate: 3,
+    ease: 'power3.out'
+  });
+
+  _gsap.default.to('#left-lower-leg-foot', {
+    duration: duration,
+    rotate: -2,
+    ease: 'power3.out',
+    transformOrigin: 'bottom'
+  });
+
+  _gsap.default.to('#right-leg', {
+    duration: duration,
+    y: -5,
+    ease: 'power3.out'
+  });
+
+  _gsap.default.to('#right-lower-leg-foot', {
+    duration: duration,
+    y: -10,
+    x: 15,
+    rotate: 10,
+    ease: 'power3.out'
+  });
+
+  _gsap.default.to('#right-upper-leg-knee', {
+    duration: duration,
+    rotate: -10,
+    ease: 'power3.out'
+  });
 }
 
 function salute() {
@@ -5734,97 +5787,227 @@ function salute() {
     duration: 1.5,
     y: 2,
     rotate: -8,
-    transformOrigin: '0% 100%'
+    transformOrigin: '0% 100%',
+    ease: 'power3.out'
   });
 
   _gsap.default.to('#upper-body', {
     duration: 1.5,
-    rotate: -3
+    rotate: -3,
+    ease: 'power3.out'
   });
 
   _gsap.default.to('#neck', {
     duration: 1.5,
     y: -2,
-    rotate: -3
+    rotate: -3,
+    ease: 'power3.out'
   });
 
   _gsap.default.to('#left-arm', {
     duration: 1.5,
     rotate: 80,
     x: 40,
-    y: -5
+    y: -5,
+    ease: 'power3.out'
   });
 
   _gsap.default.to('#left-lower-arm-hand', {
     duration: 0.75,
-    rotate: -80
+    rotate: -80,
+    ease: 'power3.out'
   });
 
   _gsap.default.to('#left-lower-arm-hand', {
     duration: 0.75,
     rotate: 160,
-    x: 25
+    x: 25,
+    ease: 'power3.out'
   });
 
   _gsap.default.to('#right-lower-arm-hand', {
     duration: 2,
     rotate: 8,
-    y: -3
+    y: -3,
+    ease: 'power3.out'
   });
 
   _gsap.default.to('#hips', {
     duration: 2,
-    rotate: 3
+    rotate: 3,
+    ease: 'power3.out'
   });
 }
 
 function resetMyGuy() {
-  _gsap.default.to('#head', {
+  _gsap.default.to('#left-arm', {
+    duration: 1,
+    rotate: 0,
+    x: 0,
+    y: 0,
+    ease: 'power3.out'
+  });
+
+  _gsap.default.to('#left-lower-arm-hand', {
+    delay: 0.1,
     duration: 1.5,
+    rotate: 0,
+    transformOrigin: 'top',
+    ease: 'power3.out'
+  });
+
+  _gsap.default.to('#right-arm', {
+    duration: 1,
+    x: 0,
     y: 0,
     rotate: 0,
-    transformOrigin: '0% 100%'
+    transformOrigin: 'top',
+    ease: 'power3.out'
+  });
+
+  _gsap.default.to('#right-lower-arm-hand', {
+    duration: 1,
+    rotate: 0,
+    transformOrigin: 'top',
+    ease: 'power3.out'
   });
 
   _gsap.default.to('#upper-body', {
     duration: 1.5,
-    rotate: 0
+    rotate: 0,
+    y: 0,
+    transformOrigin: 'bottom',
+    ease: 'power3.out'
+  });
+
+  _gsap.default.to('#waist', {
+    duration: 1.5,
+    rotate: 0,
+    x: 0,
+    y: 0,
+    transformOrigin: 'bottom',
+    ease: 'power3.out'
+  });
+
+  _gsap.default.to('#hips', {
+    duration: 1.5,
+    rotate: 0,
+    y: 0,
+    transformOrigin: 'bottom',
+    ease: 'power3.out'
+  });
+
+  _gsap.default.to('#head', {
+    duration: 1.5,
+    rotate: 0,
+    y: 0,
+    transformOrigin: 'bottom',
+    ease: 'power3.out'
   });
 
   _gsap.default.to('#neck', {
     duration: 1.5,
-    y: 0,
-    rotate: 0
+    rotate: 0,
+    transformOrigin: 'left',
+    ease: 'power3.out'
   });
 
-  _gsap.default.to('#left-arm', {
+  _gsap.default.to('#right-leg', {
+    duration: 1.5,
+    y: 0,
+    ease: 'power3.out'
+  });
+
+  _gsap.default.to('#right-leg', {
+    duration: 1.5,
+    y: 0,
+    ease: 'power3.out'
+  });
+
+  _gsap.default.to('#left-lower-leg-foot', {
     duration: 1.5,
     rotate: 0,
+    ease: 'power3.out'
+  });
+
+  _gsap.default.to('#right-lower-leg-foot', {
+    duration: 1.5,
+    y: 0,
     x: 0,
-    y: 0
-  });
-
-  _gsap.default.to('#left-lower-arm-hand', {
-    duration: 0.75,
-    rotate: 0
-  });
-
-  _gsap.default.to('#left-lower-arm-hand', {
-    duration: 0.75,
     rotate: 0,
-    x: 0
+    ease: 'power3.out'
   });
 
-  _gsap.default.to('#right-lower-arm-hand', {
-    duration: 2,
+  _gsap.default.to('#right-upper-leg-knee', {
+    duration: 1.5,
     rotate: 0,
-    y: 0
+    ease: 'power3.out'
   });
+}
 
-  _gsap.default.to('#hips', {
-    duration: 2,
-    rotate: 0
-  });
+function startSequenceCapture(duration) {
+  var sequenceTimer = setInterval(myTimer, 500);
+  captureSequence(document.querySelector('svg'), document.querySelector('body'));
+
+  function myTimer() {
+    captureSequence(document.querySelector('svg'), document.querySelector('body'));
+  } // Stop after 2s
+
+
+  setTimeout(function () {
+    myStopFunction();
+  }, duration);
+
+  function myStopFunction() {
+    clearInterval(sequenceTimer);
+  }
+} // http://stackoverflow.com/questions/3768565/drawing-a-svg-file-on-a-html5-canvas
+
+
+function captureSequence(source, target) {
+  var imgDOM = document.createElement('img');
+  var canvas = document.querySelector('canvas'); // get svg data
+
+  var xml = new XMLSerializer().serializeToString(source); // make it base64
+
+  var svg64 = btoa(xml);
+  var b64Start = 'data:image/svg+xml;base64,'; // prepend a "header"
+
+  var image64 = b64Start + svg64; // set it as the source of the img element
+
+  imgDOM.src = image64; // draw the image onto the canvas
+
+  canvas.getContext('2d').drawImage(imgDOM, 0, 0);
+  target.appendChild(imgDOM);
+}
+
+var poseDemo = document.querySelector('#poseDemo');
+poseDemo.addEventListener('click', pose);
+var timedDemo = document.querySelector('#timedDemo');
+timedDemo.addEventListener('click', timed);
+var demoButton = document.querySelector('#sequenceDemo');
+demoButton.addEventListener('click', sequencePose);
+
+function pose() {
+  graceful(1.5);
+}
+
+function timed() {
+  graceful(1.5);
+  setTimeout(function () {
+    resetMyGuy();
+  }, 3000);
+  setTimeout(function () {
+    salute(1.5);
+  }, 4000);
+  setTimeout(function () {
+    resetMyGuy();
+  }, 6000);
+}
+
+function sequencePose() {
+  graceful(1.5);
+  startSequenceCapture(1500);
 }
 },{"gsap":"../node_modules/gsap/index.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
