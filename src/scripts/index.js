@@ -4,10 +4,12 @@ const allParts = [
   '#left-arm',
   '#left-lower-arm',
   '#left-lower-arm-hand',
+  '#left-upper-arm',
   '#left-hand',
   '#left-elbow',
 
   '#right-arm',
+  '#right-upper-arm',
   '#right-lower-arm',
   '#right-lower-arm-hand',
   '#right-hand',
@@ -39,7 +41,7 @@ const allParts = [
   '#left-leg-connection'
 ];
 
-resetMyGuy();
+resetMyGuy('set');
 // salute();
 
 function graceful(duration) {
@@ -67,25 +69,25 @@ function salute() {
   gsap.to('#neck', { duration: 1.5, y: 2, x: 5, rotate: -3, ease: 'power3.out' });
   gsap.to('#left-arm', { duration: 1.5, rotate: 100, x: 40, y: -5, transformOrigin: 'top', ease: 'power3.out' });
   gsap.to('#left-lower-arm-hand', { duration: 0.75, rotate: 160, y: 5, x: -2, transformOrigin: 'top', ease: 'power3.out' });
-  gsap.to('#right-upper-arm', { duration: 2, rotate: -2, ease: 'power3.out' });
+  gsap.to('#right-upper-arm', { duration: 2, x: 5, rotate: -10, ease: 'power3.out' });
   gsap.to('#right-lower-arm-hand', { duration: 2, rotate: 8, x: 2, y: -3, ease: 'power3.out' });
   gsap.to('#hips', { duration: 2, rotate: 3, ease: 'power3.out' });
 }
 
-function resetMyGuy() {
+function resetMyGuy(mode) {
   allParts.forEach(part => {
-    gsap.to(part, { duration: 1, rotate: 0, x: 0, y: 0, ease: 'power3.out' });
+    gsap.to(part, { duration: mode === 'set' ? 0 : 1, rotate: 0, x: 0, y: 0, ease: 'power3.out' });
   });
 
   setTimeout(() => {
     allParts.forEach(part => {
-      gsap.to(part, { delay: 1, transformOrigin: '50% 50%' });
+      gsap.to(part, { delay: mode === 'set' ? 0 : 1, transformOrigin: '50% 50%' });
     });
   }, 1000);
 }
 
-function startSequenceCapture(duration) {
-  const sequenceTimer = setInterval(myTimer, 500);
+function startSequenceCapture(duration, interval) {
+  const sequenceTimer = setInterval(myTimer, interval);
 
   captureSequence(document.querySelector('svg'), document.querySelector('body'));
 
@@ -95,12 +97,8 @@ function startSequenceCapture(duration) {
 
   // Stop after 2s
   setTimeout(() => {
-    myStopFunction();
-  }, duration);
-
-  function myStopFunction() {
     clearInterval(sequenceTimer);
-  }
+  }, duration);
 }
 
 // http://stackoverflow.com/questions/3768565/drawing-a-svg-file-on-a-html5-canvas
@@ -136,7 +134,7 @@ const demoButton = document.querySelector('#sequenceDemo');
 demoButton.addEventListener('click', sequencePose);
 
 function pose() {
-  graceful(1.5);
+  salute(1.5);
 }
 
 function timed() {
@@ -164,6 +162,6 @@ function timed() {
 }
 
 function sequencePose() {
-  graceful(1.5);
-  startSequenceCapture(1500);
+  graceful(2);
+  startSequenceCapture(1000, 200);
 }
