@@ -49,7 +49,7 @@ figure {
   margin: 0;
 }
 
-svg {
+svg, img {
   height: 700px;
 }
 
