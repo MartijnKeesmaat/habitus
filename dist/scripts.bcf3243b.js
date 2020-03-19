@@ -6084,19 +6084,19 @@ function pose() {
 function timed() {
   salute(1.5);
   setTimeout(function () {
-    resetMyGuy(1);
+    resetMyGuy('trans', 1);
   }, 2000);
   setTimeout(function () {
     graceful(1);
   }, 4000);
   setTimeout(function () {
-    resetMyGuy(1);
+    resetMyGuy('trans', 1);
   }, 6000);
   setTimeout(function () {
     salute(1);
   }, 8000);
   setTimeout(function () {
-    resetMyGuy(1);
+    resetMyGuy('trans', 1);
   }, 10000);
 }
 
@@ -6109,7 +6109,7 @@ var poseSelector = document.querySelector('#pose-selector');
 poseSelector.addEventListener('click', showPoses);
 
 function showPoses() {
-  resetMyGuy(0.2);
+  resetMyGuy('trans', 0.5);
   setTimeout(function () {
     jump(0.45);
   }, 200);
@@ -6130,7 +6130,7 @@ poseSelect.forEach(function (pose) {
 
 function adeptNewPose() {
   var duration = 1.2;
-  salute();
+  graceful();
 
   _gsap.default.to('#body', {
     y: 0,

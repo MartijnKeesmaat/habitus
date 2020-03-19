@@ -180,7 +180,7 @@ function timed() {
   salute(1.5);
 
   setTimeout(() => {
-    resetMyGuy(1);
+    resetMyGuy('trans', 1);
   }, 2000);
 
   setTimeout(() => {
@@ -188,7 +188,7 @@ function timed() {
   }, 4000);
 
   setTimeout(() => {
-    resetMyGuy(1);
+    resetMyGuy('trans', 1);
   }, 6000);
 
   setTimeout(() => {
@@ -196,7 +196,7 @@ function timed() {
   }, 8000);
 
   setTimeout(() => {
-    resetMyGuy(1);
+    resetMyGuy('trans', 1);
   }, 10000);
 }
 
@@ -209,7 +209,7 @@ const poseSelector = document.querySelector('#pose-selector');
 poseSelector.addEventListener('click', showPoses);
 
 function showPoses() {
-  resetMyGuy(0.2);
+  resetMyGuy('trans', 0.5);
 
   setTimeout(() => {
     jump(0.45);
@@ -223,7 +223,7 @@ poseSelect.forEach(pose => pose.addEventListener('click', adeptNewPose));
 
 function adeptNewPose() {
   const duration = 1.2;
-  salute();
+  graceful();
   gsap.to('#body', { y: 0, scaleY: 1.05, duration: duration, ease: 'power3.out' });
   gsap.to('.pose-select', { duration: duration, scaleX: 1, y: '100%', ease: 'power4.out' });
   gsap.to('#shadow', { autoAlpha: 0.14, duration: duration * 1.5, ease: 'Expo.out' });
