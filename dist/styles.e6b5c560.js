@@ -189,7 +189,7 @@ var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./../fonts/Avenir-Black.woff":[["Avenir-Black.731c6ec2.woff","fonts/Avenir-Black.woff"],"fonts/Avenir-Black.woff"],"./../fonts/Avenir-Black.woff2":[["Avenir-Black.62a9dff3.woff2","fonts/Avenir-Black.woff2"],"fonts/Avenir-Black.woff2"],"./../fonts/Avenir-Medium.woff":[["Avenir-Medium.b61c6b7e.woff","fonts/Avenir-Medium.woff"],"fonts/Avenir-Medium.woff"],"./../fonts/Avenir-Medium.woff2":[["Avenir-Medium.da0618f4.woff2","fonts/Avenir-Medium.woff2"],"fonts/Avenir-Medium.woff2"],"./../fonts/Avenir-Roman.woff":[["Avenir-Roman.0ce15e95.woff","fonts/Avenir-Roman.woff"],"fonts/Avenir-Roman.woff"],"./../fonts/Avenir-Roman.woff2":[["Avenir-Roman.ea61d349.woff2","fonts/Avenir-Roman.woff2"],"fonts/Avenir-Roman.woff2"],"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -217,7 +217,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55216" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55815" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
