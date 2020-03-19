@@ -6109,14 +6109,52 @@ var poseSelector = document.querySelector('#pose-selector');
 poseSelector.addEventListener('click', showPoses);
 
 function showPoses() {
+  resetMyGuy();
+  setTimeout(function () {
+    jump(0.45);
+  }, 1);
+
   _gsap.default.to('.pose-select', {
     delay: 1,
     duration: 1,
+    scaleX: 1,
     y: '-50%',
     ease: 'power3.out'
   });
 
-  jump(0.5);
+  setTimeout(function () {
+    resetMyGuy('set');
+  }, 1);
+}
+
+var poseSelect = document.querySelectorAll('.pose-select img');
+poseSelect.forEach(function (pose) {
+  return pose.addEventListener('click', adeptNewPose);
+});
+
+function adeptNewPose() {
+  var duration = 1.2;
+  salute();
+
+  _gsap.default.to('#body', {
+    y: 0,
+    scaleY: 1.05,
+    duration: duration,
+    ease: 'power3.out'
+  });
+
+  _gsap.default.to('.pose-select', {
+    duration: duration,
+    scaleX: 1,
+    y: '100%',
+    ease: 'power4.out'
+  });
+
+  _gsap.default.to('#shadow', {
+    autoAlpha: 0.14,
+    duration: duration * 1.5,
+    ease: 'Expo.out'
+  });
 }
 },{"gsap":"../node_modules/gsap/index.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];

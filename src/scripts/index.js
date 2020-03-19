@@ -209,6 +209,25 @@ const poseSelector = document.querySelector('#pose-selector');
 poseSelector.addEventListener('click', showPoses);
 
 function showPoses() {
-  gsap.to('.pose-select', { delay: 1, duration: 1, y: '-50%', ease: 'power3.out' });
-  jump(0.5);
+  resetMyGuy();
+
+  setTimeout(() => {
+    jump(0.45);
+  }, 1);
+
+  gsap.to('.pose-select', { delay: 1, duration: 1, scaleX: 1, y: '-50%', ease: 'power3.out' });
+  setTimeout(() => {
+    resetMyGuy('set');
+  }, 1);
+}
+
+const poseSelect = document.querySelectorAll('.pose-select img');
+poseSelect.forEach(pose => pose.addEventListener('click', adeptNewPose));
+
+function adeptNewPose() {
+  const duration = 1.2;
+  salute();
+  gsap.to('#body', { y: 0, scaleY: 1.05, duration: duration, ease: 'power3.out' });
+  gsap.to('.pose-select', { duration: duration, scaleX: 1, y: '100%', ease: 'power4.out' });
+  gsap.to('#shadow', { autoAlpha: 0.14, duration: duration * 1.5, ease: 'Expo.out' });
 }
