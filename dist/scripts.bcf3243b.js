@@ -6016,10 +6016,10 @@ function salute() {
   });
 }
 
-function resetMyGuy(mode) {
+function resetMyGuy(mode, duration) {
   allParts.forEach(function (part) {
     _gsap.default.to(part, {
-      duration: mode === 'set' ? 0 : 1,
+      duration: mode === 'set' ? 0 : duration,
       scaleX: 1,
       scaleY: 1,
       rotate: 0,
@@ -6031,7 +6031,7 @@ function resetMyGuy(mode) {
   setTimeout(function () {
     allParts.forEach(function (part) {
       _gsap.default.to(part, {
-        delay: mode === 'set' ? 0 : 1,
+        delay: mode === 'set' ? 0 : duration,
         transformOrigin: '50% 50%'
       });
     });
@@ -6084,19 +6084,19 @@ function pose() {
 function timed() {
   salute(1.5);
   setTimeout(function () {
-    resetMyGuy();
+    resetMyGuy(1);
   }, 2000);
   setTimeout(function () {
     graceful(1);
   }, 4000);
   setTimeout(function () {
-    resetMyGuy();
+    resetMyGuy(1);
   }, 6000);
   setTimeout(function () {
     salute(1);
   }, 8000);
   setTimeout(function () {
-    resetMyGuy();
+    resetMyGuy(1);
   }, 10000);
 }
 
@@ -6109,10 +6109,10 @@ var poseSelector = document.querySelector('#pose-selector');
 poseSelector.addEventListener('click', showPoses);
 
 function showPoses() {
-  resetMyGuy();
+  resetMyGuy(0.2);
   setTimeout(function () {
     jump(0.45);
-  }, 1);
+  }, 200);
 
   _gsap.default.to('.pose-select', {
     delay: 1,
@@ -6121,10 +6121,6 @@ function showPoses() {
     y: '-50%',
     ease: 'power3.out'
   });
-
-  setTimeout(function () {
-    resetMyGuy('set');
-  }, 1);
 }
 
 var poseSelect = document.querySelectorAll('.pose-select img');

@@ -113,14 +113,14 @@ function salute() {
   gsap.to('#hips', { duration: 2, rotate: 3, ease: 'power3.out' });
 }
 
-function resetMyGuy(mode) {
+function resetMyGuy(mode, duration) {
   allParts.forEach(part => {
-    gsap.to(part, { duration: mode === 'set' ? 0 : 1, scaleX: 1, scaleY: 1, rotate: 0, x: 0, y: 0, ease: 'power3.out' });
+    gsap.to(part, { duration: mode === 'set' ? 0 : duration, scaleX: 1, scaleY: 1, rotate: 0, x: 0, y: 0, ease: 'power3.out' });
   });
 
   setTimeout(() => {
     allParts.forEach(part => {
-      gsap.to(part, { delay: mode === 'set' ? 0 : 1, transformOrigin: '50% 50%' });
+      gsap.to(part, { delay: mode === 'set' ? 0 : duration, transformOrigin: '50% 50%' });
     });
   }, 1000);
 }
@@ -180,7 +180,7 @@ function timed() {
   salute(1.5);
 
   setTimeout(() => {
-    resetMyGuy();
+    resetMyGuy(1);
   }, 2000);
 
   setTimeout(() => {
@@ -188,7 +188,7 @@ function timed() {
   }, 4000);
 
   setTimeout(() => {
-    resetMyGuy();
+    resetMyGuy(1);
   }, 6000);
 
   setTimeout(() => {
@@ -196,7 +196,7 @@ function timed() {
   }, 8000);
 
   setTimeout(() => {
-    resetMyGuy();
+    resetMyGuy(1);
   }, 10000);
 }
 
@@ -209,16 +209,13 @@ const poseSelector = document.querySelector('#pose-selector');
 poseSelector.addEventListener('click', showPoses);
 
 function showPoses() {
-  resetMyGuy();
+  resetMyGuy(0.2);
 
   setTimeout(() => {
     jump(0.45);
-  }, 1);
+  }, 200);
 
   gsap.to('.pose-select', { delay: 1, duration: 1, scaleX: 1, y: '-50%', ease: 'power3.out' });
-  setTimeout(() => {
-    resetMyGuy('set');
-  }, 1);
 }
 
 const poseSelect = document.querySelectorAll('.pose-select img');
