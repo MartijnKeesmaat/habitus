@@ -5665,7 +5665,181 @@ var _gsap = _interopRequireDefault(require("gsap"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var allParts = ['#left-arm', '#left-lower-arm', '#left-lower-arm-hand', '#left-upper-arm', '#left-hand', '#left-elbow', '#right-arm', '#right-upper-arm', '#right-lower-arm', '#right-lower-arm-hand', '#right-hand', '#right-elbow', '#upper-body', '#waist', '#hips', '#head', '#neck', '#torso', '#right-foot', '#right-leg', '#right-knee', '#right-lower-leg', '#right-upper-leg', '#right-lower-leg-foot', '#right-upper-leg-knee', '#right-leg-connection', '#left-foot', '#left-leg', '#left-knee', '#left-lower-leg', '#left-upper-leg', '#left-upper-leg-knee', '#left-lower-leg-foot', '#left-leg-connection'];
-resetMyGuy('set'); // salute();
+resetMyGuy('set'); // setTimeout(() => jump(0.5), 3000);
+
+function jump(duration) {
+  _gsap.default.to('#body', {
+    duration: duration,
+    y: 80,
+    scaleY: 0.9,
+    ease: 'power3.out'
+  });
+
+  _gsap.default.to('#left-leg', {
+    duration: duration,
+    y: 5,
+    scaleY: 0.85,
+    ease: 'power3.out'
+  });
+
+  _gsap.default.to('#right-leg', {
+    duration: duration,
+    y: 5,
+    scaleY: 0.85,
+    ease: 'power3.out'
+  });
+
+  _gsap.default.to('#left-lower-leg-foot', {
+    duration: duration,
+    rotate: -5,
+    transformOrigin: 'bottom',
+    ease: 'power3.out'
+  });
+
+  _gsap.default.to('#right-lower-leg-foot', {
+    duration: duration,
+    rotate: 5,
+    transformOrigin: 'bottom',
+    ease: 'power3.out'
+  });
+
+  _gsap.default.to('#left-upper-leg-knee', {
+    duration: duration,
+    scaleY: 0.8,
+    y: 20,
+    rotate: 10,
+    transformOrigin: 'top',
+    ease: 'power3.out'
+  });
+
+  _gsap.default.to('#right-upper-leg-knee', {
+    duration: duration,
+    scaleY: 0.8,
+    y: 20,
+    rotate: -10,
+    transformOrigin: 'top',
+    ease: 'power3.out'
+  });
+
+  _gsap.default.to('#head', {
+    duration: duration,
+    y: 5,
+    scaleY: 0.95,
+    ease: 'power3.out'
+  });
+
+  _gsap.default.to('#upper-body', {
+    duration: duration,
+    y: 50,
+    scaleY: 0.88,
+    ease: 'power3.out'
+  });
+
+  _gsap.default.to('#left-arm', {
+    duration: duration,
+    y: 50,
+    ease: 'power3.out'
+  });
+
+  _gsap.default.to('#right-arm', {
+    duration: duration,
+    y: 50,
+    ease: 'power3.out'
+  });
+
+  _gsap.default.to('#waist', {
+    duration: duration,
+    y: 40,
+    ease: 'power3.out'
+  });
+
+  _gsap.default.to('#hips', {
+    duration: duration,
+    y: 40,
+    ease: 'power3.out'
+  });
+
+  _gsap.default.to('#left-leg-connection', {
+    duration: duration,
+    y: 20,
+    ease: 'power3.out'
+  });
+
+  _gsap.default.to('#right-leg-connection', {
+    duration: duration,
+    y: 20,
+    ease: 'power3.out'
+  });
+
+  _gsap.default.to('#left-arm', {
+    duration: duration,
+    scaleY: 0.85,
+    rotate: 30,
+    x: 10,
+    scaleX: 0.9,
+    ease: 'power3.out',
+    transformOrigin: 'top'
+  });
+
+  _gsap.default.to('#left-lower-arm-hand', {
+    duration: duration,
+    rotate: -150,
+    ease: 'power3.out',
+    transformOrigin: 'top'
+  });
+
+  _gsap.default.to('#right-arm', {
+    duration: duration,
+    scaleY: 0.85,
+    rotate: -30,
+    scaleX: 0.9,
+    x: -10,
+    ease: 'power3.out',
+    transformOrigin: 'top'
+  });
+
+  _gsap.default.to('#right-lower-arm-hand', {
+    duration: duration,
+    rotate: 150,
+    ease: 'power3.out',
+    transformOrigin: 'top'
+  });
+
+  _gsap.default.to('#shadow', {
+    autoAlpha: 0.3,
+    duration: duration * 1.5,
+    ease: 'Expo.out'
+  }); // gsap.to('#body', { delay: duration, duration: duration, ease: 'power3.out' });
+
+
+  _gsap.default.to('#body', {
+    delay: duration * 1.1,
+    y: '-100%',
+    scaleY: 1.05,
+    duration: duration * 1.5,
+    ease: 'Expo.out'
+  });
+
+  _gsap.default.to('#shadow', {
+    delay: duration * 1.1,
+    autoAlpha: 0,
+    duration: duration * 1.5,
+    ease: 'Expo.out'
+  });
+
+  allParts.forEach(function (part) {
+    _gsap.default.to(part, {
+      duration: duration / 2,
+      delay: duration,
+      scaleX: 1,
+      scaleY: 1,
+      rotate: 0,
+      x: 0,
+      y: 0,
+      ease: 'power3.out'
+    });
+  }); // gsap.to('#body', { delay: duration, duration: duration * 2, scaleY: 2, y: -1200, ease: 'power4.out' });
+}
 
 function graceful(duration) {
   _gsap.default.to('#left-arm', {
@@ -5846,6 +6020,8 @@ function resetMyGuy(mode) {
   allParts.forEach(function (part) {
     _gsap.default.to(part, {
       duration: mode === 'set' ? 0 : 1,
+      scaleX: 1,
+      scaleY: 1,
       rotate: 0,
       x: 0,
       y: 0,
@@ -5927,6 +6103,20 @@ function timed() {
 function sequencePose() {
   graceful(2);
   startSequenceCapture(1000, 200);
+}
+
+var poseSelector = document.querySelector('#pose-selector');
+poseSelector.addEventListener('click', showPoses);
+
+function showPoses() {
+  _gsap.default.to('.pose-select', {
+    delay: 1,
+    duration: 1,
+    y: '-50%',
+    ease: 'power3.out'
+  });
+
+  jump(0.5);
 }
 },{"gsap":"../node_modules/gsap/index.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];

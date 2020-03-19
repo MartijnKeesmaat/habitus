@@ -31,6 +31,10 @@ html {
   -moz-osx-font-smoothing: grayscale;
 }
 
+body {
+  margin: 0;
+}
+
 ::selection {
   color: #fff;
   background: #9AA3B0;
@@ -70,14 +74,20 @@ figure {
   margin: 0;
 }
 
-svg, img {
-  height: 700px;
+.mannenman {
+  height: 800px;
 }
 
 .logo {
   display: block;
   height: 30px;
   margin-bottom: 10px;
+}
+
+body {
+  overflow: hidden;
+  max-width: 100vw;
+  max-height: 100vh;
 }
 
 main {
@@ -145,6 +155,40 @@ main {
   border-width: 0;
   background: #fff;
   box-shadow: 0 1px 20px rgba(156, 167, 188, 0.3);
+}
+
+.capture-pose {
+  position: fixed;
+}
+
+.pose-select {
+  position: fixed;
+  top: 50%;
+  left: 550px;
+  display: flex;
+  transform: translateY(100%);
+}
+.pose-select .row {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.pose-select img {
+  height: 180px;
+  margin: 20px;
+}
+
+#shadow {
+  position: fixed;
+  z-index: -1;
+  top: 77%;
+  left: 48.5%;
+  width: 248px;
+  height: 70px;
+  opacity: 0.14;
+  border-radius: 50%;
+  background: #08153A;
+  filter: blur(14px);
 }
 
 body {
