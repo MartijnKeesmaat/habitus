@@ -266,6 +266,10 @@ main {
   height: 110px;
 }
 
+html {
+  overflow: auto;
+}
+
 body {
   color: #08153A;
   font-family: "Avenir-Roman", Arial, Sans-Serif;

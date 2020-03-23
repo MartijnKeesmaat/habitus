@@ -6065,10 +6065,11 @@ exports.startSequenceCapture = startSequenceCapture;
 
 function startSequenceCapture(duration, interval) {
   var sequenceTimer = setInterval(myTimer, interval);
-  captureSequence(document.querySelector('svg'), document.querySelector('.sequence__container'));
+  console.log(document.querySelector('.content svg'));
+  captureSequence(document.querySelector('.content svg'), document.querySelector('.sequence__container'));
 
   function myTimer() {
-    captureSequence(document.querySelector('svg'), document.querySelector('.sequence__container'));
+    captureSequence(document.querySelector('.content svg'), document.querySelector('.sequence__container'));
   } // Stop after 2s
 
 
@@ -6243,26 +6244,33 @@ timedDemo.addEventListener('click', _timed.actionTimedPose);
 var demoButton = document.querySelector('#sequenceDemo');
 demoButton.addEventListener('click', actionSequencedPose);
 
-function actionSelectPose() {// Todo swith to view
-}
+function actionSelectPose() {} // Todo swith to view
+// TODO should be dynamic
+
+
+var contentSections = document.querySelectorAll('.content-section');
 
 function actionSequencedPose() {
+  contentSections[0].classList.toggle('content-section--active');
+  contentSections[2].classList.toggle('content-section--active');
+
   _gsap.default.to('.view .mannenman', {
-    y: '100%',
-    duration: 0.7
+    y: '140%',
+    duration: 1
   });
 
   _gsap.default.to('#shadow', {
     autoAlpha: 0,
-    duration: 0.7
+    duration: 1
   });
 
   _gsap.default.to('.sequence', {
-    y: '162%',
-    duration: 0.7,
-    delay: 0.7
+    y: '175%',
+    duration: 1,
+    delay: 1
   });
 
+  (0, _poses.resetMyGuy)('set');
   setTimeout(function () {
     (0, _poses.graceful)(5);
     (0, _sequence.startSequenceCapture)(2000, 200);

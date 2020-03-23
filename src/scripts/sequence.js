@@ -1,9 +1,10 @@
 export function startSequenceCapture(duration, interval) {
   const sequenceTimer = setInterval(myTimer, interval);
-  captureSequence(document.querySelector('svg'), document.querySelector('.sequence__container'));
+  console.log(document.querySelector('.content svg'));
+  captureSequence(document.querySelector('.content svg'), document.querySelector('.sequence__container'));
 
   function myTimer() {
-    captureSequence(document.querySelector('svg'), document.querySelector('.sequence__container'));
+    captureSequence(document.querySelector('.content svg'), document.querySelector('.sequence__container'));
   }
 
   // Stop after 2s

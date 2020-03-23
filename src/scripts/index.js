@@ -25,10 +25,17 @@ function actionSelectPose() {
   // Todo swith to view
 }
 
+// TODO should be dynamic
+const contentSections = document.querySelectorAll('.content-section');
+
 function actionSequencedPose() {
-  gsap.to('.view .mannenman', { y: '100%', duration: 0.7 });
-  gsap.to('#shadow', { autoAlpha: 0, duration: 0.7 });
-  gsap.to('.sequence', { y: '162%', duration: 0.7, delay: 0.7 });
+  contentSections[0].classList.toggle('content-section--active');
+  contentSections[2].classList.toggle('content-section--active');
+
+  gsap.to('.view .mannenman', { y: '140%', duration: 1 });
+  gsap.to('#shadow', { autoAlpha: 0, duration: 1 });
+  gsap.to('.sequence', { y: '175%', duration: 1, delay: 1 });
+  resetMyGuy('set');
 
   setTimeout(() => {
     graceful(5);
