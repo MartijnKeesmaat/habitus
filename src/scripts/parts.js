@@ -1,0 +1,40 @@
+export const allParts = [
+  '#left-arm',
+  '#left-lower-arm',
+  '#left-lower-arm-hand',
+  '#left-upper-arm',
+  '#left-hand',
+  '#left-elbow',
+
+  '#right-arm',
+  '#right-upper-arm',
+  '#right-lower-arm',
+  '#right-lower-arm-hand',
+  '#right-hand',
+  '#right-elbow',
+
+  '#upper-body',
+  '#waist',
+  '#hips',
+  '#head',
+  '#neck',
+  '#torso',
+
+  '#right-foot',
+  '#right-leg',
+  '#right-knee',
+  '#right-lower-leg',
+  '#right-upper-leg',
+  '#right-lower-leg-foot',
+  '#right-upper-leg-knee',
+  '#right-leg-connection',
+
+  '#left-foot',
+  '#left-leg',
+  '#left-knee',
+  '#left-lower-leg',
+  '#left-upper-leg',
+  '#left-upper-leg-knee',
+  '#left-lower-leg-foot',
+  '#left-leg-connection'
+];
