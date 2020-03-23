@@ -43,8 +43,6 @@ const allParts = [
 
 resetMyGuy('set');
 
-// setTimeout(() => jump(0.5), 3000);
-
 function jump(duration) {
   gsap.to('#body', { duration: duration, y: 80, scaleY: 0.9, ease: 'power3.out' });
 
@@ -127,11 +125,10 @@ function resetMyGuy(mode, duration) {
 
 function startSequenceCapture(duration, interval) {
   const sequenceTimer = setInterval(myTimer, interval);
-
-  captureSequence(document.querySelector('svg'), document.querySelector('body'));
+  captureSequence(document.querySelector('svg'), document.querySelector('.sequence__container'));
 
   function myTimer() {
-    captureSequence(document.querySelector('svg'), document.querySelector('body'));
+    captureSequence(document.querySelector('svg'), document.querySelector('.sequence__container'));
   }
 
   // Stop after 2s
@@ -176,33 +173,70 @@ function pose() {
   salute(1.5);
 }
 
+const contentSections = document.querySelectorAll('.content-section');
+const actions = document.querySelectorAll('.action');
+actions.forEach(e => e.addEventListener('click', showFunction));
+
+function showFunction(e) {
+  actions.forEach(e => e.classList.remove('action--active'));
+  e.target.classList.add('action--active');
+}
+
 function timed() {
-  salute(1.5);
+  console.log(contentSections[0]);
+  contentSections[0].classList.toggle('content-section--active');
+  contentSections[1].classList.toggle('content-section--active');
 
-  setTimeout(() => {
-    resetMyGuy('trans', 1);
-  }, 2000);
+  // salute(1.5);
 
-  setTimeout(() => {
-    graceful(1);
-  }, 4000);
+  let time = 10;
+  let timer = 10;
 
-  setTimeout(() => {
-    resetMyGuy('trans', 1);
-  }, 6000);
+  setInterval(() => {
+    const prefixTime = timer < 10 ? `0${timer}` : timer;
+    timeNode.innerHTML = `00:${prefixTime}`;
+    console.log(timer);
 
-  setTimeout(() => {
-    salute(1);
-  }, 8000);
+    if (timer === 1) {
+      resetMyGuy('trans', 0.5);
+      setTimeout(() => randomPose(2), 1500);
+    }
+    if (timer === 0) {
+      timer = time;
+    }
+    timer--;
+  }, 1000);
 
-  setTimeout(() => {
-    resetMyGuy('trans', 1);
-  }, 10000);
+  // setTimeout(() => {
+  //   resetMyGuy('trans', 1);
+  // }, 2000);
+
+  // setTimeout(() => {
+  //   graceful(1);
+  // }, 4000);
+
+  // setTimeout(() => {
+  //   resetMyGuy('trans', 1);
+  // }, 6000);
+
+  // setTimeout(() => {
+  //   salute(1);
+  // }, 8000);
+
+  // setTimeout(() => {
+  //   resetMyGuy('trans', 1);
+  // }, 10000);
 }
 
 function sequencePose() {
-  graceful(2);
-  startSequenceCapture(1000, 200);
+  gsap.to('.view .mannenman', { y: '100%', duration: 0.7 });
+  gsap.to('#shadow', { autoAlpha: 0, duration: 0.7 });
+  gsap.to('.sequence', { y: '162%', duration: 0.7, delay: 0.7 });
+
+  setTimeout(() => {
+    graceful(5);
+    startSequenceCapture(2000, 200);
+  }, 1000);
 }
 
 const poseSelector = document.querySelector('#pose-selector');
@@ -215,7 +249,7 @@ function showPoses() {
     jump(0.45);
   }, 200);
 
-  gsap.to('.pose-select', { delay: 1, duration: 1, scaleX: 1, y: '-50%', ease: 'power3.out' });
+  gsap.to('.pose-select', { delay: 1, duration: 1, scaleX: 1, y: '-110%', ease: 'power3.out' });
 }
 
 const poseSelect = document.querySelectorAll('.pose-select img');
@@ -227,4 +261,13 @@ function adeptNewPose() {
   gsap.to('#body', { y: 0, scaleY: 1.05, duration: duration, ease: 'power3.out' });
   gsap.to('.pose-select', { duration: duration, scaleX: 1, y: '100%', ease: 'power4.out' });
   gsap.to('#shadow', { autoAlpha: 0.14, duration: duration * 1.5, ease: 'Expo.out' });
+}
+
+const timeNode = document.querySelector('.time-selector h4');
+
+const poses = [salute, graceful];
+
+function randomPose(duration) {
+  const rand = Math.floor(Math.random() * poses.length);
+  poses[rand](2);
 }

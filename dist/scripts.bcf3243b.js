@@ -5665,7 +5665,7 @@ var _gsap = _interopRequireDefault(require("gsap"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var allParts = ['#left-arm', '#left-lower-arm', '#left-lower-arm-hand', '#left-upper-arm', '#left-hand', '#left-elbow', '#right-arm', '#right-upper-arm', '#right-lower-arm', '#right-lower-arm-hand', '#right-hand', '#right-elbow', '#upper-body', '#waist', '#hips', '#head', '#neck', '#torso', '#right-foot', '#right-leg', '#right-knee', '#right-lower-leg', '#right-upper-leg', '#right-lower-leg-foot', '#right-upper-leg-knee', '#right-leg-connection', '#left-foot', '#left-leg', '#left-knee', '#left-lower-leg', '#left-upper-leg', '#left-upper-leg-knee', '#left-lower-leg-foot', '#left-leg-connection'];
-resetMyGuy('set'); // setTimeout(() => jump(0.5), 3000);
+resetMyGuy('set');
 
 function jump(duration) {
   _gsap.default.to('#body', {
@@ -6040,10 +6040,10 @@ function resetMyGuy(mode, duration) {
 
 function startSequenceCapture(duration, interval) {
   var sequenceTimer = setInterval(myTimer, interval);
-  captureSequence(document.querySelector('svg'), document.querySelector('body'));
+  captureSequence(document.querySelector('svg'), document.querySelector('.sequence__container'));
 
   function myTimer() {
-    captureSequence(document.querySelector('svg'), document.querySelector('body'));
+    captureSequence(document.querySelector('svg'), document.querySelector('.sequence__container'));
   } // Stop after 2s
 
 
@@ -6081,28 +6081,81 @@ function pose() {
   salute(1.5);
 }
 
+var contentSections = document.querySelectorAll('.content-section');
+var actions = document.querySelectorAll('.action');
+actions.forEach(function (e) {
+  return e.addEventListener('click', showFunction);
+});
+
+function showFunction(e) {
+  actions.forEach(function (e) {
+    return e.classList.remove('action--active');
+  });
+  e.target.classList.add('action--active');
+}
+
 function timed() {
-  salute(1.5);
-  setTimeout(function () {
-    resetMyGuy('trans', 1);
-  }, 2000);
-  setTimeout(function () {
-    graceful(1);
-  }, 4000);
-  setTimeout(function () {
-    resetMyGuy('trans', 1);
-  }, 6000);
-  setTimeout(function () {
-    salute(1);
-  }, 8000);
-  setTimeout(function () {
-    resetMyGuy('trans', 1);
-  }, 10000);
+  console.log(contentSections[0]);
+  contentSections[0].classList.toggle('content-section--active');
+  contentSections[1].classList.toggle('content-section--active'); // salute(1.5);
+
+  var time = 10;
+  var timer = 10;
+  setInterval(function () {
+    var prefixTime = timer < 10 ? "0".concat(timer) : timer;
+    timeNode.innerHTML = "00:".concat(prefixTime);
+    console.log(timer);
+
+    if (timer === 1) {
+      resetMyGuy('trans', 0.5);
+      setTimeout(function () {
+        return randomPose(2);
+      }, 1500);
+    }
+
+    if (timer === 0) {
+      timer = time;
+    }
+
+    timer--;
+  }, 1000); // setTimeout(() => {
+  //   resetMyGuy('trans', 1);
+  // }, 2000);
+  // setTimeout(() => {
+  //   graceful(1);
+  // }, 4000);
+  // setTimeout(() => {
+  //   resetMyGuy('trans', 1);
+  // }, 6000);
+  // setTimeout(() => {
+  //   salute(1);
+  // }, 8000);
+  // setTimeout(() => {
+  //   resetMyGuy('trans', 1);
+  // }, 10000);
 }
 
 function sequencePose() {
-  graceful(2);
-  startSequenceCapture(1000, 200);
+  _gsap.default.to('.view .mannenman', {
+    y: '100%',
+    duration: 0.7
+  });
+
+  _gsap.default.to('#shadow', {
+    autoAlpha: 0,
+    duration: 0.7
+  });
+
+  _gsap.default.to('.sequence', {
+    y: '162%',
+    duration: 0.7,
+    delay: 0.7
+  });
+
+  setTimeout(function () {
+    graceful(5);
+    startSequenceCapture(2000, 200);
+  }, 1000);
 }
 
 var poseSelector = document.querySelector('#pose-selector');
@@ -6118,7 +6171,7 @@ function showPoses() {
     delay: 1,
     duration: 1,
     scaleX: 1,
-    y: '-50%',
+    y: '-110%',
     ease: 'power3.out'
   });
 }
@@ -6152,6 +6205,14 @@ function adeptNewPose() {
     ease: 'Expo.out'
   });
 }
+
+var timeNode = document.querySelector('.time-selector h4');
+var poses = [salute, graceful];
+
+function randomPose(duration) {
+  var rand = Math.floor(Math.random() * poses.length);
+  poses[rand](2);
+}
 },{"gsap":"../node_modules/gsap/index.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -6180,7 +6241,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55815" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51166" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
