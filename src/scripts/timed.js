@@ -23,7 +23,7 @@ export function actionTimedPose() {
 
     if (timer === 1) {
       resetMyGuy('trans', 0.5);
-      setTimeout(() => randomPose(2), 1500);
+      setTimeout(() => randomPose(1.5), 1500);
     }
     if (timer === 0) {
       timer = time;

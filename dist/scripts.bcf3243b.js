@@ -6204,7 +6204,7 @@ function actionTimedPose() {
     if (timer === 1) {
       (0, _poses.resetMyGuy)('trans', 0.5);
       setTimeout(function () {
-        return (0, _helpers.randomPose)(2);
+        return (0, _helpers.randomPose)(1.5);
       }, 1500);
     }
 
@@ -6319,7 +6319,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51166" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49186" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
