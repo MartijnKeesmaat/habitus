@@ -6236,13 +6236,12 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
   TODO text switch
 */
 // Action click events
-
-var poseDemo = document.querySelector('#poseDemo');
-poseDemo.addEventListener('click', actionSelectPose);
-var timedDemo = document.querySelector('#timedDemo');
-timedDemo.addEventListener('click', _timed.actionTimedPose);
-var demoButton = document.querySelector('#sequenceDemo');
-demoButton.addEventListener('click', actionSequencedPose);
+// const poseDemo = document.querySelector('#poseDemo');
+// poseDemo.addEventListener('click', actionSelectPose);
+// const timedDemo = document.querySelector('#timedDemo');
+// timedDemo.addEventListener('click', actionTimedPose);
+// const demoButton = document.querySelector('#sequenceDemo');
+// demoButton.addEventListener('click', actionSequencedPose);
 
 function actionSelectPose() {} // Todo swith to view
 // TODO should be dynamic
@@ -6291,6 +6290,24 @@ function showFunction(e) {
 
 var poseSelector = document.querySelector('#pose-selector');
 poseSelector.addEventListener('click', _poseSelector.showPoses);
+var hippo = $('#hippo').attr('d');
+TweenLite.set('svg', {
+  visibility: 'visible'
+});
+var tl = new TimelineMax({
+  repeat: -1,
+  repeatDelay: 0.5,
+  delay: 1
+});
+tl.to('#hippo', 1, {
+  morphSVG: '#elephant',
+  ease: Back.easeInOut
+}).to('#hippo', 1, {
+  morphSVG: hippo,
+  shapeIndex: -13,
+  ease: Back.easeOut
+}, '+=0.5'); //findShapeIndex("#hippo", "#elephant");
+//tl.timeScale(0.3)
 },{"gsap":"../node_modules/gsap/index.js","./poses":"scripts/poses.js","./sequence":"scripts/sequence.js","./poseSelector":"scripts/poseSelector.js","./timed":"scripts/timed.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -6319,7 +6336,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59987" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54910" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

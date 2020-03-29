@@ -12,14 +12,14 @@ resetMyGuy('set');
 */
 
 // Action click events
-const poseDemo = document.querySelector('#poseDemo');
-poseDemo.addEventListener('click', actionSelectPose);
+// const poseDemo = document.querySelector('#poseDemo');
+// poseDemo.addEventListener('click', actionSelectPose);
 
-const timedDemo = document.querySelector('#timedDemo');
-timedDemo.addEventListener('click', actionTimedPose);
+// const timedDemo = document.querySelector('#timedDemo');
+// timedDemo.addEventListener('click', actionTimedPose);
 
-const demoButton = document.querySelector('#sequenceDemo');
-demoButton.addEventListener('click', actionSequencedPose);
+// const demoButton = document.querySelector('#sequenceDemo');
+// demoButton.addEventListener('click', actionSequencedPose);
 
 function actionSelectPose() {
   // Todo swith to view
@@ -53,3 +53,14 @@ function showFunction(e) {
 
 const poseSelector = document.querySelector('#pose-selector');
 poseSelector.addEventListener('click', showPoses);
+
+var hippo = $('#hippo').attr('d');
+
+TweenLite.set('svg', { visibility: 'visible' });
+
+var tl = new TimelineMax({ repeat: -1, repeatDelay: 0.5, delay: 1 });
+tl.to('#hippo', 1, { morphSVG: '#elephant', ease: Back.easeInOut }).to('#hippo', 1, { morphSVG: hippo, shapeIndex: -13, ease: Back.easeOut }, '+=0.5');
+
+//findShapeIndex("#hippo", "#elephant");
+
+//tl.timeScale(0.3)
