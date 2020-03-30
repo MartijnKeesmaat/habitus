@@ -40,15 +40,7 @@ function startAction(e) {
   showActiveActionIcon(e);
   playActiveActionIcon(selectedAction);
   transitionActionContent(selectedAction);
-
-  contentSections.forEach(e => e.classList.remove('content-section--active'));
-
-  console.log(e.currentTarget.dataset.contentsection);
-
-  const selectedContent = contentSections.filter(i => selectedAction === i.dataset.contentsection);
-  selectedContent[0].classList.add('content-section--active');
-
-  // data-content-section="sequence"
+  transitionContentViews(selectedAction);
 }
 
 function showActiveActionIcon(e) {
@@ -71,8 +63,11 @@ function transitionActionContent(selectedAction) {
   desc.innerHTML = content[selectedAction].body;
 }
 
-// TODO should be dynamic
-// const contentSections = document.querySelectorAll('.content-section');
+function transitionContentViews(selectedAction) {
+  contentSections.forEach(e => e.classList.remove('content-section--active'));
+  const selectedContent = contentSections.filter(i => selectedAction === i.dataset.contentsection);
+  selectedContent[0].classList.add('content-section--active');
+}
 
 function actionSequencedPose() {
   gsap.to('.view .mannenman', { y: '140%', duration: 1 });
@@ -85,14 +80,6 @@ function actionSequencedPose() {
     startSequenceCapture(2000, 200);
   }, 1000);
 }
-
-// const actions = document.querySelectorAll('.action');
-// actions.forEach(e => e.addEventListener('click', showFunction));
-
-// function showFunction(e) {
-//   actions.forEach(e => e.classList.remove('action--active'));
-//   e.target.classList.add('action--active');
-// }
 
 const poseSelector = document.querySelector('#pose-selector');
 poseSelector.addEventListener('click', showPoses);

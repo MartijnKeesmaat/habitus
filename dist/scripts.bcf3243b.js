@@ -6058,10 +6058,36 @@ function resetMyGuy(mode, duration) {
 },{"gsap":"../node_modules/gsap/index.js","./parts":"scripts/parts.js"}],"scripts/sequence.js":[function(require,module,exports) {
 "use strict";
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+var _gsap = _interopRequireDefault(require("gsap"));
+
+var _poses = require("./poses");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var sequenceTrigger = document.querySelector('.small-man-wrapper');
+sequenceTrigger.addEventListener('click', function () {
+  _gsap.default.to('.view .mannenman', {
+    y: '140%',
+    duration: 1
+  });
+
+  _gsap.default.to('#shadow', {
+    autoAlpha: 0,
+    duration: 1
+  });
+
+  _gsap.default.to('.sequence', {
+    y: '175%',
+    duration: 1,
+    delay: 1
+  });
+
+  (0, _poses.resetMyGuy)('set');
+  setTimeout(function () {
+    (0, _poses.graceful)(5);
+    startSequenceCapture(2000, 200);
+  }, 1000);
 });
-exports.startSequenceCapture = startSequenceCapture;
 
 function startSequenceCapture(duration, interval) {
   var sequenceTimer = setInterval(myTimer, interval);
@@ -6095,7 +6121,7 @@ function captureSequence(source, target) {
   canvas.getContext('2d').drawImage(imgDOM, 0, 0);
   target.appendChild(imgDOM);
 }
-},{}],"scripts/poseSelector.js":[function(require,module,exports) {
+},{"gsap":"../node_modules/gsap/index.js","./poses":"scripts/poses.js"}],"scripts/poseSelector.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -6172,11 +6198,6 @@ function randomPose(duration) {
 },{"./poses":"scripts/poses.js"}],"scripts/timed.js":[function(require,module,exports) {
 "use strict";
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.actionTimedPose = actionTimedPose;
-
 var _gsap = _interopRequireDefault(require("gsap"));
 
 var _helpers = require("./helpers");
@@ -6185,18 +6206,12 @@ var _poses = require("./poses");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-// TODO should be dynamic
-var contentSections = document.querySelectorAll('.content-section');
+var trigger = document.querySelector('.time-selector');
+trigger.addEventListener('click', actionTimedPose);
 var timeNode = document.querySelector('.time-selector h4');
 
 function actionTimedPose() {
-  triangleTl.pause();
-  circlyTl.pause();
-  rectangleTl.pause(); // TODO make this dynamic
-
-  contentSections[0].classList.toggle('content-section--active');
-  contentSections[1].classList.toggle('content-section--active'); // TODO parameter
-
+  // TODO parameter
   var time = 5;
   var timer = 5;
   setInterval(function () {
@@ -6275,14 +6290,7 @@ function startAction(e) {
   showActiveActionIcon(e);
   playActiveActionIcon(selectedAction);
   transitionActionContent(selectedAction);
-  contentSections.forEach(function (e) {
-    return e.classList.remove('content-section--active');
-  });
-  console.log(e.currentTarget.dataset.contentsection);
-  var selectedContent = contentSections.filter(function (i) {
-    return selectedAction === i.dataset.contentsection;
-  });
-  selectedContent[0].classList.add('content-section--active'); // data-content-section="sequence"
+  transitionContentViews(selectedAction);
 }
 
 function showActiveActionIcon(e) {
@@ -6304,9 +6312,17 @@ function playActiveActionIcon(selectedAction) {
 function transitionActionContent(selectedAction) {
   header.innerHTML = content[selectedAction].title;
   desc.innerHTML = content[selectedAction].body;
-} // TODO should be dynamic
-// const contentSections = document.querySelectorAll('.content-section');
+}
 
+function transitionContentViews(selectedAction) {
+  contentSections.forEach(function (e) {
+    return e.classList.remove('content-section--active');
+  });
+  var selectedContent = contentSections.filter(function (i) {
+    return selectedAction === i.dataset.contentsection;
+  });
+  selectedContent[0].classList.add('content-section--active');
+}
 
 function actionSequencedPose() {
   _gsap.default.to('.view .mannenman', {
@@ -6330,13 +6346,7 @@ function actionSequencedPose() {
     (0, _poses.graceful)(5);
     (0, _sequence.startSequenceCapture)(2000, 200);
   }, 1000);
-} // const actions = document.querySelectorAll('.action');
-// actions.forEach(e => e.addEventListener('click', showFunction));
-// function showFunction(e) {
-//   actions.forEach(e => e.classList.remove('action--active'));
-//   e.target.classList.add('action--active');
-// }
-
+}
 
 var poseSelector = document.querySelector('#pose-selector');
 poseSelector.addEventListener('click', _poseSelector.showPoses);

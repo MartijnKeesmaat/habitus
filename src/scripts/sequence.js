@@ -1,4 +1,20 @@
-export function startSequenceCapture(duration, interval) {
+import gsap from 'gsap';
+import { graceful, resetMyGuy } from './poses';
+
+const sequenceTrigger = document.querySelector('.small-man-wrapper');
+sequenceTrigger.addEventListener('click', function() {
+  gsap.to('.view .mannenman', { y: '140%', duration: 1 });
+  gsap.to('#shadow', { autoAlpha: 0, duration: 1 });
+  gsap.to('.sequence', { y: '175%', duration: 1, delay: 1 });
+  resetMyGuy('set');
+
+  setTimeout(() => {
+    graceful(5);
+    startSequenceCapture(2000, 200);
+  }, 1000);
+});
+
+function startSequenceCapture(duration, interval) {
   const sequenceTimer = setInterval(myTimer, interval);
   console.log(document.querySelector('.content svg'));
   captureSequence(document.querySelector('.content svg'), document.querySelector('.sequence__container'));

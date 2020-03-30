@@ -2,20 +2,12 @@ import gsap from 'gsap';
 import { randomPose } from './helpers';
 import { resetMyGuy, salute, graceful } from './poses';
 
-// TODO should be dynamic
-const contentSections = document.querySelectorAll('.content-section');
+const trigger = document.querySelector('.time-selector');
+trigger.addEventListener('click', actionTimedPose);
 
 const timeNode = document.querySelector('.time-selector h4');
 
-export function actionTimedPose() {
-  triangleTl.pause();
-  circlyTl.pause();
-  rectangleTl.pause();
-
-  // TODO make this dynamic
-  contentSections[0].classList.toggle('content-section--active');
-  contentSections[1].classList.toggle('content-section--active');
-
+function actionTimedPose() {
   // TODO parameter
   let time = 5;
   let timer = 5;
