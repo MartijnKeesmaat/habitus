@@ -6238,32 +6238,61 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
   TODO dynamic function for view switch
   TODO text switch
 */
-// Action click events
 
-var poseDemo = document.querySelector('#poseDemo');
-poseDemo.addEventListener('click', actionSelectPose);
-var timedDemo = document.querySelector('#timedDemo');
-timedDemo.addEventListener('click', _timed.actionTimedPose);
-var demoButton = document.querySelector('#sequenceDemo');
-demoButton.addEventListener('click', actionSequencedPose);
+var actions = document.querySelectorAll('.action');
+var header = document.querySelector('h1');
+var desc = document.querySelector('.desc');
+var content = {
+  select: {
+    title: 'Strike a pose <br> for the camera',
+    body: 'Practice a specific pose, <br> there is no need to hurry your sketch.'
+  },
+  timed: {
+    title: 'Capture the pose <br> within the time',
+    body: 'A great way to practice gestures. <br> Need more time? Adjust it below.'
+  },
+  sequence: {
+    title: 'Let’s do some sequence drawing',
+    body: 'A great way to practice gestures. <br> Need more time? Adjust it below.'
+  }
+};
+actions.forEach(function (e) {
+  return e.addEventListener('click', startAction);
+});
 
-function actionSelectPose() {
-  // Todo swith to view
-  triangleTl.resume();
-  circlyTl.pause();
-  squareTl.pause();
+function startAction(e) {
+  var selectedAction = e.currentTarget.dataset.action;
+  showActiveActionIcon(e);
+  playActiveActionIcon(selectedAction);
+  transitionActionContent(selectedAction);
+}
+
+function showActiveActionIcon(e) {
+  actions.forEach(function (e) {
+    return e.classList.remove('action--active');
+  });
+  e.currentTarget.classList.add('action--active');
+}
+
+function playActiveActionIcon(selectedAction) {
+  selectTl.pause();
+  timedTl.pause();
+  sequenceTl.pause();
+  if (selectedAction === 'select') selectTl.resume();
+  if (selectedAction === 'timed') timedTl.resume();
+  if (selectedAction === 'sequence') sequenceTl.resume();
+}
+
+function transitionActionContent(selectedAction) {
+  // selectedAction;
+  header.innerHTML = content[selectedAction].title;
+  desc.innerHTML = content[selectedAction].body;
 } // TODO should be dynamic
 
 
 var contentSections = document.querySelectorAll('.content-section');
 
 function actionSequencedPose() {
-  contentSections[0].classList.toggle('content-section--active');
-  contentSections[2].classList.toggle('content-section--active');
-  triangleTl.pause();
-  circlyTl.pause();
-  squareTl.resume();
-
   _gsap.default.to('.view .mannenman', {
     y: '140%',
     duration: 1
@@ -6285,43 +6314,30 @@ function actionSequencedPose() {
     (0, _poses.graceful)(5);
     (0, _sequence.startSequenceCapture)(2000, 200);
   }, 1000);
-}
+} // const actions = document.querySelectorAll('.action');
+// actions.forEach(e => e.addEventListener('click', showFunction));
+// function showFunction(e) {
+//   actions.forEach(e => e.classList.remove('action--active'));
+//   e.target.classList.add('action--active');
+// }
 
-var actions = document.querySelectorAll('.action');
-actions.forEach(function (e) {
-  return e.addEventListener('click', showFunction);
-});
-
-function showFunction(e) {
-  actions.forEach(function (e) {
-    return e.classList.remove('action--active');
-  });
-  e.target.classList.add('action--active');
-}
 
 var poseSelector = document.querySelector('#pose-selector');
-poseSelector.addEventListener('click', _poseSelector.showPoses); // gsap.to('.squaries img', {
-//   x: -5,
-//   y: -5,
-//   stagger: 0.3
-// });
+poseSelector.addEventListener('click', _poseSelector.showPoses);
 
-var squareTl = _gsap.default.timeline({
+var sequenceTl = _gsap.default.timeline({
   repeat: -1,
   repeatDelay: 0.5
-}); // tl.to("#id", { x: 100, duration: 1 });
-// tl.to("#id", { y: 50, duration: 1 });
-// tl.to("#id", { opacity: 0, duration: 1 });
+});
 
-
-squareTl.to('.squaries img', 0.6, {
+sequenceTl.to('.squaries .square', 0.6, {
   y: function y(i) {
     if (i >= 6) return 5;
     if (i >= 3) return 0;else return -5;
   },
   stagger: 0.05
 }, 0.15, 'frame1+=1');
-squareTl.to('.squaries img', 0.6, {
+sequenceTl.to('.squaries .square', 0.6, {
   x: function x(i) {
     if (i === 0) return -5;
     if (i === 1) return 0;
@@ -6335,154 +6351,154 @@ squareTl.to('.squaries img', 0.6, {
   },
   stagger: 0.05
 }, 0.15, 'frame1+=1');
-squareTl.to('.squaries img', {
+sequenceTl.to('.squaries .square', {
   x: 0,
   y: 0,
   duration: 1
 });
-squareTl.pause();
+sequenceTl.pause();
 
-var circlyTl = _gsap.default.timeline({
+var timedTl = _gsap.default.timeline({
   repeat: -1,
   repeatDelay: 1
 });
 
-circlyTl.to('.circlies img', {
+timedTl.to('.circlies .circle', {
   scale: 0.5,
   duration: 0.5
 });
-circlyTl.to('.circlies img:nth-child(1)', {
+timedTl.to('.circlies .circle:nth-child(1)', {
   x: -15,
   duration: 0.2
 });
-circlyTl.to('.circlies img:nth-child(3)', {
+timedTl.to('.circlies .circle:nth-child(3)', {
   x: 15,
   duration: 0.2
 }); // 27 - 5
 
-circlyTl.to('.circlies img:nth-child(1)', {
+timedTl.to('.circlies .circle:nth-child(1)', {
   y: 27 - 10,
   duration: 0.2
 });
-circlyTl.to('.circlies img:nth-child(1)', {
+timedTl.to('.circlies .circle:nth-child(1)', {
   y: 27 - 0,
   duration: 0.2
 });
-circlyTl.to('.circlies img:nth-child(2)', {
+timedTl.to('.circlies .circle:nth-child(2)', {
   y: 0 - 10,
   duration: 0.2
 });
-circlyTl.to('.circlies img:nth-child(2)', {
+timedTl.to('.circlies .circle:nth-child(2)', {
   y: 0 - 0,
   duration: 0.2
 });
-circlyTl.to('.circlies img:nth-child(3)', {
+timedTl.to('.circlies .circle:nth-child(3)', {
   y: -27 - 10,
   duration: 0.2
 });
-circlyTl.to('.circlies img:nth-child(3)', {
+timedTl.to('.circlies .circle:nth-child(3)', {
   y: -27 - 0,
   duration: 0.2
 });
-circlyTl.to('.circlies img:nth-child(1)', {
+timedTl.to('.circlies .circle:nth-child(1)', {
   y: 27 - 10,
   duration: 0.2
 });
-circlyTl.to('.circlies img:nth-child(1)', {
+timedTl.to('.circlies .circle:nth-child(1)', {
   y: 27 - 0,
   duration: 0.2
 });
-circlyTl.to('.circlies img:nth-child(2)', {
+timedTl.to('.circlies .circle:nth-child(2)', {
   y: 0 - 10,
   duration: 0.2
 });
-circlyTl.to('.circlies img:nth-child(2)', {
+timedTl.to('.circlies .circle:nth-child(2)', {
   y: 0 - 0,
   duration: 0.2
 });
-circlyTl.to('.circlies img:nth-child(3)', {
+timedTl.to('.circlies .circle:nth-child(3)', {
   y: -27 - 10,
   duration: 0.2
 });
-circlyTl.to('.circlies img:nth-child(3)', {
+timedTl.to('.circlies .circle:nth-child(3)', {
   y: -27 - 0,
   duration: 0.2
 }); // Reset
 
-circlyTl.to('.circlies img:nth-child(3)', {
+timedTl.to('.circlies .circle:nth-child(3)', {
   x: 0,
   duration: 0.2
 });
-circlyTl.to('.circlies img:nth-child(1)', {
+timedTl.to('.circlies .circle:nth-child(1)', {
   x: 0,
   duration: 0.2
 });
-circlyTl.to('.circlies img', {
+timedTl.to('.circlies .circle', {
   scale: 1,
   duration: 0.5
 });
-circlyTl.pause();
+timedTl.pause();
 
-var triangleTl = _gsap.default.timeline({
+var selectTl = _gsap.default.timeline({
   repeat: -1,
   repeatDelay: 2
 });
 
-triangleTl.to('.triangle', {
+selectTl.to('.triangle', {
   borderLeftColor: '#08153A',
   duration: 0.4
 });
-triangleTl.to('.triangle', {
+selectTl.to('.triangle', {
   x: -5,
   rotate: -5,
   duration: 1,
   ease: 'elastic.out(1, 0.6)'
 }, '-=0.4');
-triangleTl.to('.triangle', {
+selectTl.to('.triangle', {
   x: 0,
   rotate: 0,
   duration: 1,
   ease: 'elastic.out(1, 0.6)'
 }, '-=0.4');
-triangleTl.to('.triangle', {
+selectTl.to('.triangle', {
   borderRightColor: '#08153A',
   duration: 0.4
 });
-triangleTl.to('.triangle', {
+selectTl.to('.triangle', {
   x: 5,
   rotate: 10,
   duration: 1,
   ease: 'elastic.out(1, 0.6)'
 }, '-=0.4');
-triangleTl.to('.triangle', {
+selectTl.to('.triangle', {
   x: 0,
   rotate: 0,
   duration: 1,
   ease: 'elastic.out(1, 0.6)'
 }, '-=0.4');
-triangleTl.to('.triangle', {
+selectTl.to('.triangle', {
   rotate: 360,
   duration: 0.6,
   delay: 0.3
 });
-triangleTl.to('.triangle', {
+selectTl.to('.triangle', {
   borderRadius: '50%',
   duration: 0.6
 }, '-=0.6'); // Reset
 
-triangleTl.to('.triangle', {
+selectTl.to('.triangle', {
   borderRadius: '0%',
   duration: 0.6,
   delay: 1
 });
-triangleTl.to('.triangle', {
+selectTl.to('.triangle', {
   borderRightColor: 'transparent',
   duration: 0.5
 });
-triangleTl.to('.triangle', {
+selectTl.to('.triangle', {
   borderLeftColor: 'transparent',
   duration: 0.5
-}, '-=0.3'); // triangleTl.pause();
+}, '-=0.3'); // selectTl.pause();
 },{"gsap":"../node_modules/gsap/index.js","./poses":"scripts/poses.js","./sequence":"scripts/sequence.js","./poseSelector":"scripts/poseSelector.js","./timed":"scripts/timed.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -6511,7 +6527,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63843" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52087" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
