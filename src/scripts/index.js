@@ -12,17 +12,20 @@ resetMyGuy('set');
 */
 
 // Action click events
-// const poseDemo = document.querySelector('#poseDemo');
-// poseDemo.addEventListener('click', actionSelectPose);
+const poseDemo = document.querySelector('#poseDemo');
+poseDemo.addEventListener('click', actionSelectPose);
 
-// const timedDemo = document.querySelector('#timedDemo');
-// timedDemo.addEventListener('click', actionTimedPose);
+const timedDemo = document.querySelector('#timedDemo');
+timedDemo.addEventListener('click', actionTimedPose);
 
-// const demoButton = document.querySelector('#sequenceDemo');
-// demoButton.addEventListener('click', actionSequencedPose);
+const demoButton = document.querySelector('#sequenceDemo');
+demoButton.addEventListener('click', actionSequencedPose);
 
 function actionSelectPose() {
   // Todo swith to view
+  triangleTl.resume();
+  circlyTl.pause();
+  squareTl.pause();
 }
 
 // TODO should be dynamic
@@ -31,6 +34,10 @@ const contentSections = document.querySelectorAll('.content-section');
 function actionSequencedPose() {
   contentSections[0].classList.toggle('content-section--active');
   contentSections[2].classList.toggle('content-section--active');
+
+  triangleTl.pause();
+  circlyTl.pause();
+  squareTl.resume();
 
   gsap.to('.view .mannenman', { y: '140%', duration: 1 });
   gsap.to('#shadow', { autoAlpha: 0, duration: 1 });
@@ -103,6 +110,8 @@ squareTl.to(
 
 squareTl.to('.squaries img', { x: 0, y: 0, duration: 1 });
 
+squareTl.pause();
+
 var circlyTl = gsap.timeline({ repeat: -1, repeatDelay: 1 });
 circlyTl.to('.circlies img', { scale: 0.5, duration: 0.5 });
 
@@ -133,6 +142,8 @@ circlyTl.to('.circlies img:nth-child(3)', { x: 0, duration: 0.2 });
 circlyTl.to('.circlies img:nth-child(1)', { x: 0, duration: 0.2 });
 circlyTl.to('.circlies img', { scale: 1, duration: 0.5 });
 
+circlyTl.pause();
+
 var triangleTl = gsap.timeline({ repeat: -1, repeatDelay: 2 });
 
 triangleTl.to('.triangle', { borderLeftColor: '#08153A', duration: 0.4 });
@@ -150,3 +161,5 @@ triangleTl.to('.triangle', { borderRadius: '50%', duration: 0.6 }, '-=0.6');
 triangleTl.to('.triangle', { borderRadius: '0%', duration: 0.6, delay: 1 });
 triangleTl.to('.triangle', { borderRightColor: 'transparent', duration: 0.5 });
 triangleTl.to('.triangle', { borderLeftColor: 'transparent', duration: 0.5 }, '-=0.3');
+
+// triangleTl.pause();

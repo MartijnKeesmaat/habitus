@@ -6190,7 +6190,10 @@ var contentSections = document.querySelectorAll('.content-section');
 var timeNode = document.querySelector('.time-selector h4');
 
 function actionTimedPose() {
-  // TODO make this dynamic
+  triangleTl.pause();
+  circlyTl.pause();
+  rectangleTl.pause(); // TODO make this dynamic
+
   contentSections[0].classList.toggle('content-section--active');
   contentSections[1].classList.toggle('content-section--active'); // TODO parameter
 
@@ -6236,15 +6239,20 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
   TODO text switch
 */
 // Action click events
-// const poseDemo = document.querySelector('#poseDemo');
-// poseDemo.addEventListener('click', actionSelectPose);
-// const timedDemo = document.querySelector('#timedDemo');
-// timedDemo.addEventListener('click', actionTimedPose);
-// const demoButton = document.querySelector('#sequenceDemo');
-// demoButton.addEventListener('click', actionSequencedPose);
 
-function actionSelectPose() {} // Todo swith to view
-// TODO should be dynamic
+var poseDemo = document.querySelector('#poseDemo');
+poseDemo.addEventListener('click', actionSelectPose);
+var timedDemo = document.querySelector('#timedDemo');
+timedDemo.addEventListener('click', _timed.actionTimedPose);
+var demoButton = document.querySelector('#sequenceDemo');
+demoButton.addEventListener('click', actionSequencedPose);
+
+function actionSelectPose() {
+  // Todo swith to view
+  triangleTl.resume();
+  circlyTl.pause();
+  squareTl.pause();
+} // TODO should be dynamic
 
 
 var contentSections = document.querySelectorAll('.content-section');
@@ -6252,6 +6260,9 @@ var contentSections = document.querySelectorAll('.content-section');
 function actionSequencedPose() {
   contentSections[0].classList.toggle('content-section--active');
   contentSections[2].classList.toggle('content-section--active');
+  triangleTl.pause();
+  circlyTl.pause();
+  squareTl.resume();
 
   _gsap.default.to('.view .mannenman', {
     y: '140%',
@@ -6329,6 +6340,7 @@ squareTl.to('.squaries img', {
   y: 0,
   duration: 1
 });
+squareTl.pause();
 
 var circlyTl = _gsap.default.timeline({
   repeat: -1,
@@ -6409,6 +6421,7 @@ circlyTl.to('.circlies img', {
   scale: 1,
   duration: 0.5
 });
+circlyTl.pause();
 
 var triangleTl = _gsap.default.timeline({
   repeat: -1,
@@ -6469,7 +6482,7 @@ triangleTl.to('.triangle', {
 triangleTl.to('.triangle', {
   borderLeftColor: 'transparent',
   duration: 0.5
-}, '-=0.3');
+}, '-=0.3'); // triangleTl.pause();
 },{"gsap":"../node_modules/gsap/index.js","./poses":"scripts/poses.js","./sequence":"scripts/sequence.js","./poseSelector":"scripts/poseSelector.js","./timed":"scripts/timed.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
