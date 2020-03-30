@@ -6289,25 +6289,149 @@ function showFunction(e) {
 }
 
 var poseSelector = document.querySelector('#pose-selector');
-poseSelector.addEventListener('click', _poseSelector.showPoses);
-var hippo = $('#hippo').attr('d');
-TweenLite.set('svg', {
-  visibility: 'visible'
-});
-var tl = new TimelineMax({
+poseSelector.addEventListener('click', _poseSelector.showPoses); // gsap.to('.squaries img', {
+//   x: -5,
+//   y: -5,
+//   stagger: 0.3
+// });
+
+var squareTl = _gsap.default.timeline({
   repeat: -1,
-  repeatDelay: 0.5,
-  delay: 1
+  repeatDelay: 0.5
+}); // tl.to("#id", { x: 100, duration: 1 });
+// tl.to("#id", { y: 50, duration: 1 });
+// tl.to("#id", { opacity: 0, duration: 1 });
+
+
+squareTl.to('.squaries img', 0.6, {
+  y: function y(i) {
+    if (i >= 6) return 5;
+    if (i >= 3) return 0;else return -5;
+  },
+  stagger: 0.05
+}, 0.15, 'frame1+=1');
+squareTl.to('.squaries img', 0.6, {
+  x: function x(i) {
+    if (i === 0) return -5;
+    if (i === 1) return 0;
+    if (i === 2) return 5;
+    if (i === 3) return -5;
+    if (i === 4) return 0;
+    if (i === 5) return 5;
+    if (i === 6) return -5;
+    if (i === 7) return 0;
+    if (i === 8) return 5;
+  },
+  stagger: 0.05
+}, 0.15, 'frame1+=1');
+squareTl.to('.squaries img', {
+  x: 0,
+  y: 0,
+  duration: 1
 });
-tl.to('#hippo', 1, {
-  morphSVG: '#elephant',
-  ease: Back.easeInOut
-}).to('#hippo', 1, {
-  morphSVG: hippo,
-  shapeIndex: -13,
-  ease: Back.easeOut
-}, '+=0.5'); //findShapeIndex("#hippo", "#elephant");
-//tl.timeScale(0.3)
+
+var circlyTl = _gsap.default.timeline({
+  repeat: -1,
+  repeatDelay: 1
+});
+
+circlyTl.to('.circlies img', {
+  scale: 0.5,
+  duration: 0.5
+});
+circlyTl.to('.circlies img:nth-child(1)', {
+  x: -15,
+  duration: 0.2
+});
+circlyTl.to('.circlies img:nth-child(3)', {
+  x: 15,
+  duration: 0.2
+}); // 27 - 5
+
+circlyTl.to('.circlies img:nth-child(1)', {
+  y: 27 - 10,
+  duration: 0.2
+});
+circlyTl.to('.circlies img:nth-child(1)', {
+  y: 27 - 0,
+  duration: 0.2
+});
+circlyTl.to('.circlies img:nth-child(2)', {
+  y: 0 - 10,
+  duration: 0.2
+});
+circlyTl.to('.circlies img:nth-child(2)', {
+  y: 0 - 0,
+  duration: 0.2
+});
+circlyTl.to('.circlies img:nth-child(3)', {
+  y: -27 - 10,
+  duration: 0.2
+});
+circlyTl.to('.circlies img:nth-child(3)', {
+  y: -27 - 0,
+  duration: 0.2
+});
+circlyTl.to('.circlies img:nth-child(1)', {
+  y: 27 - 10,
+  duration: 0.2
+});
+circlyTl.to('.circlies img:nth-child(1)', {
+  y: 27 - 0,
+  duration: 0.2
+});
+circlyTl.to('.circlies img:nth-child(2)', {
+  y: 0 - 10,
+  duration: 0.2
+});
+circlyTl.to('.circlies img:nth-child(2)', {
+  y: 0 - 0,
+  duration: 0.2
+});
+circlyTl.to('.circlies img:nth-child(3)', {
+  y: -27 - 10,
+  duration: 0.2
+});
+circlyTl.to('.circlies img:nth-child(3)', {
+  y: -27 - 0,
+  duration: 0.2
+});
+circlyTl.to('.circlies img:nth-child(1)', {
+  y: 27 - 10,
+  duration: 0.2
+});
+circlyTl.to('.circlies img:nth-child(1)', {
+  y: 27 - 0,
+  duration: 0.2
+});
+circlyTl.to('.circlies img:nth-child(2)', {
+  y: 0 - 10,
+  duration: 0.2
+});
+circlyTl.to('.circlies img:nth-child(2)', {
+  y: 0 - 0,
+  duration: 0.2
+});
+circlyTl.to('.circlies img:nth-child(3)', {
+  y: -27 - 10,
+  duration: 0.2
+});
+circlyTl.to('.circlies img:nth-child(3)', {
+  y: -27 - 0,
+  duration: 0.2
+});
+circlyTl.to('.circlies img:nth-child(3)', {
+  x: 0,
+  duration: 0.2
+});
+circlyTl.to('.circlies img:nth-child(1)', {
+  x: 0,
+  duration: 0.2
+});
+circlyTl.to('.circlies img', {
+  scale: 1,
+  duration: 0.5
+});
 },{"gsap":"../node_modules/gsap/index.js","./poses":"scripts/poses.js","./sequence":"scripts/sequence.js","./poseSelector":"scripts/poseSelector.js","./timed":"scripts/timed.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -6336,7 +6460,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54910" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63843" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

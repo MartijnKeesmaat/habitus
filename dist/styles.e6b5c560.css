@@ -270,6 +270,52 @@ html {
   overflow: auto;
 }
 
+.actions img {
+  height: 27px;
+}
+.actions span {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  margin-right: 20px;
+  cursor: pointer;
+  transition: 0.3s all ease;
+  opacity: 0.4;
+}
+.actions span:nth-of-type(2) p {
+  margin-top: -27px;
+  margin-bottom: 27px;
+}
+.actions span:hover {
+  opacity: 1;
+}
+.actions .broodje-bal {
+  opacity: 1;
+}
+.actions p {
+  margin-top: 7px;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+
+.squaries {
+  display: flex;
+  flex-wrap: wrap;
+  width: 30px;
+}
+.squaries img {
+  width: 10px;
+  height: 10px;
+}
+
+.circlies img:nth-of-type(1) {
+  transform: translateY(27px);
+}
+.circlies img:nth-of-type(3) {
+  transform: translateY(-27px);
+}
+
 body {
   color: #08153A;
   font-family: "Avenir-Roman", Arial, Sans-Serif;

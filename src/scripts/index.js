@@ -54,13 +54,89 @@ function showFunction(e) {
 const poseSelector = document.querySelector('#pose-selector');
 poseSelector.addEventListener('click', showPoses);
 
-var hippo = $('#hippo').attr('d');
+// gsap.to('.squaries img', {
+//   x: -5,
+//   y: -5,
+//   stagger: 0.3
+// });
 
-TweenLite.set('svg', { visibility: 'visible' });
+var squareTl = gsap.timeline({ repeat: -1, repeatDelay: 0.5 });
+// tl.to("#id", { x: 100, duration: 1 });
+// tl.to("#id", { y: 50, duration: 1 });
+// tl.to("#id", { opacity: 0, duration: 1 });
 
-var tl = new TimelineMax({ repeat: -1, repeatDelay: 0.5, delay: 1 });
-tl.to('#hippo', 1, { morphSVG: '#elephant', ease: Back.easeInOut }).to('#hippo', 1, { morphSVG: hippo, shapeIndex: -13, ease: Back.easeOut }, '+=0.5');
+squareTl.to(
+  '.squaries img',
+  0.6,
+  {
+    y: function(i) {
+      if (i >= 6) return 5;
+      if (i >= 3) return 0;
+      else return -5;
+    },
+    stagger: 0.05
+  },
+  0.15,
+  'frame1+=1'
+);
 
-//findShapeIndex("#hippo", "#elephant");
+squareTl.to(
+  '.squaries img',
+  0.6,
+  {
+    x: function(i) {
+      if (i === 0) return -5;
+      if (i === 1) return 0;
+      if (i === 2) return 5;
+      if (i === 3) return -5;
+      if (i === 4) return 0;
+      if (i === 5) return 5;
+      if (i === 6) return -5;
+      if (i === 7) return 0;
+      if (i === 8) return 5;
+    },
+    stagger: 0.05
+  },
+  0.15,
+  'frame1+=1'
+);
 
-//tl.timeScale(0.3)
+squareTl.to('.squaries img', { x: 0, y: 0, duration: 1 });
+
+var circlyTl = gsap.timeline({ repeat: -1, repeatDelay: 1 });
+circlyTl.to('.circlies img', { scale: 0.5, duration: 0.5 });
+
+circlyTl.to('.circlies img:nth-child(1)', { x: -15, duration: 0.2 });
+circlyTl.to('.circlies img:nth-child(3)', { x: 15, duration: 0.2 });
+
+// 27 - 5
+circlyTl.to('.circlies img:nth-child(1)', { y: 27 - 10, duration: 0.2 });
+circlyTl.to('.circlies img:nth-child(1)', { y: 27 - 0, duration: 0.2 });
+
+circlyTl.to('.circlies img:nth-child(2)', { y: 0 - 10, duration: 0.2 });
+circlyTl.to('.circlies img:nth-child(2)', { y: 0 - 0, duration: 0.2 });
+
+circlyTl.to('.circlies img:nth-child(3)', { y: -27 - 10, duration: 0.2 });
+circlyTl.to('.circlies img:nth-child(3)', { y: -27 - 0, duration: 0.2 });
+
+circlyTl.to('.circlies img:nth-child(1)', { y: 27 - 10, duration: 0.2 });
+circlyTl.to('.circlies img:nth-child(1)', { y: 27 - 0, duration: 0.2 });
+
+circlyTl.to('.circlies img:nth-child(2)', { y: 0 - 10, duration: 0.2 });
+circlyTl.to('.circlies img:nth-child(2)', { y: 0 - 0, duration: 0.2 });
+
+circlyTl.to('.circlies img:nth-child(3)', { y: -27 - 10, duration: 0.2 });
+circlyTl.to('.circlies img:nth-child(3)', { y: -27 - 0, duration: 0.2 });
+
+circlyTl.to('.circlies img:nth-child(1)', { y: 27 - 10, duration: 0.2 });
+circlyTl.to('.circlies img:nth-child(1)', { y: 27 - 0, duration: 0.2 });
+
+circlyTl.to('.circlies img:nth-child(2)', { y: 0 - 10, duration: 0.2 });
+circlyTl.to('.circlies img:nth-child(2)', { y: 0 - 0, duration: 0.2 });
+
+circlyTl.to('.circlies img:nth-child(3)', { y: -27 - 10, duration: 0.2 });
+circlyTl.to('.circlies img:nth-child(3)', { y: -27 - 0, duration: 0.2 });
+
+circlyTl.to('.circlies img:nth-child(3)', { x: 0, duration: 0.2 });
+circlyTl.to('.circlies img:nth-child(1)', { x: 0, duration: 0.2 });
+circlyTl.to('.circlies img', { scale: 1, duration: 0.5 });
