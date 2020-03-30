@@ -6395,31 +6395,8 @@ circlyTl.to('.circlies img:nth-child(3)', {
 circlyTl.to('.circlies img:nth-child(3)', {
   y: -27 - 0,
   duration: 0.2
-});
-circlyTl.to('.circlies img:nth-child(1)', {
-  y: 27 - 10,
-  duration: 0.2
-});
-circlyTl.to('.circlies img:nth-child(1)', {
-  y: 27 - 0,
-  duration: 0.2
-});
-circlyTl.to('.circlies img:nth-child(2)', {
-  y: 0 - 10,
-  duration: 0.2
-});
-circlyTl.to('.circlies img:nth-child(2)', {
-  y: 0 - 0,
-  duration: 0.2
-});
-circlyTl.to('.circlies img:nth-child(3)', {
-  y: -27 - 10,
-  duration: 0.2
-});
-circlyTl.to('.circlies img:nth-child(3)', {
-  y: -27 - 0,
-  duration: 0.2
-});
+}); // Reset
+
 circlyTl.to('.circlies img:nth-child(3)', {
   x: 0,
   duration: 0.2
@@ -6432,6 +6409,67 @@ circlyTl.to('.circlies img', {
   scale: 1,
   duration: 0.5
 });
+
+var triangleTl = _gsap.default.timeline({
+  repeat: -1,
+  repeatDelay: 2
+});
+
+triangleTl.to('.triangle', {
+  borderLeftColor: '#08153A',
+  duration: 0.4
+});
+triangleTl.to('.triangle', {
+  x: -5,
+  rotate: -5,
+  duration: 1,
+  ease: 'elastic.out(1, 0.6)'
+}, '-=0.4');
+triangleTl.to('.triangle', {
+  x: 0,
+  rotate: 0,
+  duration: 1,
+  ease: 'elastic.out(1, 0.6)'
+}, '-=0.4');
+triangleTl.to('.triangle', {
+  borderRightColor: '#08153A',
+  duration: 0.4
+});
+triangleTl.to('.triangle', {
+  x: 5,
+  rotate: 10,
+  duration: 1,
+  ease: 'elastic.out(1, 0.6)'
+}, '-=0.4');
+triangleTl.to('.triangle', {
+  x: 0,
+  rotate: 0,
+  duration: 1,
+  ease: 'elastic.out(1, 0.6)'
+}, '-=0.4');
+triangleTl.to('.triangle', {
+  rotate: 360,
+  duration: 0.6,
+  delay: 0.3
+});
+triangleTl.to('.triangle', {
+  borderRadius: '50%',
+  duration: 0.6
+}, '-=0.6'); // Reset
+
+triangleTl.to('.triangle', {
+  borderRadius: '0%',
+  duration: 0.6,
+  delay: 1
+});
+triangleTl.to('.triangle', {
+  borderRightColor: 'transparent',
+  duration: 0.5
+});
+triangleTl.to('.triangle', {
+  borderLeftColor: 'transparent',
+  duration: 0.5
+}, '-=0.3');
 },{"gsap":"../node_modules/gsap/index.js","./poses":"scripts/poses.js","./sequence":"scripts/sequence.js","./poseSelector":"scripts/poseSelector.js","./timed":"scripts/timed.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
