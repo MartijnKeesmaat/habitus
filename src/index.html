@@ -22,12 +22,12 @@
         </p>
 
         <div class="content-sections">
-          <div class="content-section content-section--active">
+          <div class="content-section content-section--active" data-contentsection="select">
             <h3>Browse the collection</h3>
             <button class="btn" id="pose-selector">Different pose</button>
           </div>
 
-          <div class="content-section content-section--time">
+          <div class="content-section content-section--time" data-contentsection="timed">
             <h3>Time left</h3>
             <div class="time-selector">
               <h4 contenteditable="true">
@@ -37,7 +37,7 @@
             </div>
           </div>
 
-          <div class="content-section content-section--sequence">
+          <div class="content-section content-section--sequence" data-contentsection="sequence">
             <div class="small-man-wrapper">
               <div class="small-man">
                 <svg class="mannenman mannenman-small" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 594.78 658.85">
@@ -699,7 +699,7 @@
                     </g>
                   </g>
                 </svg>
-                <div id="shadow"></div>
+                <div id="shadow-small"></div>
               </div>
               <h3>A sub-text here</h3>
             </div>
@@ -1398,7 +1398,7 @@
             </g>
           </g>
         </svg>
-        <!-- <div id="shadow"></div> -->
+        <div id="shadow"></div>
 
         <div class="pose-select">
           <div class="row">

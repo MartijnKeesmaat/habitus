@@ -6233,6 +6233,14 @@ var _timed = require("./timed");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
 (0, _poses.resetMyGuy)('set');
 /* 
   TODO dynamic function for view switch
@@ -6259,12 +6267,22 @@ var content = {
 actions.forEach(function (e) {
   return e.addEventListener('click', startAction);
 });
+var contentSections = document.querySelectorAll('.content-section');
+contentSections = _toConsumableArray(contentSections);
 
 function startAction(e) {
   var selectedAction = e.currentTarget.dataset.action;
   showActiveActionIcon(e);
   playActiveActionIcon(selectedAction);
   transitionActionContent(selectedAction);
+  contentSections.forEach(function (e) {
+    return e.classList.remove('content-section--active');
+  });
+  console.log(e.currentTarget.dataset.contentsection);
+  var selectedContent = contentSections.filter(function (i) {
+    return selectedAction === i.dataset.contentsection;
+  });
+  selectedContent[0].classList.add('content-section--active'); // data-content-section="sequence"
 }
 
 function showActiveActionIcon(e) {
@@ -6284,13 +6302,11 @@ function playActiveActionIcon(selectedAction) {
 }
 
 function transitionActionContent(selectedAction) {
-  // selectedAction;
   header.innerHTML = content[selectedAction].title;
   desc.innerHTML = content[selectedAction].body;
 } // TODO should be dynamic
+// const contentSections = document.querySelectorAll('.content-section');
 
-
-var contentSections = document.querySelectorAll('.content-section');
 
 function actionSequencedPose() {
   _gsap.default.to('.view .mannenman', {
@@ -6349,6 +6365,7 @@ sequenceTl.to('.squaries .square', 0.6, {
     if (i === 7) return 0;
     if (i === 8) return 5;
   },
+  ease: 'elastic.out(1, 0.6)',
   stagger: 0.05
 }, 0.15, 'frame1+=1');
 sequenceTl.to('.squaries .square', {
@@ -6527,7 +6544,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52087" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60715" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

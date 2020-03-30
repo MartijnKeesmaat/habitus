@@ -32,11 +32,23 @@ const content = {
 
 actions.forEach(e => e.addEventListener('click', startAction));
 
+let contentSections = document.querySelectorAll('.content-section');
+contentSections = [...contentSections];
+
 function startAction(e) {
   const selectedAction = e.currentTarget.dataset.action;
   showActiveActionIcon(e);
   playActiveActionIcon(selectedAction);
   transitionActionContent(selectedAction);
+
+  contentSections.forEach(e => e.classList.remove('content-section--active'));
+
+  console.log(e.currentTarget.dataset.contentsection);
+
+  const selectedContent = contentSections.filter(i => selectedAction === i.dataset.contentsection);
+  selectedContent[0].classList.add('content-section--active');
+
+  // data-content-section="sequence"
 }
 
 function showActiveActionIcon(e) {
@@ -55,13 +67,12 @@ function playActiveActionIcon(selectedAction) {
 }
 
 function transitionActionContent(selectedAction) {
-  // selectedAction;
   header.innerHTML = content[selectedAction].title;
   desc.innerHTML = content[selectedAction].body;
 }
 
 // TODO should be dynamic
-const contentSections = document.querySelectorAll('.content-section');
+// const contentSections = document.querySelectorAll('.content-section');
 
 function actionSequencedPose() {
   gsap.to('.view .mannenman', { y: '140%', duration: 1 });
@@ -118,6 +129,7 @@ sequenceTl.to(
       if (i === 7) return 0;
       if (i === 8) return 5;
     },
+    ease: 'elastic.out(1, 0.6)',
     stagger: 0.05
   },
   0.15,
