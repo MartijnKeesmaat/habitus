@@ -191,7 +191,7 @@ main
   display: flex
   align-items: flex-end
 
-  margin-bottom: 4rem
+  margin-bottom: 2rem
 
 .content-section--active
   display: block
@@ -293,3 +293,12 @@ html
   border-right: 15px solid transparent
   border-bottom: 30px solid #08153A
   border-left: 15px solid transparent
+
+button[disabled] 
+  opacity: 0.5
+
+  &:hover
+    transform: none
+
+.content .btn#start-sequence
+  margin-bottom: 0

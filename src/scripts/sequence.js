@@ -1,12 +1,14 @@
 import gsap from 'gsap';
 import { graceful, resetMyGuy } from './poses';
 
-const sequenceTrigger = document.querySelector('.small-man-wrapper');
+const sequenceTrigger = document.querySelector('#start-sequence');
 sequenceTrigger.addEventListener('click', function() {
   gsap.to('.view .mannenman', { y: '140%', duration: 1 });
   gsap.to('#shadow', { autoAlpha: 0, duration: 1 });
   gsap.to('.sequence', { y: '175%', duration: 1, delay: 1 });
   resetMyGuy('set');
+
+  sequenceTrigger.disabled = true;
 
   setTimeout(() => {
     graceful(5);

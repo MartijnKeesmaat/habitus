@@ -2,11 +2,12 @@ import gsap from 'gsap';
 import { randomPose } from './helpers';
 import { resetMyGuy, salute, graceful } from './poses';
 
-const trigger = document.querySelector('.time-selector');
+const trigger = document.querySelector('#start-timer');
 trigger.addEventListener('click', actionTimedPose);
 
 const timeNode = document.querySelector('.time-selector h4');
 
+// var start = true;
 function actionTimedPose() {
   // TODO parameter
   let time = 5;

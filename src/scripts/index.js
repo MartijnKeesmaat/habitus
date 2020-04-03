@@ -18,7 +18,7 @@ const desc = document.querySelector('.desc');
 const content = {
   select: {
     title: 'Strike a pose <br> for the camera',
-    body: 'Practice a specific pose, <br> there is no need to hurry your sketch.'
+    body: 'Practice a specific pose, there <br> is no need to hurry your sketch.'
   },
   timed: {
     title: 'Capture the pose <br> within the time',
@@ -36,6 +36,13 @@ let contentSections = document.querySelectorAll('.content-section');
 contentSections = [...contentSections];
 
 function startAction(e) {
+  resetMyGuy('set');
+
+  // Reset pose selector
+  gsap.to('.pose-select', { duration: 1, scaleX: 1, y: 0, ease: 'power3.out' });
+  gsap.to('#body', { delay: 0.3, y: 0, scaleY: 1, duration: 1, ease: 'power3.out' });
+  document.getElementById('pose-selector').disabled = false;
+
   const selectedAction = e.currentTarget.dataset.action;
   showActiveActionIcon(e);
   playActiveActionIcon(selectedAction);

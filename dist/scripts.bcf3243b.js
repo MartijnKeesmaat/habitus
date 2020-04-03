@@ -6064,7 +6064,7 @@ var _poses = require("./poses");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var sequenceTrigger = document.querySelector('.small-man-wrapper');
+var sequenceTrigger = document.querySelector('#start-sequence');
 sequenceTrigger.addEventListener('click', function () {
   _gsap.default.to('.view .mannenman', {
     y: '140%',
@@ -6083,6 +6083,7 @@ sequenceTrigger.addEventListener('click', function () {
   });
 
   (0, _poses.resetMyGuy)('set');
+  sequenceTrigger.disabled = true;
   setTimeout(function () {
     (0, _poses.graceful)(5);
     startSequenceCapture(2000, 200);
@@ -6148,6 +6149,8 @@ function showPoses() {
     y: '-110%',
     ease: 'power3.out'
   });
+
+  document.getElementById('pose-selector').disabled = true;
 }
 
 var poseSelect = document.querySelectorAll('.pose-select img');
@@ -6178,6 +6181,8 @@ function adeptNewPose() {
     duration: duration * 1.5,
     ease: 'Expo.out'
   });
+
+  document.getElementById('pose-selector').disabled = false;
 }
 },{"gsap":"../node_modules/gsap/index.js","./poses":"scripts/poses.js"}],"scripts/helpers.js":[function(require,module,exports) {
 "use strict";
@@ -6206,9 +6211,9 @@ var _poses = require("./poses");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var trigger = document.querySelector('.time-selector');
+var trigger = document.querySelector('#start-timer');
 trigger.addEventListener('click', actionTimedPose);
-var timeNode = document.querySelector('.time-selector h4');
+var timeNode = document.querySelector('.time-selector h4'); // var start = true;
 
 function actionTimedPose() {
   // TODO parameter
@@ -6268,7 +6273,7 @@ var desc = document.querySelector('.desc');
 var content = {
   select: {
     title: 'Strike a pose <br> for the camera',
-    body: 'Practice a specific pose, <br> there is no need to hurry your sketch.'
+    body: 'Practice a specific pose, there <br> is no need to hurry your sketch.'
   },
   timed: {
     title: 'Capture the pose <br> within the time',
@@ -6286,6 +6291,24 @@ var contentSections = document.querySelectorAll('.content-section');
 contentSections = _toConsumableArray(contentSections);
 
 function startAction(e) {
+  (0, _poses.resetMyGuy)('set'); // Reset pose selector
+
+  _gsap.default.to('.pose-select', {
+    duration: 1,
+    scaleX: 1,
+    y: 0,
+    ease: 'power3.out'
+  });
+
+  _gsap.default.to('#body', {
+    delay: 0.3,
+    y: 0,
+    scaleY: 1,
+    duration: 1,
+    ease: 'power3.out'
+  });
+
+  document.getElementById('pose-selector').disabled = false;
   var selectedAction = e.currentTarget.dataset.action;
   showActiveActionIcon(e);
   playActiveActionIcon(selectedAction);

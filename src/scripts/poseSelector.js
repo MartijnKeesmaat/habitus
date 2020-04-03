@@ -10,6 +10,7 @@ export function showPoses() {
   }, 200);
 
   gsap.to('.pose-select', { delay: 1, duration: 1, scaleX: 1, y: '-110%', ease: 'power3.out' });
+  document.getElementById('pose-selector').disabled = true;
 }
 
 const poseSelect = document.querySelectorAll('.pose-select img');
@@ -21,4 +22,5 @@ function adeptNewPose() {
   gsap.to('#body', { y: 0, scaleY: 1.05, duration: duration, ease: 'power3.out' });
   gsap.to('.pose-select', { duration: duration, scaleX: 1, y: '100%', ease: 'power4.out' });
   gsap.to('#shadow', { autoAlpha: 0.14, duration: duration * 1.5, ease: 'Expo.out' });
+  document.getElementById('pose-selector').disabled = false;
 }
