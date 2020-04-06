@@ -6400,29 +6400,42 @@ function mouseDistanceFromElement(mouseEvent, element) {
 }
 
 document.addEventListener('mousemove', function (e) {
-  console.log(activeState);
   var el = document.querySelector('#element');
   var sprites = document.querySelectorAll('.action-select img');
+  var box = document.querySelector('.action-select .action-img');
+  var boxCenter = [box.getBoundingClientRect().left + box.offsetWidth / 2, box.getBoundingClientRect().top + box.offsetHeight / 2];
 
   switch (activeState) {
     case 'select':
       el = document.querySelector('#element1');
       sprites = document.querySelectorAll('.action-select img');
+      box = document.querySelector('.action-select .action-img');
+      boxCenter = [box.getBoundingClientRect().left + box.offsetWidth / 2, box.getBoundingClientRect().top + box.offsetHeight / 2];
       break;
 
     case 'timed':
       el = document.querySelector('#element2');
       sprites = document.querySelectorAll('.action-timed img');
+      box = document.querySelector('.action-timed .action-img');
+      boxCenter = [box.getBoundingClientRect().left + box.offsetWidth / 2, box.getBoundingClientRect().top + box.offsetHeight / 2];
       break;
 
     case 'sequence':
       el = document.querySelector('#element3');
       sprites = document.querySelectorAll('.action-sequence img');
+      box = document.querySelector('.action-sequence .action-img');
+      boxCenter = [box.getBoundingClientRect().left + box.offsetWidth / 2, box.getBoundingClientRect().top + box.offsetHeight / 2];
       break;
   }
 
+  rotateActiveIcon(e, box, boxCenter);
   updateIconsPerButton(e, el, sprites);
 });
+
+function rotateActiveIcon(e, box, boxCenter) {
+  var angle = Math.atan2(e.pageX - boxCenter[0], -(e.pageY - boxCenter[1])) * (180 / Math.PI);
+  box.style.transform = 'rotate(' + angle + 'deg)';
+}
 
 function updateIconsPerButton(e, el, sprites) {
   var distance = mouseDistanceFromElement(e, el);
@@ -6469,14 +6482,12 @@ function scaleIcons(e) {
 
 function normalize(value, min, max) {
   return (value - min) / (max - min);
-}
-
-var box = document.querySelector('.action-img');
-var boxCenter = [box.getBoundingClientRect().left + box.offsetWidth / 2, box.getBoundingClientRect().top + box.offsetHeight / 2];
-document.addEventListener('mousemove', function (e) {
-  var angle = Math.atan2(e.pageX - boxCenter[0], -(e.pageY - boxCenter[1])) * (180 / Math.PI);
-  box.style.transform = 'rotate(' + angle + 'deg)';
-});
+} // const box = document.querySelector('.action-img');
+// const boxCenter = [box.getBoundingClientRect().left + box.offsetWidth / 2, box.getBoundingClientRect().top + box.offsetHeight / 2];
+// document.addEventListener('mousemove', function (e) {
+//   const angle = Math.atan2(e.pageX - boxCenter[0], -(e.pageY - boxCenter[1])) * (180 / Math.PI);
+//   box.style.transform = 'rotate(' + angle + 'deg)';
+// });
 },{"gsap":"../node_modules/gsap/index.js","./poses":"scripts/poses.js","./sequence":"scripts/sequence.js","./poseSelector":"scripts/poseSelector.js","./timed":"scripts/timed.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';

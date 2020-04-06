@@ -263,6 +263,7 @@ html {
   margin-right: 0;
 }
 .action .action-img {
+  transition: 0.1s all ease;
   border: grey 1px solid;
   border-radius: 50%;
 }

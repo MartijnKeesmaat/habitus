@@ -109,30 +109,42 @@ function mouseDistanceFromElement(mouseEvent, element) {
 }
 
 document.addEventListener('mousemove', function (e) {
-  console.log(activeState);
-
   let el = document.querySelector('#element');
   let sprites = document.querySelectorAll('.action-select img');
+  let box = document.querySelector('.action-select .action-img');
+  let boxCenter = [box.getBoundingClientRect().left + box.offsetWidth / 2, box.getBoundingClientRect().top + box.offsetHeight / 2];
 
   switch (activeState) {
     case 'select':
       el = document.querySelector('#element1');
       sprites = document.querySelectorAll('.action-select img');
+      box = document.querySelector('.action-select .action-img');
+      boxCenter = [box.getBoundingClientRect().left + box.offsetWidth / 2, box.getBoundingClientRect().top + box.offsetHeight / 2];
       break;
 
     case 'timed':
       el = document.querySelector('#element2');
       sprites = document.querySelectorAll('.action-timed img');
+      box = document.querySelector('.action-timed .action-img');
+      boxCenter = [box.getBoundingClientRect().left + box.offsetWidth / 2, box.getBoundingClientRect().top + box.offsetHeight / 2];
       break;
 
     case 'sequence':
       el = document.querySelector('#element3');
       sprites = document.querySelectorAll('.action-sequence img');
+      box = document.querySelector('.action-sequence .action-img');
+      boxCenter = [box.getBoundingClientRect().left + box.offsetWidth / 2, box.getBoundingClientRect().top + box.offsetHeight / 2];
       break;
   }
 
+  rotateActiveIcon(e, box, boxCenter);
   updateIconsPerButton(e, el, sprites);
 });
+
+function rotateActiveIcon(e, box, boxCenter) {
+  const angle = Math.atan2(e.pageX - boxCenter[0], -(e.pageY - boxCenter[1])) * (180 / Math.PI);
+  box.style.transform = 'rotate(' + angle + 'deg)';
+}
 
 function updateIconsPerButton(e, el, sprites) {
   const distance = mouseDistanceFromElement(e, el);
@@ -175,10 +187,10 @@ function normalize(value, min, max) {
   return (value - min) / (max - min);
 }
 
-const box = document.querySelector('.action-img');
-const boxCenter = [box.getBoundingClientRect().left + box.offsetWidth / 2, box.getBoundingClientRect().top + box.offsetHeight / 2];
+// const box = document.querySelector('.action-img');
+// const boxCenter = [box.getBoundingClientRect().left + box.offsetWidth / 2, box.getBoundingClientRect().top + box.offsetHeight / 2];
 
-document.addEventListener('mousemove', function (e) {
-  const angle = Math.atan2(e.pageX - boxCenter[0], -(e.pageY - boxCenter[1])) * (180 / Math.PI);
-  box.style.transform = 'rotate(' + angle + 'deg)';
-});
+// document.addEventListener('mousemove', function (e) {
+//   const angle = Math.atan2(e.pageX - boxCenter[0], -(e.pageY - boxCenter[1])) * (180 / Math.PI);
+//   box.style.transform = 'rotate(' + angle + 'deg)';
+// });
