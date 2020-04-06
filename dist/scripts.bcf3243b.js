@@ -6219,6 +6219,7 @@ function actionTimedPose() {
   // TODO parameter
   var time = 5;
   var timer = 5;
+  (0, _helpers.randomPose)(1.5);
   setInterval(function () {
     var prefixTime = timer < 10 ? "0".concat(timer) : timer;
     timeNode.innerHTML = "00:".concat(prefixTime);
@@ -6297,7 +6298,7 @@ function startAction(e) {
   _gsap.default.to('.pose-select', {
     duration: 1,
     scaleX: 1,
-    y: 0,
+    y: 100,
     ease: 'power3.out'
   });
 

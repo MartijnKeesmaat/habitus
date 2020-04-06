@@ -40,7 +40,7 @@ function startAction(e) {
   resetMyGuy('set');
 
   // Reset pose selector
-  gsap.to('.pose-select', { duration: 1, scaleX: 1, y: 0, ease: 'power3.out' });
+  gsap.to('.pose-select', { duration: 1, scaleX: 1, y: 100, ease: 'power3.out' });
   gsap.to('#body', { delay: 0.3, y: 0, scaleY: 1, duration: 1, ease: 'power3.out' });
   document.getElementById('pose-selector').disabled = false;
 

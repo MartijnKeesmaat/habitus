@@ -12,6 +12,7 @@ function actionTimedPose() {
   // TODO parameter
   let time = 5;
   let timer = 5;
+  randomPose(1.5);
 
   setInterval(() => {
     const prefixTime = timer < 10 ? `0${timer}` : timer;
