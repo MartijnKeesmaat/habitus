@@ -24,7 +24,7 @@
         <div class="content-sections">
           <div class="content-section content-section--active" data-contentsection="select">
             <h3>Browse the collection</h3>
-            <button class="btn" id="pose-selector">Different pose</button>
+            <span id="element" style="display: inline-block;"><button class="btn" id="pose-selector">Different pose</button></span>
           </div>
 
           <div class="content-section content-section--time" data-contentsection="timed">
@@ -363,43 +363,39 @@
           </div>
         </div>
 
+        <div id="distance"><span></span></div>
         <div class="actions">
-          <span class="action action--active" data-action="select">
-            <!-- <img src="img/dummy/abstract/triangle.svg" alt="" />
-            <img src="img/dummy/abstract/triangle.svg" alt="" /> -->
-
-            <div class="triangle"></div>
+          <span class="action action-select action--active" data-action="select">
+            <div class="action-img">
+              <img src="/1.e369c377.svg" alt="">
+              <img src="/2.8e1d471a.svg" alt="">
+              <img src="/3.f13751e1.svg" alt="">
+              <img src="/4.b725f7c0.svg" alt="">
+            </div>
             <p>Select</p>
           </span>
 
-          <span class="circlies action" data-action="timed">
-            <div class="circle"></div>
-            <div class="circle"></div>
-            <div class="circle"></div>
+          <span class="action action-timed" data-action="timed">
+            <div class="scale" style="transform: scale(0.85);">
+              <div class="action-img">
+                <img src="/1.56c2402f.svg" alt="">
+                <img src="/2.3342180b.svg" alt="">
+                <img src="/3.0a3009b4.svg" alt="">
+                <img src="/4.c2e67445.svg" alt="">
+                <img src="/5.807893e9.svg" alt="">
+              </div>
+            </div>
             <p>Timed</p>
           </span>
 
-          <span class="action" data-action="sequence">
-            <!-- <img src="img/dummy/abstract/rectangle.svg" alt="" /> -->
-            <div class="squaries">
-              <div class="square"></div>
-              <div class="square"></div>
-              <div class="square"></div>
-              <div class="square"></div>
-              <div class="square"></div>
-              <div class="square"></div>
-              <div class="square"></div>
-              <div class="square"></div>
-              <div class="square"></div>
-              <!-- <img src="img/dummy/abstract/rectangle.svg" alt="" />
-              <img src="img/dummy/abstract/rectangle.svg" alt="" />
-              <img src="img/dummy/abstract/rectangle.svg" alt="" />
-              <img src="img/dummy/abstract/rectangle.svg" alt="" />
-              <img src="img/dummy/abstract/rectangle.svg" alt="" />
-              <img src="img/dummy/abstract/rectangle.svg" alt="" />
-              <img src="img/dummy/abstract/rectangle.svg" alt="" />
-              <img src="img/dummy/abstract/rectangle.svg" alt="" />
-              <img src="img/dummy/abstract/rectangle.svg" alt="" /> -->
+          <span class="action action-sequence" data-action="sequence">
+            <div class="scale" style="transform: scale(0.85);">
+              <div class="action-img">
+                <img src="/1.485e92c7.svg" alt="">
+                <img src="/2.a48269f5.svg" alt="">
+                <img src="/3.0a782247.svg" alt="">
+                <img src="/4.112ac16e.svg" alt="">
+              </div>
             </div>
             <p>Sequence</p>
           </span>
