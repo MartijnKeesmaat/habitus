@@ -6289,6 +6289,7 @@ actions.forEach(function (e) {
 });
 var contentSections = document.querySelectorAll('.content-section');
 contentSections = _toConsumableArray(contentSections);
+var activeState = 'select';
 
 function startAction(e) {
   (0, _poses.resetMyGuy)('set'); // Reset pose selector
@@ -6313,6 +6314,7 @@ function startAction(e) {
   showActiveActionIcon(e);
   transitionActionContent(selectedAction);
   transitionContentViews(selectedAction);
+  activeState = selectedAction;
 }
 
 function showActiveActionIcon(e) {
@@ -6398,9 +6400,32 @@ function mouseDistanceFromElement(mouseEvent, element) {
 }
 
 document.addEventListener('mousemove', function (e) {
+  console.log(activeState);
   var el = document.querySelector('#element');
-  var distance = mouseDistanceFromElement(e, el);
   var sprites = document.querySelectorAll('.action-select img');
+
+  switch (activeState) {
+    case 'select':
+      el = document.querySelector('#element1');
+      sprites = document.querySelectorAll('.action-select img');
+      break;
+
+    case 'timed':
+      el = document.querySelector('#element2');
+      sprites = document.querySelectorAll('.action-timed img');
+      break;
+
+    case 'sequence':
+      el = document.querySelector('#element3');
+      sprites = document.querySelectorAll('.action-sequence img');
+      break;
+  }
+
+  updateIconsPerButton(e, el, sprites);
+});
+
+function updateIconsPerButton(e, el, sprites) {
+  var distance = mouseDistanceFromElement(e, el);
 
   var showIcon = function showIcon(i) {
     sprites.forEach(function (e) {
@@ -6410,6 +6435,9 @@ document.addEventListener('mousemove', function (e) {
   };
 
   if (distance < 20) showIcon(3);else if (distance < 100) showIcon(2);else if (distance < 400) showIcon(1);else showIcon(0);
+}
+
+function scaleIcons(e) {
   var distanceIcon = mouseDistanceFromElement(e, document.querySelector('.action-timed'));
   var normalized = normalize(distanceIcon, 0, 1100);
   var scaleIcon = document.querySelector('.action-timed .scale');
@@ -6437,7 +6465,7 @@ document.addEventListener('mousemove', function (e) {
     });
     document.querySelector('.action-select').style.opacity = 1;
   }
-});
+}
 
 function normalize(value, min, max) {
   return (value - min) / (max - min);

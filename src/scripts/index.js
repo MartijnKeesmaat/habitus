@@ -34,6 +34,7 @@ actions.forEach((e) => e.addEventListener('click', startAction));
 
 let contentSections = document.querySelectorAll('.content-section');
 contentSections = [...contentSections];
+let activeState = 'select';
 
 function startAction(e) {
   resetMyGuy('set');
@@ -47,6 +48,7 @@ function startAction(e) {
   showActiveActionIcon(e);
   transitionActionContent(selectedAction);
   transitionContentViews(selectedAction);
+  activeState = selectedAction;
 }
 
 function showActiveActionIcon(e) {
@@ -107,9 +109,33 @@ function mouseDistanceFromElement(mouseEvent, element) {
 }
 
 document.addEventListener('mousemove', function (e) {
-  const el = document.querySelector('#element');
+  console.log(activeState);
+
+  let el = document.querySelector('#element');
+  let sprites = document.querySelectorAll('.action-select img');
+
+  switch (activeState) {
+    case 'select':
+      el = document.querySelector('#element1');
+      sprites = document.querySelectorAll('.action-select img');
+      break;
+
+    case 'timed':
+      el = document.querySelector('#element2');
+      sprites = document.querySelectorAll('.action-timed img');
+      break;
+
+    case 'sequence':
+      el = document.querySelector('#element3');
+      sprites = document.querySelectorAll('.action-sequence img');
+      break;
+  }
+
+  updateIconsPerButton(e, el, sprites);
+});
+
+function updateIconsPerButton(e, el, sprites) {
   const distance = mouseDistanceFromElement(e, el);
-  const sprites = document.querySelectorAll('.action-select img');
 
   const showIcon = (i) => {
     sprites.forEach((e) => (e.style.display = 'none'));
@@ -120,13 +146,13 @@ document.addEventListener('mousemove', function (e) {
   else if (distance < 100) showIcon(2);
   else if (distance < 400) showIcon(1);
   else showIcon(0);
+}
 
+function scaleIcons(e) {
   const distanceIcon = mouseDistanceFromElement(e, document.querySelector('.action-timed'));
   const normalized = normalize(distanceIcon, 0, 1100);
-
   const scaleIcon = document.querySelector('.action-timed .scale');
   const scaleIcon2 = document.querySelector('.action-sequence .scale');
-
   if (normalized > 0.5) {
     scaleIcon.style.transform = 'scale(0.7)';
     scaleIcon2.style.transform = 'scale(0.7)';
@@ -143,7 +169,7 @@ document.addEventListener('mousemove', function (e) {
     document.querySelectorAll('.action').forEach((e) => (e.style.opacity = 1));
     document.querySelector('.action-select').style.opacity = 1;
   }
-});
+}
 
 function normalize(value, min, max) {
   return (value - min) / (max - min);
