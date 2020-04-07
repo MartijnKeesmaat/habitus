@@ -245,7 +245,7 @@ main {
   height: 240px;
 }
 .sequence__container img {
-  height: 110px;
+  height: 120px;
 }
 
 html {
@@ -291,6 +291,22 @@ html {
 }
 .btn[disabled]:hover {
   transform: none;
+}
+
+.sequence__container {
+  display: flex;
+  flex-wrap: wrap;
+  padding-top: 30px;
+}
+.sequence__container div {
+  position: relative;
+  margin-bottom: 20px;
+}
+.sequence__container span {
+  position: absolute;
+  right: 20px;
+  color: #9AA3B0;
+  font-size: 11px;
 }
 
 body {

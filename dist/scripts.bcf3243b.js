@@ -5673,6 +5673,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.jump = jump;
+exports.fall = fall;
 exports.salute = salute;
 exports.graceful = graceful;
 exports.resetMyGuy = resetMyGuy;
@@ -5856,6 +5857,50 @@ function jump(duration) {
     });
   }); // gsap.to('#body', { delay: duration, duration: duration * 2, scaleY: 2, y: -1200, ease: 'power4.out' });
 
+}
+
+function fall(duration) {
+  _gsap.default.to('#body', {
+    duration: duration,
+    scaleY: 1.3,
+    ease: 'power3.out'
+  });
+
+  _gsap.default.to('#left-arm', {
+    duration: duration,
+    rotate: 140,
+    x: 40,
+    y: 10,
+    transformOrigin: 'top',
+    ease: 'power3.out'
+  });
+
+  _gsap.default.to('#right-arm', {
+    duration: duration,
+    rotate: -140,
+    x: -40,
+    y: 10,
+    transformOrigin: 'top',
+    ease: 'power3.out'
+  });
+
+  _gsap.default.to('#left-lower-arm-hand', {
+    duration: duration,
+    rotate: 50,
+    ease: 'power3.out',
+    transformOrigin: 'top'
+  });
+
+  _gsap.default.to('#right-lower-arm-hand', {
+    duration: duration,
+    rotate: -50,
+    ease: 'power3.out',
+    transformOrigin: 'top'
+  });
+
+  setTimeout(function () {
+    resetMyGuy('trans', duration);
+  }, duration * 1000);
 }
 
 function salute() {
@@ -6044,16 +6089,12 @@ function resetMyGuy(mode, duration) {
       y: 0,
       ease: 'power3.out'
     });
-  });
 
-  setTimeout(function () {
-    _parts.allParts.forEach(function (part) {
-      _gsap.default.to(part, {
-        delay: mode === 'set' ? 0 : duration,
-        transformOrigin: '50% 50%'
-      });
+    _gsap.default.to(part, {
+      delay: mode === 'set' ? 0 : duration,
+      transformOrigin: '50% 50%'
     });
-  }, 1000);
+  });
 }
 },{"gsap":"../node_modules/gsap/index.js","./parts":"scripts/parts.js"}],"scripts/sequence.js":[function(require,module,exports) {
 "use strict";
@@ -6092,7 +6133,6 @@ sequenceTrigger.addEventListener('click', function () {
 
 function startSequenceCapture(duration, interval) {
   var sequenceTimer = setInterval(myTimer, interval);
-  console.log(document.querySelector('.content svg'));
   captureSequence(document.querySelector('.content svg'), document.querySelector('.sequence__container'));
 
   function myTimer() {
@@ -6103,12 +6143,17 @@ function startSequenceCapture(duration, interval) {
   setTimeout(function () {
     clearInterval(sequenceTimer);
   }, duration);
-} // http://stackoverflow.com/questions/3768565/drawing-a-svg-file-on-a-html5-canvas
+}
 
+var frameCount = 0; // http://stackoverflow.com/questions/3768565/drawing-a-svg-file-on-a-html5-canvas
 
 function captureSequence(source, target) {
   var imgDOM = document.createElement('img');
-  var canvas = document.querySelector('canvas'); // get svg data
+  var canvas = document.querySelector('canvas');
+  var number = document.createElement('span');
+  var container = document.createElement('div');
+  frameCount++;
+  number.textContent = frameCount < 10 ? "0".concat(frameCount) : frameCount; // get svg data
 
   var xml = new XMLSerializer().serializeToString(source); // make it base64
 
@@ -6120,73 +6165,9 @@ function captureSequence(source, target) {
   imgDOM.src = image64; // draw the image onto the canvas
 
   canvas.getContext('2d').drawImage(imgDOM, 0, 0);
-  target.appendChild(imgDOM);
-}
-},{"gsap":"../node_modules/gsap/index.js","./poses":"scripts/poses.js"}],"scripts/poseSelector.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.showPoses = showPoses;
-
-var _gsap = _interopRequireDefault(require("gsap"));
-
-var _poses = require("./poses");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function showPoses(e) {
-  (0, _poses.resetMyGuy)('trans', 0.5);
-  console.log(e);
-  setTimeout(function () {
-    (0, _poses.jump)(0.45);
-    document.querySelector('#jump').play();
-  }, 200); // setTimeout(() => {
-  // }, 350);
-
-  _gsap.default.to('.pose-select', {
-    delay: 1,
-    duration: 1,
-    scaleX: 1,
-    y: '-110%',
-    ease: 'power3.out'
-  });
-
-  document.getElementById('pose-selector').disabled = true;
-}
-
-var poseSelect = document.querySelectorAll('.pose-select img');
-poseSelect.forEach(function (pose) {
-  return pose.addEventListener('click', adeptNewPose);
-});
-
-function adeptNewPose() {
-  var duration = 1.2;
-  (0, _poses.graceful)(); // TODO should be the selected pose
-
-  _gsap.default.to('#body', {
-    y: 0,
-    scaleY: 1.05,
-    duration: duration,
-    ease: 'power3.out'
-  });
-
-  _gsap.default.to('.pose-select', {
-    duration: duration,
-    scaleX: 1,
-    y: '100%',
-    ease: 'power4.out'
-  });
-
-  _gsap.default.to('#shadow', {
-    autoAlpha: 0.14,
-    duration: duration * 1.5,
-    ease: 'Expo.out'
-  });
-
-  document.getElementById('pose-selector').disabled = false;
-  document.querySelector('#land').play();
+  target.appendChild(container);
+  container.appendChild(number);
+  container.appendChild(imgDOM);
 }
 },{"gsap":"../node_modules/gsap/index.js","./poses":"scripts/poses.js"}],"scripts/helpers.js":[function(require,module,exports) {
 "use strict";
@@ -6213,7 +6194,80 @@ function playRandomSound(classs) {
   var rand = Math.floor(Math.random() * source.length);
   source[rand].play();
 }
-},{"./poses":"scripts/poses.js"}],"scripts/timed.js":[function(require,module,exports) {
+},{"./poses":"scripts/poses.js"}],"scripts/poseSelector.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.showPoses = showPoses;
+
+var _gsap = _interopRequireDefault(require("gsap"));
+
+var _poses = require("./poses");
+
+var _helpers = require("./helpers");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function showPoses(e) {
+  (0, _poses.resetMyGuy)('set');
+  console.log(e);
+  setTimeout(function () {
+    (0, _poses.jump)(0.45); // document.querySelector('#jump').play();
+  }, 400);
+
+  _gsap.default.to('.pose-select', {
+    delay: 1,
+    duration: 1,
+    scaleX: 1,
+    y: '-110%',
+    ease: 'power3.out'
+  });
+
+  document.getElementById('pose-selector').disabled = true;
+}
+
+var poseSelect = document.querySelectorAll('.pose-select img');
+poseSelect.forEach(function (pose) {
+  return pose.addEventListener('click', adeptNewPose);
+});
+
+function adeptNewPose() {
+  var duration = 1.2;
+  (0, _poses.fall)(duration / 2);
+
+  _gsap.default.to('#body', {
+    y: 0,
+    scaleY: 1,
+    duration: duration,
+    ease: 'power4.out'
+  }); // setTimeout(() => {
+  //   resetMyGuy('trans', 0.5);
+  // }, duration);
+
+
+  setTimeout(function () {
+    (0, _poses.salute)(2); // TODO should be the selected pose
+  }, 1400);
+
+  _gsap.default.to('.pose-select', {
+    duration: duration,
+    scaleX: 1,
+    y: '100%',
+    ease: 'power4.out'
+  });
+
+  _gsap.default.to('#shadow', {
+    autoAlpha: 0.14,
+    duration: duration * 1.5,
+    ease: 'Expo.out'
+  });
+
+  document.getElementById('pose-selector').disabled = false;
+  document.querySelector('#land').play();
+}
+},{"gsap":"../node_modules/gsap/index.js","./poses":"scripts/poses.js","./helpers":"scripts/helpers.js"}],"scripts/timed.js":[function(require,module,exports) {
 "use strict";
 
 var _gsap = _interopRequireDefault(require("gsap"));
@@ -6280,6 +6334,8 @@ function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.
 function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
 
 (0, _poses.resetMyGuy)('set');
+setTimeout(function () {// fall(1);
+}, 1000);
 /* 
   TODO dynamic function for view switch
   TODO text switch

@@ -33,10 +33,23 @@ export function jump(duration) {
   gsap.to('#body', { delay: duration * 1.1, y: '-100%', scaleY: 1.05, duration: duration * 1.5, ease: 'Expo.out' });
   gsap.to('#shadow', { delay: duration * 1.1, autoAlpha: 0, duration: duration * 1.5, ease: 'Expo.out' });
 
-  allParts.forEach(part => {
+  allParts.forEach((part) => {
     gsap.to(part, { duration: duration / 2, delay: duration, scaleX: 1, scaleY: 1, rotate: 0, x: 0, y: 0, ease: 'power3.out' });
   });
   // gsap.to('#body', { delay: duration, duration: duration * 2, scaleY: 2, y: -1200, ease: 'power4.out' });
+}
+
+export function fall(duration) {
+  gsap.to('#body', { duration: duration, scaleY: 1.3, ease: 'power3.out' });
+  gsap.to('#left-arm', { duration: duration, rotate: 140, x: 40, y: 10, transformOrigin: 'top', ease: 'power3.out' });
+  gsap.to('#right-arm', { duration: duration, rotate: -140, x: -40, y: 10, transformOrigin: 'top', ease: 'power3.out' });
+
+  gsap.to('#left-lower-arm-hand', { duration: duration, rotate: 50, ease: 'power3.out', transformOrigin: 'top' });
+  gsap.to('#right-lower-arm-hand', { duration: duration, rotate: -50, ease: 'power3.out', transformOrigin: 'top' });
+
+  setTimeout(() => {
+    resetMyGuy('trans', duration);
+  }, duration * 1000);
 }
 
 export function salute() {
@@ -70,12 +83,8 @@ export function graceful(duration) {
 }
 
 export function resetMyGuy(mode, duration) {
-  allParts.forEach(part => {
+  allParts.forEach((part) => {
     gsap.to(part, { duration: mode === 'set' ? 0 : duration, scaleX: 1, scaleY: 1, rotate: 0, x: 0, y: 0, ease: 'power3.out' });
+    gsap.to(part, { delay: mode === 'set' ? 0 : duration, transformOrigin: '50% 50%' });
   });
-  setTimeout(() => {
-    allParts.forEach(part => {
-      gsap.to(part, { delay: mode === 'set' ? 0 : duration, transformOrigin: '50% 50%' });
-    });
-  }, 1000);
 }

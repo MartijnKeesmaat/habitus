@@ -1,11 +1,15 @@
 import gsap, { random } from 'gsap';
-import { jump, salute, graceful, resetMyGuy } from './poses';
+import { jump, salute, graceful, resetMyGuy, fall } from './poses';
 import { startSequenceCapture } from './sequence';
 import { showPoses } from './poseSelector';
 import { actionTimedPose } from './timed';
 import { playRandomSound } from './helpers';
 
 resetMyGuy('set');
+
+setTimeout(() => {
+  // fall(1);
+}, 1000);
 
 /* 
   TODO dynamic function for view switch
