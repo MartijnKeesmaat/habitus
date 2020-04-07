@@ -5675,6 +5675,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.jump = jump;
 exports.fall = fall;
 exports.salute = salute;
+exports.cheeky = cheeky;
 exports.graceful = graceful;
 exports.resetMyGuy = resetMyGuy;
 
@@ -5968,6 +5969,102 @@ function salute() {
   });
 }
 
+function cheeky(duration) {
+  _gsap.default.to('#body', {
+    duration: duration,
+    rotate: -3,
+    x: -10,
+    transformOrigin: 'top'
+  });
+
+  _gsap.default.to('#upper-body', {
+    duration: duration,
+    scaleY: 0.9,
+    rotate: -29,
+    x: -50,
+    y: 25
+  });
+
+  _gsap.default.to('#waist', {
+    duration: duration,
+    rotate: -30,
+    x: -4,
+    y: 10,
+    scale: 1.15
+  });
+
+  _gsap.default.to('#hips', {
+    duration: duration,
+    rotate: -10,
+    x: 5,
+    y: 5,
+    scaleY: 0.9
+  });
+
+  _gsap.default.to('#left-arm', {
+    duration: duration,
+    x: -35,
+    y: 25
+  });
+
+  _gsap.default.to('#left-lower-arm-hand', {
+    duration: duration,
+    rotate: -25,
+    transformOrigin: 'top'
+  });
+
+  _gsap.default.to('#left-hand', {
+    duration: duration,
+    rotate: 50,
+    transformOrigin: 'top'
+  });
+
+  _gsap.default.to('#right-arm', {
+    duration: duration,
+    x: 10,
+    y: -40,
+    rotate: -40
+  });
+
+  _gsap.default.to('#right-lower-arm-hand', {
+    duration: duration,
+    rotate: 160,
+    transformOrigin: 'top'
+  });
+
+  _gsap.default.to('#right-hand', {
+    duration: duration,
+    rotate: 10,
+    transformOrigin: 'top'
+  });
+
+  _gsap.default.to('#left-leg', {
+    duration: duration,
+    rotate: 25,
+    x: 10,
+    transformOrigin: 'top'
+  });
+
+  _gsap.default.to('#left-lower-leg-foot', {
+    duration: duration,
+    rotate: -25,
+    transformOrigin: 'top'
+  });
+
+  _gsap.default.to('#right-leg', {
+    duration: duration,
+    rotate: -10,
+    x: 10,
+    transformOrigin: 'top'
+  });
+
+  _gsap.default.to('#right-lower-leg-foot', {
+    duration: duration,
+    rotate: 10,
+    transformOrigin: 'top'
+  });
+}
+
 function graceful(duration) {
   _gsap.default.to('#left-arm', {
     duration: duration / 1.5,
@@ -6074,6 +6171,20 @@ function graceful(duration) {
     duration: duration,
     rotate: -10,
     x: 10,
+    ease: 'power3.out'
+  });
+
+  _gsap.default.to('#left-hand', {
+    duration: duration,
+    rotate: 20,
+    transformOrigin: 'top',
+    ease: 'power3.out'
+  });
+
+  _gsap.default.to('#right-hand', {
+    duration: duration,
+    rotate: 40,
+    transformOrigin: 'top',
     ease: 'power3.out'
   });
 }
@@ -6330,6 +6441,9 @@ function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.
 function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
 
 (0, _poses.resetMyGuy)('set');
+setTimeout(function () {
+  (0, _poses.cheeky)(2);
+}, 1000);
 var actions = document.querySelectorAll('.action');
 var header = document.querySelector('h1');
 var desc = document.querySelector('.desc');

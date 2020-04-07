@@ -63,6 +63,27 @@ export function salute() {
   gsap.to('#hips', { duration: 2, rotate: 3, ease: 'power3.out' });
 }
 
+export function cheeky(duration) {
+  gsap.to('#body', { duration, rotate: -3, x: -10, transformOrigin: 'top' });
+  gsap.to('#upper-body', { duration, scaleY: 0.9, rotate: -29, x: -50, y: 25 });
+
+  gsap.to('#waist', { duration, rotate: -30, x: -4, y: 10, scale: 1.15 });
+  gsap.to('#hips', { duration, rotate: -10, x: 5, y: 5, scaleY: 0.9 });
+
+  gsap.to('#left-arm', { duration, x: -35, y: 25 });
+  gsap.to('#left-lower-arm-hand', { duration, rotate: -25, transformOrigin: 'top' });
+  gsap.to('#left-hand', { duration, rotate: 50, transformOrigin: 'top' });
+  gsap.to('#right-arm', { duration, x: 10, y: -40, rotate: -40 });
+  gsap.to('#right-lower-arm-hand', { duration, rotate: 160, transformOrigin: 'top' });
+  gsap.to('#right-hand', { duration, rotate: 10, transformOrigin: 'top' });
+
+  gsap.to('#left-leg', { duration, rotate: 25, x: 10, transformOrigin: 'top' });
+  gsap.to('#left-lower-leg-foot', { duration, rotate: -25, transformOrigin: 'top' });
+
+  gsap.to('#right-leg', { duration, rotate: -10, x: 10, transformOrigin: 'top' });
+  gsap.to('#right-lower-leg-foot', { duration, rotate: 10, transformOrigin: 'top' });
+}
+
 export function graceful(duration) {
   gsap.to('#left-arm', { duration: duration / 1.5, rotate: 170, x: 60, y: 20, transformOrigin: 'top', ease: 'power3.out' });
   gsap.to('#left-lower-arm-hand', { delay: 0.1, duration: duration, rotate: 120, transformOrigin: 'top', ease: 'power3.out' });
@@ -80,6 +101,9 @@ export function graceful(duration) {
   gsap.to('#right-leg', { duration: duration, y: -5, ease: 'power3.out' });
   gsap.to('#right-lower-leg-foot', { duration: duration, y: -10, x: 15, rotate: 10, ease: 'power3.out', transformOrigin: 'top' });
   gsap.to('#right-upper-leg-knee', { duration: duration, rotate: -10, x: 10, ease: 'power3.out' });
+
+  gsap.to('#left-hand', { duration: duration, rotate: 20, transformOrigin: 'top', ease: 'power3.out' });
+  gsap.to('#right-hand', { duration: duration, rotate: 40, transformOrigin: 'top', ease: 'power3.out' });
 }
 
 export function resetMyGuy(mode, duration) {
