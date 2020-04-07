@@ -290,3 +290,22 @@ html
     color: #9AA3B0
 
     font-size: 11px
+
+.pulse
+  animation: pulse 1.5s
+
+  box-shadow: 0 0 0 0 rgba(#D8DFEB, .6)
+
+@keyframes pulse
+  0%
+    transform: scale(.9)
+
+  70%
+    transform: scale(1)
+
+    box-shadow: 0 0 0 30px rgba(#D8DFEB, 0)
+
+  100%
+    transform: scale(.9)
+
+    box-shadow: 0 0 0 0 rgba(#D8DFEB, 0)

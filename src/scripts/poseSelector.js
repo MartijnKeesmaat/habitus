@@ -5,8 +5,6 @@ import { randomPose } from './helpers';
 export function showPoses(e) {
   resetMyGuy('set');
 
-  console.log(e);
-
   setTimeout(() => {
     jump(0.45);
     // document.querySelector('#jump').play();
@@ -24,13 +22,9 @@ function adeptNewPose() {
   fall(duration / 2);
   gsap.to('#body', { y: 0, scaleY: 1, duration: duration, ease: 'power4.out' });
 
-  // setTimeout(() => {
-  //   resetMyGuy('trans', 0.5);
-  // }, duration);
-
   setTimeout(() => {
-    salute(2); // TODO should be the selected pose
-  }, 1400);
+    randomPose(2); // TODO should be the selected pose
+  }, 1200);
 
   gsap.to('.pose-select', { duration: duration, scaleX: 1, y: '100%', ease: 'power4.out' });
   gsap.to('#shadow', { autoAlpha: 0.14, duration: duration * 1.5, ease: 'Expo.out' });

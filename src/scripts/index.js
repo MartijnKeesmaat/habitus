@@ -7,15 +7,6 @@ import { playRandomSound } from './helpers';
 
 resetMyGuy('set');
 
-setTimeout(() => {
-  // fall(1);
-}, 1000);
-
-/* 
-  TODO dynamic function for view switch
-  TODO text switch
-*/
-
 const actions = document.querySelectorAll('.action');
 const header = document.querySelector('h1');
 const desc = document.querySelector('.desc');
@@ -54,6 +45,12 @@ function startAction(e) {
   transitionActionContent(selectedAction);
   transitionContentViews(selectedAction);
   activeState = selectedAction;
+
+  const $pulse = e.currentTarget.querySelector('.action-img');
+  $pulse.classList.toggle('pulse');
+  setTimeout(() => {
+    $pulse.classList.toggle('pulse');
+  }, 1500);
   playRandomSound('.click');
 }
 

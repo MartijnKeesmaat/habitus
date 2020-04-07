@@ -6212,7 +6212,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function showPoses(e) {
   (0, _poses.resetMyGuy)('set');
-  console.log(e);
   setTimeout(function () {
     (0, _poses.jump)(0.45); // document.querySelector('#jump').play();
   }, 400);
@@ -6242,14 +6241,11 @@ function adeptNewPose() {
     scaleY: 1,
     duration: duration,
     ease: 'power4.out'
-  }); // setTimeout(() => {
-  //   resetMyGuy('trans', 0.5);
-  // }, duration);
-
+  });
 
   setTimeout(function () {
-    (0, _poses.salute)(2); // TODO should be the selected pose
-  }, 1400);
+    (0, _helpers.randomPose)(2); // TODO should be the selected pose
+  }, 1200);
 
   _gsap.default.to('.pose-select', {
     duration: duration,
@@ -6334,13 +6330,6 @@ function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.
 function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
 
 (0, _poses.resetMyGuy)('set');
-setTimeout(function () {// fall(1);
-}, 1000);
-/* 
-  TODO dynamic function for view switch
-  TODO text switch
-*/
-
 var actions = document.querySelectorAll('.action');
 var header = document.querySelector('h1');
 var desc = document.querySelector('.desc');
@@ -6389,6 +6378,11 @@ function startAction(e) {
   transitionActionContent(selectedAction);
   transitionContentViews(selectedAction);
   activeState = selectedAction;
+  var $pulse = e.currentTarget.querySelector('.action-img');
+  $pulse.classList.toggle('pulse');
+  setTimeout(function () {
+    $pulse.classList.toggle('pulse');
+  }, 1500);
   (0, _helpers.playRandomSound)('.click');
 }
 
