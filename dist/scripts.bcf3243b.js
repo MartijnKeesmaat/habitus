@@ -5679,6 +5679,8 @@ exports.cheeky = cheeky;
 exports.graceful = graceful;
 exports.resetMyGuy = resetMyGuy;
 exports.ninjaCrouch = ninjaCrouch;
+exports.flex = flex;
+exports.greet = greet;
 
 var _gsap = _interopRequireDefault(require("gsap"));
 
@@ -5975,7 +5977,8 @@ function cheeky(duration) {
     duration: duration,
     rotate: -3,
     x: -10,
-    transformOrigin: 'top'
+    transformOrigin: 'top',
+    ease: 'power3.out'
   });
 
   _gsap.default.to('#upper-body', {
@@ -5983,7 +5986,8 @@ function cheeky(duration) {
     scaleY: 0.9,
     rotate: -29,
     x: -50,
-    y: 25
+    y: 25,
+    ease: 'power3.out'
   });
 
   _gsap.default.to('#waist', {
@@ -5991,7 +5995,8 @@ function cheeky(duration) {
     rotate: -30,
     x: -4,
     y: 10,
-    scale: 1.15
+    scale: 1.15,
+    ease: 'power3.out'
   });
 
   _gsap.default.to('#hips', {
@@ -5999,70 +6004,81 @@ function cheeky(duration) {
     rotate: -10,
     x: 5,
     y: 5,
-    scaleY: 0.9
+    scaleY: 0.9,
+    ease: 'power3.out'
   });
 
   _gsap.default.to('#left-arm', {
     duration: duration,
     x: -35,
-    y: 25
+    y: 25,
+    ease: 'power3.out'
   });
 
   _gsap.default.to('#left-lower-arm-hand', {
     duration: duration,
     rotate: -25,
-    transformOrigin: 'top'
+    transformOrigin: 'top',
+    ease: 'power3.out'
   });
 
   _gsap.default.to('#left-hand', {
     duration: duration,
     rotate: 50,
-    transformOrigin: 'top'
+    transformOrigin: 'top',
+    ease: 'power3.out'
   });
 
   _gsap.default.to('#right-arm', {
     duration: duration,
     x: 10,
     y: -40,
-    rotate: -40
+    rotate: -40,
+    ease: 'power3.out'
   });
 
   _gsap.default.to('#right-lower-arm-hand', {
     duration: duration,
     rotate: 160,
-    transformOrigin: 'top'
+    transformOrigin: 'top',
+    ease: 'power3.out'
   });
 
   _gsap.default.to('#right-hand', {
     duration: duration,
     rotate: 10,
-    transformOrigin: 'top'
+    transformOrigin: 'top',
+    ease: 'power3.out'
   });
 
   _gsap.default.to('#left-leg', {
     duration: duration,
     rotate: 25,
     x: 10,
-    transformOrigin: 'top'
+    transformOrigin: 'top',
+    ease: 'power3.out'
   });
 
   _gsap.default.to('#left-lower-leg-foot', {
     duration: duration,
     rotate: -25,
-    transformOrigin: 'top'
+    transformOrigin: 'top',
+    ease: 'power3.out'
   });
 
   _gsap.default.to('#right-leg', {
     duration: duration,
     rotate: -10,
     x: 10,
-    transformOrigin: 'top'
+    transformOrigin: 'top',
+    ease: 'power3.out'
   });
 
   _gsap.default.to('#right-lower-leg-foot', {
     duration: duration,
     rotate: 10,
-    transformOrigin: 'top'
+    transformOrigin: 'top',
+    ease: 'power3.out'
   });
 }
 
@@ -6212,68 +6228,78 @@ function resetMyGuy(mode, duration) {
 function ninjaCrouch(duration) {
   _gsap.default.to('#body', {
     duration: duration,
-    y: 160
+    y: 160,
+    ease: 'power3.out'
   });
 
   _gsap.default.to('#upper-body', {
     duration: duration,
     scaleY: 0.9,
     y: 10,
-    rotate: -10
+    rotate: -10,
+    ease: 'power3.out'
   });
 
   _gsap.default.to('#waist', {
     duration: duration,
     scaleY: 0.9,
     rotate: 10,
-    x: 10
+    x: 10,
+    ease: 'power3.out'
   });
 
   _gsap.default.to('#hips', {
     duration: duration,
     scaleY: 0.9,
     rotate: 10,
-    x: 10
+    x: 10,
+    ease: 'power3.out'
   });
 
   _gsap.default.to('#left-leg', {
     duration: duration,
     rotate: 80,
     x: 30,
-    transformOrigin: 'top'
+    transformOrigin: 'top',
+    ease: 'power3.out'
   });
 
   _gsap.default.to('#left-lower-leg-foot', {
     duration: duration,
     rotate: -150,
     y: 15,
-    transformOrigin: 'top'
+    transformOrigin: 'top',
+    ease: 'power3.out'
   });
 
   _gsap.default.to('#left-foot', {
     duration: duration,
     rotate: 80,
-    transformOrigin: 'top'
+    transformOrigin: 'top',
+    ease: 'power3.out'
   });
 
   _gsap.default.to('#right-leg', {
     duration: duration,
     rotate: -100,
     x: -30,
-    transformOrigin: 'top'
+    transformOrigin: 'top',
+    ease: 'power3.out'
   });
 
   _gsap.default.to('#right-lower-leg-foot', {
     duration: duration,
     rotate: 140,
     y: 15,
-    transformOrigin: 'top'
+    transformOrigin: 'top',
+    ease: 'power3.out'
   });
 
   _gsap.default.to('#right-foot', {
     duration: duration,
     rotate: -80,
-    transformOrigin: 'top'
+    transformOrigin: 'top',
+    ease: 'power3.out'
   });
 
   _gsap.default.to('#left-arm', {
@@ -6281,25 +6307,191 @@ function ninjaCrouch(duration) {
     rotate: -60,
     y: 25,
     x: -5,
-    transformOrigin: 'top'
+    transformOrigin: 'top',
+    ease: 'power3.out'
   });
 
   _gsap.default.to('#left-lower-arm-hand', {
     duration: duration,
     rotate: 20,
-    transformOrigin: 'top'
+    transformOrigin: 'top',
+    ease: 'power3.out'
   });
 
   _gsap.default.to('#right-arm', {
     duration: duration,
     rotate: 10,
-    transformOrigin: 'top'
+    transformOrigin: 'top',
+    ease: 'power3.out'
   });
 
   _gsap.default.to('#right-hand', {
     duration: duration,
     rotate: -60,
-    transformOrigin: 'top'
+    transformOrigin: 'top',
+    ease: 'power3.out'
+  });
+}
+
+function flex(duration) {
+  _gsap.default.to('#body', {
+    scaleY: 0.92,
+    y: 50,
+    duration: duration,
+    transformOrigin: 'top',
+    ease: 'power3.out'
+  });
+
+  _gsap.default.to('#left-arm', {
+    rotate: 70,
+    x: 20,
+    duration: duration,
+    transformOrigin: 'top',
+    ease: 'power3.out'
+  });
+
+  _gsap.default.to('#left-lower-arm-hand', {
+    rotate: 140,
+    duration: duration,
+    transformOrigin: 'top',
+    ease: 'power3.out'
+  });
+
+  _gsap.default.to('#right-arm', {
+    rotate: -70,
+    x: -20,
+    duration: duration,
+    transformOrigin: 'top',
+    ease: 'power3.out'
+  });
+
+  _gsap.default.to('#right-lower-arm-hand', {
+    rotate: -140,
+    duration: duration,
+    transformOrigin: 'top',
+    ease: 'power3.out'
+  });
+
+  _gsap.default.to('#left-hand', {
+    rotate: 60,
+    scaleX: -1,
+    duration: duration,
+    transformOrigin: 'top',
+    ease: 'power3.out'
+  });
+
+  _gsap.default.to('#right-hand', {
+    rotate: -60,
+    scaleX: -1,
+    duration: duration,
+    transformOrigin: 'top',
+    ease: 'power3.out'
+  });
+
+  _gsap.default.to('#left-leg', {
+    duration: duration,
+    rotate: 25,
+    transformOrigin: 'top',
+    ease: 'power3.out'
+  });
+
+  _gsap.default.to('#left-lower-leg-foot', {
+    duration: duration,
+    rotate: -25,
+    transformOrigin: 'top',
+    ease: 'power3.out'
+  });
+
+  _gsap.default.to('#right-leg', {
+    duration: duration,
+    rotate: -10,
+    transformOrigin: 'top',
+    ease: 'power3.out'
+  });
+
+  _gsap.default.to('#right-lower-leg-foot', {
+    duration: duration,
+    rotate: 10,
+    transformOrigin: 'top',
+    ease: 'power3.out'
+  });
+}
+
+function greet(duration) {
+  _gsap.default.to('#body', {
+    scaleY: 0.95,
+    y: 40,
+    x: 10,
+    duration: duration,
+    transformOrigin: 'top',
+    ease: 'power3.out'
+  });
+
+  _gsap.default.to('#left-arm', {
+    duration: duration,
+    rotate: 20,
+    x: 10,
+    transformOrigin: 'top',
+    ease: 'power3.out'
+  });
+
+  _gsap.default.to('#left-lower-arm-hand', {
+    duration: duration,
+    rotate: -120,
+    transformOrigin: 'top',
+    ease: 'power3.out'
+  });
+
+  _gsap.default.to('#right-arm', {
+    duration: duration,
+    rotate: -20,
+    x: -10,
+    transformOrigin: 'top',
+    ease: 'power3.out'
+  });
+
+  _gsap.default.to('#right-lower-arm-hand', {
+    duration: duration,
+    rotate: 30,
+    transformOrigin: 'top',
+    ease: 'power3.out'
+  });
+
+  _gsap.default.to('#left-leg', {
+    duration: duration,
+    rotate: 20,
+    x: 5,
+    transformOrigin: 'top',
+    ease: 'power3.out'
+  });
+
+  _gsap.default.to('#left-lower-leg-foot', {
+    duration: duration,
+    rotate: -80,
+    transformOrigin: 'top',
+    ease: 'power3.out'
+  });
+
+  _gsap.default.to('#right-leg', {
+    duration: duration,
+    rotate: -10,
+    x: -5,
+    transformOrigin: 'top',
+    ease: 'power3.out'
+  });
+
+  _gsap.default.to('#right-lower-leg-foot', {
+    duration: duration,
+    rotate: 20,
+    transformOrigin: 'top',
+    ease: 'power3.out'
+  });
+
+  _gsap.default.to('#right-foot', {
+    duration: duration,
+    rotate: -20,
+    transformOrigin: 'top',
+    ease: 'power3.out'
   });
 }
 },{"gsap":"../node_modules/gsap/index.js","./parts":"scripts/parts.js"}],"scripts/sequence.js":[function(require,module,exports) {
@@ -6387,11 +6579,11 @@ exports.playRandomSound = playRandomSound;
 
 var _poses = require("./poses");
 
-var poses = [_poses.salute, _poses.graceful, _poses.cheeky, _poses.ninjaCrouch];
+var poses = [_poses.salute, _poses.graceful, _poses.cheeky, _poses.ninjaCrouch, _poses.flex, _poses.greet];
 
 function randomPose(duration) {
   var rand = Math.floor(Math.random() * poses.length);
-  poses[rand](2); // 2 = time
+  poses[rand](1.8); // 2 = time
 
   playRandomSound('.creak');
 }
@@ -6420,7 +6612,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function showPoses(e) {
   (0, _poses.resetMyGuy)('set');
   setTimeout(function () {
-    (0, _poses.jump)(0.45); // document.querySelector('#jump').play();
+    (0, _poses.jump)(0.45);
+    document.querySelector('#jump').play();
   }, 400);
 
   _gsap.default.to('.pose-select', {
@@ -6540,7 +6733,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 var actions = document.querySelectorAll('.action');
 var header = document.querySelector('h1');
 var desc = document.querySelector('.desc'); // setTimeout(() => {
-//   ninjaCrouch(2);
+//   greet(2);
 // }, 1000);
 
 var content = {

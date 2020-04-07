@@ -7,7 +7,7 @@ export function showPoses(e) {
 
   setTimeout(() => {
     jump(0.45);
-    // document.querySelector('#jump').play();
+    document.querySelector('#jump').play();
   }, 400);
 
   gsap.to('.pose-select', { delay: 1, duration: 1, scaleX: 1, y: '-110%', ease: 'power3.out' });
