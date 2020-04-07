@@ -40,12 +40,12 @@ export function jump(duration) {
 }
 
 export function fall(duration) {
-  gsap.to('#body', { duration: duration, scaleY: 1.3, ease: 'power3.out' });
-  gsap.to('#left-arm', { duration: duration, rotate: 140, x: 40, y: 10, transformOrigin: 'top', ease: 'power3.out' });
-  gsap.to('#right-arm', { duration: duration, rotate: -140, x: -40, y: 10, transformOrigin: 'top', ease: 'power3.out' });
+  gsap.to('.view #body', { duration: duration, scaleY: 1.3, ease: 'power3.out' });
+  gsap.to('.view #left-arm', { duration: duration, rotate: 140, x: 40, y: 10, transformOrigin: 'top', ease: 'power3.out' });
+  gsap.to('.view #right-arm', { duration: duration, rotate: -140, x: -40, y: 10, transformOrigin: 'top', ease: 'power3.out' });
 
-  gsap.to('#left-lower-arm-hand', { duration: duration, rotate: 50, ease: 'power3.out', transformOrigin: 'top' });
-  gsap.to('#right-lower-arm-hand', { duration: duration, rotate: -50, ease: 'power3.out', transformOrigin: 'top' });
+  gsap.to('.view #left-lower-arm-hand', { duration: duration, rotate: 50, ease: 'power3.out', transformOrigin: 'top' });
+  gsap.to('.view #right-lower-arm-hand', { duration: duration, rotate: -50, ease: 'power3.out', transformOrigin: 'top' });
 
   setTimeout(() => {
     resetMyGuy('trans', duration);
@@ -111,4 +111,25 @@ export function resetMyGuy(mode, duration) {
     gsap.to(part, { duration: mode === 'set' ? 0 : duration, scaleX: 1, scaleY: 1, rotate: 0, x: 0, y: 0, ease: 'power3.out' });
     gsap.to(part, { delay: mode === 'set' ? 0 : duration, transformOrigin: '50% 50%' });
   });
+}
+
+export function ninjaCrouch(duration) {
+  gsap.to('#body', { duration, y: 160 });
+  gsap.to('#upper-body', { duration, scaleY: 0.9, y: 10, rotate: -10 });
+  gsap.to('#waist', { duration, scaleY: 0.9, rotate: 10, x: 10 });
+  gsap.to('#hips', { duration, scaleY: 0.9, rotate: 10, x: 10 });
+
+  gsap.to('#left-leg', { duration, rotate: 80, x: 30, transformOrigin: 'top' });
+  gsap.to('#left-lower-leg-foot', { duration, rotate: -150, y: 15, transformOrigin: 'top' });
+  gsap.to('#left-foot', { duration, rotate: 80, transformOrigin: 'top' });
+
+  gsap.to('#right-leg', { duration, rotate: -100, x: -30, transformOrigin: 'top' });
+  gsap.to('#right-lower-leg-foot', { duration, rotate: 140, y: 15, transformOrigin: 'top' });
+  gsap.to('#right-foot', { duration, rotate: -80, transformOrigin: 'top' });
+
+  gsap.to('#left-arm', { duration, rotate: -60, y: 25, x: -5, transformOrigin: 'top' });
+  gsap.to('#left-lower-arm-hand', { duration, rotate: 20, transformOrigin: 'top' });
+
+  gsap.to('#right-arm', { duration, rotate: 10, transformOrigin: 'top' });
+  gsap.to('#right-hand', { duration, rotate: -60, transformOrigin: 'top' });
 }

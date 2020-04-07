@@ -5664,7 +5664,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.allParts = void 0;
-var allParts = ['#left-arm', '#left-lower-arm', '#left-lower-arm-hand', '#left-upper-arm', '#left-hand', '#left-elbow', '#right-arm', '#right-upper-arm', '#right-lower-arm', '#right-lower-arm-hand', '#right-hand', '#right-elbow', '#upper-body', '#waist', '#hips', '#head', '#neck', '#torso', '#right-foot', '#right-leg', '#right-knee', '#right-lower-leg', '#right-upper-leg', '#right-lower-leg-foot', '#right-upper-leg-knee', '#right-leg-connection', '#left-foot', '#left-leg', '#left-knee', '#left-lower-leg', '#left-upper-leg', '#left-upper-leg-knee', '#left-lower-leg-foot', '#left-leg-connection'];
+var allParts = ['#body', '#left-arm', '#left-lower-arm', '#left-lower-arm-hand', '#left-upper-arm', '#left-hand', '#left-elbow', '#right-arm', '#right-upper-arm', '#right-lower-arm', '#right-lower-arm-hand', '#right-hand', '#right-elbow', '#upper-body', '#waist', '#hips', '#head', '#neck', '#torso', '#right-foot', '#right-leg', '#right-knee', '#right-lower-leg', '#right-upper-leg', '#right-lower-leg-foot', '#right-upper-leg-knee', '#right-leg-connection', '#left-foot', '#left-leg', '#left-knee', '#left-lower-leg', '#left-upper-leg', '#left-upper-leg-knee', '#left-lower-leg-foot', '#left-leg-connection'];
 exports.allParts = allParts;
 },{}],"scripts/poses.js":[function(require,module,exports) {
 "use strict";
@@ -5678,6 +5678,7 @@ exports.salute = salute;
 exports.cheeky = cheeky;
 exports.graceful = graceful;
 exports.resetMyGuy = resetMyGuy;
+exports.ninjaCrouch = ninjaCrouch;
 
 var _gsap = _interopRequireDefault(require("gsap"));
 
@@ -5861,13 +5862,13 @@ function jump(duration) {
 }
 
 function fall(duration) {
-  _gsap.default.to('#body', {
+  _gsap.default.to('.view #body', {
     duration: duration,
     scaleY: 1.3,
     ease: 'power3.out'
   });
 
-  _gsap.default.to('#left-arm', {
+  _gsap.default.to('.view #left-arm', {
     duration: duration,
     rotate: 140,
     x: 40,
@@ -5876,7 +5877,7 @@ function fall(duration) {
     ease: 'power3.out'
   });
 
-  _gsap.default.to('#right-arm', {
+  _gsap.default.to('.view #right-arm', {
     duration: duration,
     rotate: -140,
     x: -40,
@@ -5885,14 +5886,14 @@ function fall(duration) {
     ease: 'power3.out'
   });
 
-  _gsap.default.to('#left-lower-arm-hand', {
+  _gsap.default.to('.view #left-lower-arm-hand', {
     duration: duration,
     rotate: 50,
     ease: 'power3.out',
     transformOrigin: 'top'
   });
 
-  _gsap.default.to('#right-lower-arm-hand', {
+  _gsap.default.to('.view #right-lower-arm-hand', {
     duration: duration,
     rotate: -50,
     ease: 'power3.out',
@@ -6207,6 +6208,100 @@ function resetMyGuy(mode, duration) {
     });
   });
 }
+
+function ninjaCrouch(duration) {
+  _gsap.default.to('#body', {
+    duration: duration,
+    y: 160
+  });
+
+  _gsap.default.to('#upper-body', {
+    duration: duration,
+    scaleY: 0.9,
+    y: 10,
+    rotate: -10
+  });
+
+  _gsap.default.to('#waist', {
+    duration: duration,
+    scaleY: 0.9,
+    rotate: 10,
+    x: 10
+  });
+
+  _gsap.default.to('#hips', {
+    duration: duration,
+    scaleY: 0.9,
+    rotate: 10,
+    x: 10
+  });
+
+  _gsap.default.to('#left-leg', {
+    duration: duration,
+    rotate: 80,
+    x: 30,
+    transformOrigin: 'top'
+  });
+
+  _gsap.default.to('#left-lower-leg-foot', {
+    duration: duration,
+    rotate: -150,
+    y: 15,
+    transformOrigin: 'top'
+  });
+
+  _gsap.default.to('#left-foot', {
+    duration: duration,
+    rotate: 80,
+    transformOrigin: 'top'
+  });
+
+  _gsap.default.to('#right-leg', {
+    duration: duration,
+    rotate: -100,
+    x: -30,
+    transformOrigin: 'top'
+  });
+
+  _gsap.default.to('#right-lower-leg-foot', {
+    duration: duration,
+    rotate: 140,
+    y: 15,
+    transformOrigin: 'top'
+  });
+
+  _gsap.default.to('#right-foot', {
+    duration: duration,
+    rotate: -80,
+    transformOrigin: 'top'
+  });
+
+  _gsap.default.to('#left-arm', {
+    duration: duration,
+    rotate: -60,
+    y: 25,
+    x: -5,
+    transformOrigin: 'top'
+  });
+
+  _gsap.default.to('#left-lower-arm-hand', {
+    duration: duration,
+    rotate: 20,
+    transformOrigin: 'top'
+  });
+
+  _gsap.default.to('#right-arm', {
+    duration: duration,
+    rotate: 10,
+    transformOrigin: 'top'
+  });
+
+  _gsap.default.to('#right-hand', {
+    duration: duration,
+    rotate: -60,
+    transformOrigin: 'top'
+  });
+}
 },{"gsap":"../node_modules/gsap/index.js","./parts":"scripts/parts.js"}],"scripts/sequence.js":[function(require,module,exports) {
 "use strict";
 
@@ -6236,10 +6331,11 @@ sequenceTrigger.addEventListener('click', function () {
 
   (0, _poses.resetMyGuy)('set');
   sequenceTrigger.disabled = true;
+  (0, _poses.fall)(1);
   setTimeout(function () {
-    (0, _poses.graceful)(5);
+    (0, _poses.cheeky)(4);
     startSequenceCapture(2000, 200);
-  }, 1000);
+  }, 1500);
 });
 
 function startSequenceCapture(duration, interval) {
@@ -6291,7 +6387,7 @@ exports.playRandomSound = playRandomSound;
 
 var _poses = require("./poses");
 
-var poses = [_poses.salute, _poses.graceful];
+var poses = [_poses.salute, _poses.graceful, _poses.cheeky, _poses.ninjaCrouch];
 
 function randomPose(duration) {
   var rand = Math.floor(Math.random() * poses.length);
@@ -6441,12 +6537,12 @@ function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.
 function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
 
 (0, _poses.resetMyGuy)('set');
-setTimeout(function () {
-  (0, _poses.cheeky)(2);
-}, 1000);
 var actions = document.querySelectorAll('.action');
 var header = document.querySelector('h1');
-var desc = document.querySelector('.desc');
+var desc = document.querySelector('.desc'); // setTimeout(() => {
+//   ninjaCrouch(2);
+// }, 1000);
+
 var content = {
   select: {
     title: 'Strike a pose <br> for the camera',

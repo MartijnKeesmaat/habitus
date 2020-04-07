@@ -1,4 +1,6 @@
 export const allParts = [
+  '#body',
+
   '#left-arm',
   '#left-lower-arm',
   '#left-lower-arm-hand',
@@ -36,5 +38,5 @@ export const allParts = [
   '#left-upper-leg',
   '#left-upper-leg-knee',
   '#left-lower-leg-foot',
-  '#left-leg-connection'
+  '#left-leg-connection',
 ];

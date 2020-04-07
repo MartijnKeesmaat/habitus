@@ -1,5 +1,5 @@
 import gsap, { random } from 'gsap';
-import { jump, salute, graceful, resetMyGuy, fall, cheeky } from './poses';
+import { jump, salute, graceful, resetMyGuy, fall, ninjaCrouch } from './poses';
 import { startSequenceCapture } from './sequence';
 import { showPoses } from './poseSelector';
 import { actionTimedPose } from './timed';
@@ -7,13 +7,13 @@ import { playRandomSound } from './helpers';
 
 resetMyGuy('set');
 
-setTimeout(() => {
-  cheeky(2);
-}, 1000);
-
 const actions = document.querySelectorAll('.action');
 const header = document.querySelector('h1');
 const desc = document.querySelector('.desc');
+
+// setTimeout(() => {
+//   ninjaCrouch(2);
+// }, 1000);
 
 const content = {
   select: {

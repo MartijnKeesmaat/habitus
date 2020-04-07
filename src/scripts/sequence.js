@@ -1,5 +1,5 @@
 import gsap from 'gsap';
-import { graceful, resetMyGuy } from './poses';
+import { graceful, resetMyGuy, cheeky, fall } from './poses';
 
 const sequenceTrigger = document.querySelector('#start-sequence');
 sequenceTrigger.addEventListener('click', function () {
@@ -10,10 +10,12 @@ sequenceTrigger.addEventListener('click', function () {
 
   sequenceTrigger.disabled = true;
 
+  fall(1);
+
   setTimeout(() => {
-    graceful(5);
+    cheeky(4);
     startSequenceCapture(2000, 200);
-  }, 1000);
+  }, 1500);
 });
 
 function startSequenceCapture(duration, interval) {
