@@ -6136,11 +6136,14 @@ var _poses = require("./poses");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function showPoses() {
+function showPoses(e) {
   (0, _poses.resetMyGuy)('trans', 0.5);
+  console.log(e);
   setTimeout(function () {
     (0, _poses.jump)(0.45);
-  }, 200);
+    document.querySelector('#jump').play();
+  }, 200); // setTimeout(() => {
+  // }, 350);
 
   _gsap.default.to('.pose-select', {
     delay: 1,
@@ -6183,6 +6186,7 @@ function adeptNewPose() {
   });
 
   document.getElementById('pose-selector').disabled = false;
+  document.querySelector('#land').play();
 }
 },{"gsap":"../node_modules/gsap/index.js","./poses":"scripts/poses.js"}],"scripts/helpers.js":[function(require,module,exports) {
 "use strict";
@@ -6191,6 +6195,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.randomPose = randomPose;
+exports.playRandomSound = playRandomSound;
 
 var _poses = require("./poses");
 
@@ -6199,6 +6204,14 @@ var poses = [_poses.salute, _poses.graceful];
 function randomPose(duration) {
   var rand = Math.floor(Math.random() * poses.length);
   poses[rand](2); // 2 = time
+
+  playRandomSound('.creak');
+}
+
+function playRandomSound(classs) {
+  var source = document.querySelectorAll(classs);
+  var rand = Math.floor(Math.random() * source.length);
+  source[rand].play();
 }
 },{"./poses":"scripts/poses.js"}],"scripts/timed.js":[function(require,module,exports) {
 "use strict";
@@ -6242,7 +6255,7 @@ function actionTimedPose() {
 },{"gsap":"../node_modules/gsap/index.js","./helpers":"scripts/helpers.js","./poses":"scripts/poses.js"}],"scripts/index.js":[function(require,module,exports) {
 "use strict";
 
-var _gsap = _interopRequireDefault(require("gsap"));
+var _gsap = _interopRequireWildcard(require("gsap"));
 
 var _poses = require("./poses");
 
@@ -6252,7 +6265,11 @@ var _poseSelector = require("./poseSelector");
 
 var _timed = require("./timed");
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+var _helpers = require("./helpers");
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
 
@@ -6316,6 +6333,7 @@ function startAction(e) {
   transitionActionContent(selectedAction);
   transitionContentViews(selectedAction);
   activeState = selectedAction;
+  (0, _helpers.playRandomSound)('.click');
 }
 
 function showActiveActionIcon(e) {
@@ -6489,7 +6507,7 @@ function normalize(value, min, max) {
 //   const angle = Math.atan2(e.pageX - boxCenter[0], -(e.pageY - boxCenter[1])) * (180 / Math.PI);
 //   box.style.transform = 'rotate(' + angle + 'deg)';
 // });
-},{"gsap":"../node_modules/gsap/index.js","./poses":"scripts/poses.js","./sequence":"scripts/sequence.js","./poseSelector":"scripts/poseSelector.js","./timed":"scripts/timed.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"gsap":"../node_modules/gsap/index.js","./poses":"scripts/poses.js","./sequence":"scripts/sequence.js","./poseSelector":"scripts/poseSelector.js","./timed":"scripts/timed.js","./helpers":"scripts/helpers.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -6517,7 +6535,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62955" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56746" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

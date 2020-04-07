@@ -1,8 +1,9 @@
-import gsap from 'gsap';
+import gsap, { random } from 'gsap';
 import { jump, salute, graceful, resetMyGuy } from './poses';
 import { startSequenceCapture } from './sequence';
 import { showPoses } from './poseSelector';
 import { actionTimedPose } from './timed';
+import { playRandomSound } from './helpers';
 
 resetMyGuy('set');
 
@@ -49,6 +50,7 @@ function startAction(e) {
   transitionActionContent(selectedAction);
   transitionContentViews(selectedAction);
   activeState = selectedAction;
+  playRandomSound('.click');
 }
 
 function showActiveActionIcon(e) {
