@@ -402,7 +402,7 @@
 
         <!-- <div id="distance"><span></span></div> -->
         <div class="actions">
-          <span class="action action-select action--active" data-action="select">
+          <span class="action hoverableArea action-select action--active" data-action="select">
             <div class="action-img">
               <img src="/1.e369c377.svg" alt="">
               <img src="/3.f13751e1.svg" alt="">
@@ -412,7 +412,7 @@
             <p>Select</p>
           </span>
 
-          <span class="action action-timed" data-action="timed">
+          <span class="action hoverableArea action-timed" data-action="timed">
             <div class="scale">
               <div class="action-img">
                 <img src="/1.56c2402f.svg" alt="">
@@ -425,7 +425,7 @@
             <p>Timed</p>
           </span>
 
-          <span class="action action-sequence" data-action="sequence">
+          <span class="action hoverableArea action-sequence" data-action="sequence">
             <div class="scale">
               <div class="action-img">
                 <img src="/1.485e92c7.svg" alt="">
@@ -754,51 +754,51 @@
 
         <div class="pose-select">
           <div class="row">
-            <div>
+            <div class="hoverableArea">
               <p>Cross</p>
               <img src="/cross.4695f336.png" alt="">
             </div>
 
-            <div>
+            <div class="hoverableArea">
               <p>Crouch</p>
               <img style="height: 130px; margin-top: 63px;" src="/crouch.a07cccd7.png" alt="">
             </div>
 
-            <div>
+            <div class="hoverableArea">
               <p>Flex</p>
               <img src="/flex.e60a47da.png" alt="">
             </div>
           </div>
 
           <div class="row">
-            <div>
+            <div class="hoverableArea">
               <p>Graceful</p>
               <img src="/graceful.f01dfb63.png" alt="">
             </div>
 
-            <div>
+            <div class="hoverableArea">
               <p>Greet</p>
               <img src="/greet.9f8c6ba6.png" alt="">
             </div>
 
-            <div>
+            <div class="hoverableArea">
               <p>Sunshine</p>
               <img src="/sunshine.40de6331.png" alt="">
             </div>
           </div>
 
           <div class="row">
-            <div>
+            <div class="hoverableArea">
               <p>Pole</p>
               <img src="/pole.1365e59b.png" alt="">
             </div>
 
-            <div>
+            <div class="hoverableArea">
               <p>Salute</p>
               <img src="/salute.8505d03d.png" alt="">
             </div>
 
-            <div>
+            <div class="hoverableArea">
               <p>Stand</p>
               <img src="/stand.c2913f63.png" alt="">
             </div>
@@ -806,6 +806,22 @@
         </div>
       </div>
     </main>
+
+    <div class="cursor">
+      <div class="cursor__circle cursor__circle--big">
+        <svg height="60" width="60">
+          <circle id="bigCircle" cx="30" cy="30" r="18" stroke-width="0.8"></circle>
+        </svg>
+      </div>
+
+      <div class="cursor__plus">
+        <svg class="cursor__plus--area" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <g stroke-width="1">
+            <path d="M12.5,1.87037037 L12.5,11.4993704 L22.5,11.5 L22.5,12.5 L12.5,12.4993704 L12.5,22.1296296 L11.5,22.1296296 L11.5,12.4993704 L1.5,12.5 L1.5,11.5 L11.5,11.4993704 L11.5,1.87037037 L12.5,1.87037037 Z"></path>
+          </g>
+        </svg>
+      </div>
+    </div>
 
     <div class="capture-pose"><img src="" alt=""><canvas></canvas></div>
     <script src="/scripts.bcf3243b.js"></script>

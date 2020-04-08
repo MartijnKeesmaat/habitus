@@ -3,7 +3,7 @@ import { jump, graceful, salute, fall, resetMyGuy, ninjaCrouch, ninja, stretch, 
 import { randomPose } from './helpers';
 
 export function showPoses(e) {
-  resetMyGuy('set');
+  resetMyGuy('trans', 0.3);
 
   setTimeout(() => {
     jump(0.45);

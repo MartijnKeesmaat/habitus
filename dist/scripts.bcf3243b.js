@@ -6879,7 +6879,7 @@ var _helpers = require("./helpers");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function showPoses(e) {
-  (0, _poses.resetMyGuy)('set');
+  (0, _poses.resetMyGuy)('trans', 0.3);
   setTimeout(function () {
     (0, _poses.jump)(0.45);
     document.querySelector('#jump').play();
@@ -7290,6 +7290,83 @@ function normalize(value, min, max) {
 //   const angle = Math.atan2(e.pageX - boxCenter[0], -(e.pageY - boxCenter[1])) * (180 / Math.PI);
 //   box.style.transform = 'rotate(' + angle + 'deg)';
 // });
+
+
+var $bigCircle = document.querySelector('.cursor__circle--big');
+var $smallCircle = document.querySelector('.cursor__circle--small');
+var $smallPlus = document.querySelector('.cursor__plus');
+var $smallPlusArea = document.querySelector('.cursor__plus--area');
+var $hoverables = document.querySelectorAll('.hoverable');
+var hoverablesArea = document.querySelectorAll('.hoverableArea'); // Listeners
+
+document.body.addEventListener('mousemove', onMouseMove);
+
+for (var i = 0; i < $hoverables.length; i++) {
+  $hoverables[i].addEventListener('mouseenter', onMouseHover);
+  $hoverables[i].addEventListener('mouseleave', onMouseHoverOut);
+}
+
+for (var _i = 0; _i < hoverablesArea.length; _i++) {
+  hoverablesArea[_i].addEventListener('mouseenter', onMouseHoverArea);
+
+  hoverablesArea[_i].addEventListener('mouseleave', onMouseHoverAreaOut);
+} // Move the cursor
+
+
+function onMouseMove(e) {
+  _gsap.default.to($bigCircle, 0.4, {
+    x: e.clientX,
+    y: e.clientY
+  });
+
+  _gsap.default.to($smallCircle, 0.1, {
+    x: e.clientX,
+    y: e.clientY
+  });
+
+  _gsap.default.to($smallPlus, 0.1, {
+    x: e.clientX,
+    y: e.clientY
+  });
+} // Hover an element
+
+
+function onMouseHover() {
+  _gsap.default.to('#bigCircle', {
+    attr: {
+      r: 25
+    }
+  });
+}
+
+function onMouseHoverOut() {
+  _gsap.default.to('#bigCircle', {
+    attr: {
+      r: 18
+    }
+  });
+} // Hover img an element
+
+
+function onMouseHoverArea() {
+  _gsap.default.to($bigCircle, 0.3, {
+    scale: 1.3
+  });
+
+  _gsap.default.to($smallPlusArea, 0.3, {
+    stroke: '#08153A'
+  });
+}
+
+function onMouseHoverAreaOut() {
+  _gsap.default.to($bigCircle, 0.3, {
+    scale: 1
+  });
+
+  _gsap.default.to($smallPlusArea, 0.3, {
+    stroke: 'transparent'
+  });
+}
 },{"gsap":"../node_modules/gsap/index.js","./poses":"scripts/poses.js","./sequence":"scripts/sequence.js","./poseSelector":"scripts/poseSelector.js","./timed":"scripts/timed.js","./helpers":"scripts/helpers.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';

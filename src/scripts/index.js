@@ -215,3 +215,74 @@ function normalize(value, min, max) {
 //   const angle = Math.atan2(e.pageX - boxCenter[0], -(e.pageY - boxCenter[1])) * (180 / Math.PI);
 //   box.style.transform = 'rotate(' + angle + 'deg)';
 // });
+
+const $bigCircle = document.querySelector('.cursor__circle--big');
+const $smallCircle = document.querySelector('.cursor__circle--small');
+const $smallPlus = document.querySelector('.cursor__plus');
+const $smallPlusArea = document.querySelector('.cursor__plus--area');
+const $hoverables = document.querySelectorAll('.hoverable');
+const hoverablesArea = document.querySelectorAll('.hoverableArea');
+
+// Listeners
+document.body.addEventListener('mousemove', onMouseMove);
+
+for (let i = 0; i < $hoverables.length; i++) {
+  $hoverables[i].addEventListener('mouseenter', onMouseHover);
+  $hoverables[i].addEventListener('mouseleave', onMouseHoverOut);
+}
+
+for (let i = 0; i < hoverablesArea.length; i++) {
+  hoverablesArea[i].addEventListener('mouseenter', onMouseHoverArea);
+  hoverablesArea[i].addEventListener('mouseleave', onMouseHoverAreaOut);
+}
+
+// Move the cursor
+function onMouseMove(e) {
+  gsap.to($bigCircle, 0.4, {
+    x: e.clientX,
+    y: e.clientY,
+  });
+  gsap.to($smallCircle, 0.1, {
+    x: e.clientX,
+    y: e.clientY,
+  });
+  gsap.to($smallPlus, 0.1, {
+    x: e.clientX,
+    y: e.clientY,
+  });
+}
+
+// Hover an element
+function onMouseHover() {
+  gsap.to('#bigCircle', {
+    attr: {
+      r: 25,
+    },
+  });
+}
+function onMouseHoverOut() {
+  gsap.to('#bigCircle', {
+    attr: {
+      r: 18,
+    },
+  });
+}
+
+// Hover img an element
+function onMouseHoverArea() {
+  gsap.to($bigCircle, 0.3, {
+    scale: 1.3,
+  });
+
+  gsap.to($smallPlusArea, 0.3, {
+    stroke: '#08153A',
+  });
+}
+function onMouseHoverAreaOut() {
+  gsap.to($bigCircle, 0.3, {
+    scale: 1,
+  });
+  gsap.to($smallPlusArea, 0.3, {
+    stroke: 'transparent',
+  });
+}
