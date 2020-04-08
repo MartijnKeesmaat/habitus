@@ -8,8 +8,8 @@ import { playRandomSound } from './helpers';
 resetMyGuy('set');
 
 const actions = document.querySelectorAll('.action');
-const header = document.querySelector('h1');
-const desc = document.querySelector('.desc');
+const headerA = document.querySelector('h1 .headerA');
+const headerB = document.querySelector('h1 .headerB');
 
 const content = {
   select: {
@@ -59,15 +59,33 @@ function showActiveActionIcon(e) {
   e.currentTarget.classList.add('action--active');
 }
 
+let toggle = true;
 function transitionActionContent(selectedAction) {
-  header.innerHTML = content[selectedAction].title;
-  desc.innerHTML = content[selectedAction].body;
+  if (toggle) {
+    gsap.to(headerA, { y: '-100%', duration: 0.4, ease: 'power3.out' });
+    gsap.to(headerB, { y: '-100%', delay: 0.1, duration: 0.4, ease: 'power3.out' });
+  } else {
+    gsap.to(headerB, { y: '-200%', duration: 0.4, ease: 'power3.out' });
+    gsap.to(headerA, { y: '0%', delay: 0.1, duration: 0.4, ease: 'power3.out' });
+  }
+  console.log(toggle);
+
+  setTimeout(() => {
+    gsap.set(toggle ? headerB : headerA, { y: '100%' });
+  }, 500);
+
+  toggle ? (headerB.innerHTML = content[selectedAction].title) : (headerA.innerHTML = content[selectedAction].title);
+  toggle = !toggle;
 }
 
+let currentContent = 'select';
 function transitionContentViews(selectedAction) {
-  contentSections.forEach((e) => e.classList.remove('content-section--active'));
-  const selectedContent = contentSections.filter((i) => selectedAction === i.dataset.contentsection);
-  selectedContent[0].classList.add('content-section--active');
+  const result = Array.prototype.slice.call(contentSections).filter((e) => e.dataset.contentsection === selectedAction);
+  const current = Array.prototype.slice.call(contentSections).filter((e) => e.dataset.contentsection === currentContent);
+
+  gsap.to(current, { autoAlpha: 0, y: -30, duration: 0.35, delay: 0.1 });
+  gsap.to(result[0], { autoAlpha: 1, y: 0, duration: 0.35, delay: 0.4 });
+  currentContent = selectedAction;
 }
 
 function actionSequencedPose() {

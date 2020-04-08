@@ -7011,8 +7011,8 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 (0, _poses.resetMyGuy)('set');
 var actions = document.querySelectorAll('.action');
-var header = document.querySelector('h1');
-var desc = document.querySelector('.desc');
+var headerA = document.querySelector('h1 .headerA');
+var headerB = document.querySelector('h1 .headerB');
 var content = {
   select: {
     title: 'Strike a pose <br> for the camera',
@@ -7073,19 +7073,72 @@ function showActiveActionIcon(e) {
   e.currentTarget.classList.add('action--active');
 }
 
+var toggle = true;
+
 function transitionActionContent(selectedAction) {
-  header.innerHTML = content[selectedAction].title;
-  desc.innerHTML = content[selectedAction].body;
+  if (toggle) {
+    _gsap.default.to(headerA, {
+      y: '-100%',
+      duration: 0.4,
+      ease: 'power3.out'
+    });
+
+    _gsap.default.to(headerB, {
+      y: '-100%',
+      delay: 0.1,
+      duration: 0.4,
+      ease: 'power3.out'
+    });
+  } else {
+    _gsap.default.to(headerB, {
+      y: '-200%',
+      duration: 0.4,
+      ease: 'power3.out'
+    });
+
+    _gsap.default.to(headerA, {
+      y: '0%',
+      delay: 0.1,
+      duration: 0.4,
+      ease: 'power3.out'
+    });
+  }
+
+  console.log(toggle);
+  setTimeout(function () {
+    _gsap.default.set(toggle ? headerB : headerA, {
+      y: '100%'
+    });
+  }, 500);
+  toggle ? headerB.innerHTML = content[selectedAction].title : headerA.innerHTML = content[selectedAction].title;
+  toggle = !toggle;
 }
 
+var currentContent = 'select';
+
 function transitionContentViews(selectedAction) {
-  contentSections.forEach(function (e) {
-    return e.classList.remove('content-section--active');
+  var result = Array.prototype.slice.call(contentSections).filter(function (e) {
+    return e.dataset.contentsection === selectedAction;
   });
-  var selectedContent = contentSections.filter(function (i) {
-    return selectedAction === i.dataset.contentsection;
+  var current = Array.prototype.slice.call(contentSections).filter(function (e) {
+    return e.dataset.contentsection === currentContent;
   });
-  selectedContent[0].classList.add('content-section--active');
+
+  _gsap.default.to(current, {
+    autoAlpha: 0,
+    y: -30,
+    duration: 0.35,
+    delay: 0.1
+  });
+
+  _gsap.default.to(result[0], {
+    autoAlpha: 1,
+    y: 0,
+    duration: 0.35,
+    delay: 0.4
+  });
+
+  currentContent = selectedAction;
 }
 
 function actionSequencedPose() {

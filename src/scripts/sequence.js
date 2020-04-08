@@ -1,5 +1,5 @@
 import gsap from 'gsap';
-import { graceful, resetMyGuy, cheeky, fall, greet } from './poses';
+import { resetMyGuy, fall, greet } from './poses';
 
 const sequenceTrigger = document.querySelector('#start-sequence');
 sequenceTrigger.addEventListener('click', function () {

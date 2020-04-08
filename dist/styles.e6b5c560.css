@@ -116,9 +116,6 @@ main {
   transform: scale(1.1);
 }
 
-.content .btn {
-  margin-bottom: 4.3rem;
-}
 .content h3 {
   margin-top: 2rem;
 }
@@ -174,8 +171,8 @@ main {
 #shadow {
   position: fixed;
   z-index: -1;
-  top: 82%;
-  left: 49%;
+  top: 80%;
+  left: 50%;
   width: 248px;
   height: 70px;
   opacity: 0.14;
@@ -184,8 +181,22 @@ main {
   filter: blur(14px);
 }
 
+.content-section-container {
+  position: relative;
+  overflow: hidden;
+  height: 200px;
+}
+
 .content-section {
-  display: none;
+  position: absolute;
+  visibility: hidden;
+  transform: translateY(-30px);
+  opacity: 0;
+}
+.content-section:first-of-type {
+  visibility: visible;
+  transform: none;
+  opacity: 1;
 }
 
 .content-section--time h4 {
@@ -344,6 +355,19 @@ html {
   opacity: 0.8;
   font-family: "Avenir-black", Arial, Sans-Serif;
   font-size: 14px;
+}
+
+h1 {
+  overflow: hidden;
+  height: 75px;
+}
+h1 span {
+  display: block;
+}
+
+.content #start-timer {
+  margin-bottom: 0;
+  margin-left: 5px;
 }
 
 body {
