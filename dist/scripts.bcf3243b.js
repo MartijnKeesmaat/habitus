@@ -7364,7 +7364,7 @@ function onMouseHoverAreaOut() {
   });
 
   _gsap.default.to($smallPlusArea, 0.3, {
-    stroke: 'transparent'
+    stroke: '#08153A'
   });
 }
 },{"gsap":"../node_modules/gsap/index.js","./poses":"scripts/poses.js","./sequence":"scripts/sequence.js","./poseSelector":"scripts/poseSelector.js","./timed":"scripts/timed.js","./helpers":"scripts/helpers.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {

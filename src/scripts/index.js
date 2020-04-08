@@ -283,6 +283,6 @@ function onMouseHoverAreaOut() {
     scale: 1,
   });
   gsap.to($smallPlusArea, 0.3, {
-    stroke: 'transparent',
+    stroke: '#08153A',
   });
 }
