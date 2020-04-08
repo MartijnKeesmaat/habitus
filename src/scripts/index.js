@@ -1,5 +1,5 @@
 import gsap, { random } from 'gsap';
-import { jump, salute, graceful, resetMyGuy, fall, ninjaCrouch, flex, greet } from './poses';
+import { jump, salute, graceful, resetMyGuy, fall, ninjaCrouch, flex, greet, hips, ninja, stretch } from './poses';
 import { startSequenceCapture } from './sequence';
 import { showPoses } from './poseSelector';
 import { actionTimedPose } from './timed';
@@ -10,10 +10,6 @@ resetMyGuy('set');
 const actions = document.querySelectorAll('.action');
 const header = document.querySelector('h1');
 const desc = document.querySelector('.desc');
-
-// setTimeout(() => {
-//   greet(2);
-// }, 1000);
 
 const content = {
   select: {

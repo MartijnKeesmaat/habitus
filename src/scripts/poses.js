@@ -36,7 +36,7 @@ export function jump(duration) {
   allParts.forEach((part) => {
     gsap.to(part, { duration: duration / 2, delay: duration, scaleX: 1, scaleY: 1, rotate: 0, x: 0, y: 0, ease: 'power3.out' });
   });
-  // gsap.to('#body', { delay: duration, duration: duration * 2, scaleY: 2, y: -1200, ease: 'power4.out' });
+  gsap.to('#body', { delay: duration, duration: duration * 2, scaleY: 2, y: '-120%', ease: 'power4.out' });
 }
 
 export function fall(duration) {
@@ -168,4 +168,57 @@ export function greet(duration) {
   gsap.to('#right-leg', { duration, rotate: -10, x: -5, transformOrigin: 'top', ease: 'power3.out' });
   gsap.to('#right-lower-leg-foot', { duration, rotate: 20, transformOrigin: 'top', ease: 'power3.out' });
   gsap.to('#right-foot', { duration, rotate: -20, transformOrigin: 'top', ease: 'power3.out' });
+}
+
+export function hips(duration) {
+  gsap.to('#body', { x: -7, duration, transformOrigin: 'top', ease: 'power3.out' });
+  gsap.to('#left-arm', { rotate: 120, x: 30, y: 10, duration, transformOrigin: 'top', ease: 'power3.out' });
+  gsap.to('#right-arm', { rotate: 15, duration, transformOrigin: 'top', ease: 'power3.out' });
+  gsap.to('#right-lower-arm-hand', { rotate: -20, duration, transformOrigin: 'top', ease: 'power3.out' });
+  gsap.to('#left-lower-arm-hand', { rotate: 130, duration, transformOrigin: 'top', ease: 'power3.out' });
+  gsap.to('#upper-body', { rotate: 5, duration, transformOrigin: 'top', ease: 'power3.out' });
+  gsap.to('#waist', { x: -10, duration, transformOrigin: 'top', ease: 'power3.out' });
+  gsap.to('#hips', { rotate: -10, x: -15, duration, transformOrigin: 'top', ease: 'power3.out' });
+  gsap.to('#right-leg', { rotate: -10, x: -5, duration, transformOrigin: 'top', ease: 'power3.out' });
+  gsap.to('#left-leg', { rotate: 5, x: -5, duration, transformOrigin: 'top', ease: 'power3.out' });
+  gsap.to('#left-lower-leg-foot', { rotate: -8, duration, transformOrigin: 'top', ease: 'power3.out' });
+}
+
+export function ninja(duration) {
+  gsap.to('#body', { y: 7, duration, transformOrigin: 'top', ease: 'power3.out' });
+
+  gsap.to('#left-arm', { rotate: 90, x: 30, y: 10, duration, transformOrigin: 'top', ease: 'power3.out' });
+  gsap.to('#left-lower-arm-hand', { rotate: 90, duration, transformOrigin: 'top', ease: 'power3.out' });
+
+  gsap.to('#left-hand', { rotate: 70, duration, transformOrigin: 'top', ease: 'power3.out' });
+  gsap.to('#right-hand', { rotate: 20, duration, transformOrigin: 'top', ease: 'power3.out' });
+
+  gsap.to('#upper-body', { rotate: 3, x: 5, duration, transformOrigin: 'top', ease: 'power3.out' });
+  gsap.to('#waist', { x: -2, duration, transformOrigin: 'top', ease: 'power3.out' });
+  gsap.to('#hips', { rotate: -3, x: -6, duration, transformOrigin: 'top', ease: 'power3.out' });
+
+  gsap.to('#right-leg', { rotate: -10, x: -5, duration, transformOrigin: 'top', ease: 'power3.out' });
+  gsap.to('#right-lower-leg-foot', { rotate: 3, duration, transformOrigin: 'top', ease: 'power3.out' });
+
+  gsap.to('#left-leg', { rotate: 10, x: -5, duration, transformOrigin: 'top', ease: 'power3.out' });
+  gsap.to('#left-lower-leg-foot', { rotate: -3, duration, transformOrigin: 'top', ease: 'power3.out' });
+
+  gsap.to('#right-arm', { rotate: -5, duration, transformOrigin: 'top', ease: 'power3.out' });
+  gsap.to('#right-lower-arm-hand', { rotate: -20, duration, transformOrigin: 'top', ease: 'power3.out' });
+}
+
+export function stretch(duration) {
+  gsap.to('#body', { y: 7, duration, transformOrigin: 'top', ease: 'power3.out' });
+
+  gsap.to('#left-arm', { rotate: 150, x: 30, y: 15, duration, transformOrigin: 'top', ease: 'power3.out' });
+  gsap.to('#left-lower-arm-hand', { rotate: 100, duration, transformOrigin: 'top', ease: 'power3.out' });
+
+  gsap.to('#right-arm', { rotate: -150, x: -30, y: 15, duration, transformOrigin: 'top', ease: 'power3.out' });
+  gsap.to('#right-lower-arm-hand', { rotate: -100, duration, transformOrigin: 'top', ease: 'power3.out' });
+
+  gsap.to('#right-leg', { rotate: -10, duration, transformOrigin: 'top', ease: 'power3.out' });
+  gsap.to('#right-lower-leg-foot', { rotate: 10, duration, transformOrigin: 'top', ease: 'power3.out' });
+
+  gsap.to('#left-leg', { rotate: 10, duration, transformOrigin: 'top', ease: 'power3.out' });
+  gsap.to('#left-lower-leg-foot', { rotate: -10, duration, transformOrigin: 'top', ease: 'power3.out' });
 }

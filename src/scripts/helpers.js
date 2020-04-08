@@ -1,6 +1,6 @@
-import { jump, graceful, salute, cheeky, ninjaCrouch, flex, greet } from './poses';
+import { graceful, ninja, ninjaCrouch, greet, salute, flex, hips } from './poses';
 
-const poses = [salute, graceful, cheeky, ninjaCrouch, flex, greet];
+const poses = [graceful, ninja, ninjaCrouch, greet, salute, flex, hips];
 
 export function randomPose(duration) {
   const rand = Math.floor(Math.random() * poses.length);
